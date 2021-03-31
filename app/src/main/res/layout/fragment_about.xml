@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_baseline_arrow_back_blue"
+            android:layout_margin="12dp"
+            android:id="@+id/kembali"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About" android:textStyle="bold"
+            android:textColor="@color/deepSkyBlue"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/fragment_apliksi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aplikasi"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/deepSkyBlue"
+            android:textSize="18sp"
+            android:paddingBottom="10dp"
+            android:background="@drawable/garis_blue"
+            />
+
+        <TextView
+            android:id="@+id/fragment_developers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Developers"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:layout_toEndOf="@id/fragment_lomba"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingBottom="10dp"
+            android:background="@drawable/garis"
+            />
+
+    </TableRow>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="25dp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo_dikti"/>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:layout_height="match_parent">
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Instagram"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15dp"
+                        android:textAlignment="textEnd"
+                        android:text="\@kmtgugm"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginTop="28dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Versi"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15dp"
+                        android:textAlignment="textEnd"
+                        android:text="Versi Terinstall v1.0.0"/>
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deskripsi"
+                android:paddingStart="18dp"
+                android:layout_marginTop="28dp"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="18dp"
+                android:justificationMode="inter_word"
+                android:textSize="15dp"
+                android:text="Aplikasi ini merupakan hasil dari agenda departemen Pendidikan dan Penelitian Keluarga Mahasiswa Teknik Geodesi periode 2020/2021. Aplikasi ini diharapkan dapat meningkatkan prestasi mahasiswa Teknik Geodesi."/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+
+
+
+

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/card_kembali">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_baseline_arrow_back_blue"
+            android:layout_margin="12dp"
+            android:id="@+id/kembali"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Anggota"
+            android:textStyle="bold"
+            android:textColor="@color/deepSkyBlue"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/lingkaran_abu_abu_person"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:id="@+id/view_foto_anggota">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"
+                    android:id="@+id/foto_anggota"/>
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/add_foto"
+                    android:src="@drawable/lingkaran_biru_kamera"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/view_foto_anggota"
+                android:layout_margin="20dp"
+                android:orientation="vertical">
+                <EditText
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="Username"
+                    android:textColorHint="@color/DimGray"
+                    android:background="@drawable/garis"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:alpha="0.7"
+                    android:paddingLeft="15dp"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" *Format : Angkatan_Nama Depan (kalau sama tambahkan angka)"
+                    android:textColor="@color/Gray"
+                    />
+                <EditText
+                    android:id="@+id/nama_lengkap"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:hint="Nama Lengkap"
+                    android:textColor="@color/Black"
+                    android:textColorHint="@color/Gray"
+                    android:background="@drawable/garis"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="15dp"
+                    android:textSize="19sp"/>
+
+                <EditText
+                    android:id="@+id/NIM"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:hint="NIM"
+                    android:textColor="@color/Black"
+                    android:textColorHint="@color/Gray"
+                    android:background="@drawable/garis"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="15dp"
+                    android:textSize="19sp"/>
+
+                <Spinner
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/departemen"
+                    android:spinnerMode="dropdown"
+                    android:background="@drawable/garis"/>
+
+                <EditText
+                    android:id="@+id/angkatan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:hint="Angkatan"
+                    android:textColor="@color/Black"
+                    android:textColorHint="@color/Gray"
+                    android:background="@drawable/garis"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="15dp"
+                    android:textSize="19sp"/>
+
+                <TextView
+                    android:id="@+id/addData"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Add"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/White"
+                    android:background="@color/deepSkyBlue"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
+
+
+
+

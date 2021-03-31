@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/search1"
+        android:layout_marginTop="13dp">
+
+        <TextView
+            android:id="@+id/fragment_lomba"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lomba"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginStart="35dp"
+            android:textSize="22sp"
+            android:paddingBottom="3dp"
+            android:background="@drawable/garis"
+            />
+
+        <TextView
+            android:id="@+id/fragment_beasiswa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Beasiswa"
+            android:layout_toEndOf="@id/fragment_lomba"
+            android:textColor="@color/deepSkyBlue"
+            android:textStyle="bold"
+            android:layout_marginStart="13dp"
+            android:textSize="22sp"
+            android:paddingBottom="3dp"
+            android:background="@drawable/garis_blue"
+            />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fragment_lomba"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/search2"
+                android:background="@drawable/border">
+
+                <SearchView
+                    android:id="@+id/search"
+                    android:layout_width="341dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:iconifiedByDefault="false"
+                    android:queryHint="Search Here" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/daftar_beasiswa"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="5dp"
+        android:layout_above="@id/toolbar"
+        android:layout_below="@id/search1"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:listitem="@layout/tampilan_lomba"/>
+
+    <RelativeLayout
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_above="@id/toolbar"
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp"
+        android:id="@+id/tambah_beasiswa"
+        android:background="@drawable/lingkaran_biru">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_baseline_add_white"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_buttom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

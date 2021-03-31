@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/soal"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:text="Bank Soal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/deepSkyBlue"/>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_below="@+id/soal"
+            android:layout_above="@id/toolbar"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:text="Semester 1"
+                        android:id="@+id/semester_1"
+                        android:textColor="@color/white"
+                        android:paddingStart="48dp"
+                        android:paddingEnd="20dp"
+                        android:paddingTop="10dp"
+                        android:textAlignment="center"
+                        android:layout_marginStart="-30dp"
+                        android:paddingBottom="10dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/expandablede_bank_soal"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/matkul_semester1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="48dp"
+                        android:paddingEnd="20dp"
+                        android:layout_marginStart="-30dp"
+                        android:layout_marginRight="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:text="Semester 2"
+                        android:textAlignment="center"
+                        android:id="@+id/semester_2"
+                        android:textColor="@color/white"
+                        android:paddingStart="48dp"
+                        android:paddingEnd="20dp"
+                        android:paddingTop="10dp"
+                        android:layout_marginStart="-30dp"
+                        android:paddingBottom="10dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/expandablede_bank_soal"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/matkul_semester2"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="20dp"
+                        android:layout_marginRight="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:text="Semester 3"
+                        android:textAlignment="center"
+                        android:id="@+id/semester_3"
+                        android:textColor="@color/white"
+                        android:paddingStart="48dp"
+                        android:paddingEnd="20dp"
+                        android:paddingTop="10dp"
+                        android:layout_marginStart="-30dp"
+                        android:paddingBottom="10dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/expandablede_bank_soal"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/matkul_semester3"
+                        android:paddingStart="48dp"
+                        android:paddingEnd="20dp"
+                        android:layout_marginStart="-30dp"
+                        android:layout_marginRight="10dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:text="Semester 4"
+                        android:textAlignment="center"
+                        android:id="@+id/semester_4"
+                        android:textColor="@color/white"
+                        android:paddingStart="48dp"
+                        android:paddingEnd="20dp"
+                        android:paddingTop="10dp"
+                        android:layout_marginStart="-30dp"
+                        android:paddingBottom="10dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/expandablede_bank_soal"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/matkul_semester4"
+                        android:paddingStart="48dp"
+                        android:paddingEnd="20dp"
+                        android:layout_marginStart="-30dp"
+                        android:layout_marginRight="10dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:text="Semester 5"
+                        android:id="@+id/semester_5"
+                        android:textColor="@color/white"
+                        android:paddingStart="48dp"
+                        android:paddingEnd="20dp"
+                        android:textAlignment="center"
+                        android:paddingTop="10dp"
+                        android:layout_marginStart="-30dp"
+                        android:paddingBottom="10dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/expandablede_bank_soal"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/matkul_semester5"
+                        android:paddingStart="48dp"
+                        android:paddingEnd="20dp"
+                        android:layout_marginStart="-30dp"
+                        android:layout_marginRight="10dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:text="Semester 6"
+                        android:id="@+id/semester_6"
+                        android:textColor="@color/white"
+                        android:paddingStart="48dp"
+                        android:paddingEnd="20dp"
+                        android:paddingTop="10dp"
+                        android:textAlignment="center"
+                        android:layout_marginStart="-30dp"
+                        android:paddingBottom="10dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/expandablede_bank_soal"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/matkul_semester6"
+                        android:paddingStart="48dp"
+                        android:paddingEnd="20dp"
+                        android:layout_marginStart="-30dp"
+                        android:layout_marginRight="10dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:text="Semester 7"
+                        android:id="@+id/semester_7"
+                        android:textColor="@color/white"
+                        android:paddingStart="48dp"
+                        android:paddingEnd="20dp"
+                        android:textAlignment="center"
+                        android:paddingTop="10dp"
+                        android:layout_marginStart="-30dp"
+                        android:paddingBottom="10dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/expandablede_bank_soal"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/matkul_semester7"
+                        android:paddingStart="48dp"
+                        android:paddingEnd="20dp"
+                        android:layout_marginStart="-30dp"
+                        android:layout_marginRight="10dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:text="Semester 8"
+                        android:id="@+id/semester_8"
+                        android:textColor="@color/white"
+                        android:paddingStart="48dp"
+                        android:paddingEnd="20dp"
+                        android:paddingTop="10dp"
+                        android:textAlignment="center"
+                        android:layout_marginStart="-30dp"
+                        android:paddingBottom="10dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/expandablede_bank_soal"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/matkul_semester8"
+                        android:paddingStart="48dp"
+                        android:paddingEnd="20dp"
+                        android:layout_marginStart="-30dp"
+                        android:layout_marginRight="10dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:text="Pilihan Gasal"
+                        android:id="@+id/semester_pilihan_gesal"
+                        android:textColor="@color/white"
+                        android:paddingStart="48dp"
+                        android:paddingEnd="20dp"
+                        android:textAlignment="center"
+                        android:paddingTop="10dp"
+                        android:layout_marginStart="-30dp"
+                        android:paddingBottom="10dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/expandablede_bank_soal"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/matkul_semester_pilihan_gasal"
+                        android:paddingStart="48dp"
+                        android:paddingEnd="20dp"
+                        android:layout_marginStart="-30dp"
+                        android:layout_marginRight="10dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:text="Pilihan Genap"
+                        android:id="@+id/semester_pilihan_genap"
+                        android:textColor="@color/white"
+                        android:paddingStart="48dp"
+                        android:paddingEnd="20dp"
+                        android:textAlignment="center"
+                        android:paddingTop="10dp"
+                        android:layout_marginStart="-30dp"
+                        android:paddingBottom="10dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/expandablede_bank_soal"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/matkul_semester_pilihan_genap"
+                        android:paddingStart="48dp"
+                        android:paddingEnd="20dp"
+                        android:layout_marginStart="-30dp"
+                        android:layout_marginRight="10dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_above="@id/toolbar"
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp"
+        android:id="@+id/tambah_soal"
+        android:background="@drawable/lingkaran_biru">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_baseline_add_white"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_buttom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

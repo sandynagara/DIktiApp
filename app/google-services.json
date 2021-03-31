@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "163608133578",
+    "project_id": "database-dikti",
+    "storage_bucket": "database-dikti.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163608133578:android:4621a980d87191f8521933",
+        "android_client_info": {
+          "package_name": "com.example.dikti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "163608133578-9dkq8cbgakig8vul796ip693j4g65iag.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8u8V3UvJ5aki5YbPbimvdCQdv1imcmRY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "163608133578-9dkq8cbgakig8vul796ip693j4g65iag.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

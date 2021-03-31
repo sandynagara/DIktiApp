@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="bottom"
+    android:background="@color/WhiteSmoke"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="50dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:textSize="22sp"
+        android:textColor="@color/Black"
+        android:background="@drawable/garis"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Perubahan Jadwal"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/Black"
+            android:id="@+id/judul_informasi"/>
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/judul_informasi"
+            android:src="@drawable/ic_baseline_create_blue"
+            android:id="@+id/edit_informasi"
+            />
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kelas Metopen di ubah pada...."
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="15sp"
+        android:textColor="@color/Black"
+        android:id="@+id/isi_informasi"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Perubahan Jadwal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="15sp"
+        android:textColor="@color/deepSkyBlue"
+        android:id="@+id/link_informasi"/>
+
+</LinearLayout>

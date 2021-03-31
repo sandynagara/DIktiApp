@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="20dp"
+    android:paddingStart="35dp"
+    android:paddingEnd="35dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_baseline_create_blue"
+        android:id="@+id/pensil"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Apa Data sudah benar ?"
+        android:id="@+id/popup_masukan"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/pensil"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data akan diganti dengan data yang anda masukan"
+        android:id="@+id/popup_tambahan"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/popup_masukan" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/popup_tambahan"
+        android:text="Update"
+        android:id="@+id/update"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:background="@drawable/border_biru" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/update"
+        android:text="Cancel"
+        android:id="@+id/cancel"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:background="@drawable/border"
+        android:padding="12dp"/>
+
+</RelativeLayout>

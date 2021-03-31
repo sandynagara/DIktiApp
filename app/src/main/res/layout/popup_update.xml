@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Masukkan Email Anda : "
+            android:id="@+id/popup_masukan"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/popup_masukan"
+            android:layout_marginTop="5dp"
+            android:hint="Email baru"
+            android:id="@+id/isi_update"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/isi_update"
+            android:layout_alignParentRight="true"
+            android:id="@+id/update"
+            android:text="Simpan"
+            android:textColor="@color/deepSkyBlue"
+            android:background="@null">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Update"
+                    android:textStyle="bold"
+                    android:layout_margin="15dp"
+                    android:textColor="@color/deepSkyBlue"
+                    android:background="@null"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/isi_update"
+            android:layout_toStartOf="@+id/update"
+            android:text="Batal"
+            android:id="@+id/batal"
+            android:background="@color/white"
+            android:textColor="@color/deepSkyBlue">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Batal"
+                    android:textStyle="bold"
+                    android:layout_margin="15dp"
+                    android:textColor="@color/deepSkyBlue" />
+        </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

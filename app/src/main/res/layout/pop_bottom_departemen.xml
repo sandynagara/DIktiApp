@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="15dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Departemen"
+        android:textColor="@color/Black"
+        android:textSize="18sp"
+        android:layout_margin="3dp"
+        android:textStyle="bold"
+        android:id="@+id/nama_departemen"
+        android:paddingBottom="10dp"
+        android:background="@drawable/garis"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="5dp"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/recycle_departemen"
+        tools:listitem="@layout/isi_pop_bottom_departemen"
+        android:layout_below="@id/nama_departemen"/>
+
+</RelativeLayout>

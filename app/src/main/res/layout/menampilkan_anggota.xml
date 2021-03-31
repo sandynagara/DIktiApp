@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/logo_dikti"
+            android:id="@+id/foto_anggota"
+            android:layout_centerVertical="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Sandy Setyanagara"
+                android:layout_gravity="bottom"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toEndOf="@id/foto_anggota"
+                android:textSize="18sp"
+                android:textColor="@color/DarkSlateGray"
+                android:id="@+id/nama_anggota"
+                android:maxLength="15"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text=".."
+            android:layout_gravity="bottom"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/nama_anggota"
+            android:textSize="18sp"
+            android:textColor="@color/DarkSlateGray"
+            android:id="@+id/point"
+            android:maxLength="21"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="2018"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="15sp"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/Gray"
+            android:id="@+id/angkatan"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Pendidikan dan Penelitian"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="11dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toEndOf="@id/foto_anggota"
+                android:textSize="15sp"
+                android:paddingBottom="16dp"
+                android:layout_below="@id/nama_anggota"
+                android:textColor="@color/Gray"
+                android:id="@+id/nama_departemen"
+                android:background="@drawable/garis"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
+

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nama_foto">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_centerHorizontal="true"
+                android:src="@color/LightGrey"
+                android:scaleType="fitCenter"
+                android:id="@id/foto_anggota"/>
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_baseline_arrow_back_gray"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/kembali"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@id/nama_anggota"
+                    style="@style/AudioFileInfoOverlayText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Minatozaki Sana"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/AudioFileInfoOverlayText"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="2018"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="5dp"
+                    android:id="@+id/angkatan"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="NIM"
+            android:textSize="17dp"
+            android:textColor="@color/Black"
+            android:textStyle="bold"
+            android:paddingTop="9dp"
+            android:paddingBottom="5dp"/>
+
+        <TextView
+            android:id="@+id/nim"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@drawable/garis"
+            android:layout_marginStart="20dp"
+            android:paddingBottom="13dp"
+            android:textSize="15dp"
+            android:text="18/428735/TK/47237" />
+
+        <TextView
+            android:id="@+id/departemen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Departemen"
+            android:textSize="17dp"
+            android:textColor="@color/Black"
+            android:textStyle="bold"
+            android:paddingTop="9dp"
+            android:paddingBottom="5dp"/>
+
+        <TextView
+            android:id="@+id/nama_departemen"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@drawable/garis"
+            android:layout_marginStart="20dp"
+            android:paddingBottom="13dp"
+            android:textSize="15dp"
+            android:text="Pendidikan dan Penelitian" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Alamat"
+            android:textSize="17dp"
+            android:textColor="@color/Black"
+            android:textStyle="bold"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+        <TextView
+            android:id="@+id/alamat"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginStart="20dp"
+            android:paddingBottom="13dp"
+            android:textSize="15dp"
+            android:text="Jalan Merpati No 5 Batokan" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="7dp"
+            android:background="@color/LightGrey"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Nomor Telepon "
+            android:textSize="17dp"
+            android:textColor="@color/Black"
+            android:textStyle="bold"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+        <TextView
+            android:id="@+id/no_telepon2"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginStart="20dp"
+            android:paddingBottom="13dp"
+            android:textSize="15dp"
+            android:text="083482384238"
+            android:background="@drawable/garis"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Email "
+            android:textSize="17dp"
+            android:textColor="@color/Black"
+            android:textStyle="bold"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+        <TextView
+            android:id="@+id/email2"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginStart="20dp"
+            android:paddingBottom="13dp"
+            android:textSize="15dp"
+            android:text="083482384238"
+            android:background="@drawable/garis"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Id Line "
+            android:textSize="17dp"
+            android:textColor="@color/Black"
+            android:textStyle="bold"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+        <TextView
+            android:id="@+id/id_line2"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginStart="20dp"
+            android:paddingBottom="13dp"
+            android:textSize="15dp"
+            android:text="sandy_satya" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="7dp"
+            android:background="@color/LightGrey"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="About Me "
+            android:textSize="17dp"
+            android:textColor="@color/Black"
+            android:textStyle="bold"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+        <TextView
+            android:id="@+id/about_me"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginStart="20dp"
+            android:paddingBottom="13dp"
+            android:textSize="15dp"
+            android:text="Aku................" />
+
+    </LinearLayout>
+
+</ScrollView>

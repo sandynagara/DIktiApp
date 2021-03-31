@@ -1,0 +1,61 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="materialCardViewStyle">@style/MyApp.Widget.CardView</item>
+        <item name="elevationOverlayEnabled">false</item>
+    </style>
+
+    <style name="MyApp.Widget.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardElevation">8dp</item>
+        <item name="elevationOverlayEnabled">false</item>
+    </style>
+
+    <style name="icon_profil" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:layout_width">35dp</item>
+        <item name="android:layout_height">35dp</item>
+    </style>
+
+    <style name="batas_nama" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:layout_width">250dp</item>
+        <item name="android:lines">1</item>
+        <item name="android:textColor">#808080</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="batas_nama_profil" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginEnd">60dp</item>
+        <item name="android:textColor">#808080</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="daftar_anggota" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="detail_lomba_beasiswa" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="AudioFileInfoOverlayText">
+        <item name="android:paddingLeft">4px</item>
+        <item name="android:paddingBottom">4px</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+</resources>

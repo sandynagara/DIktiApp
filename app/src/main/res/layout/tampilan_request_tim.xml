@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        app:cardElevation="6dp"
+        app:cardCornerRadius="12dp"
+        android:layout_margin="12dp"
+        android:id="@+id/cardlomba">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="10dp"
+            android:layout_margin="10dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
+                android:id="@+id/isi_lomba">
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="160dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/logo_dikti"
+                    android:id="@+id/gambarlomba"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/gambarlomba"
+                    android:layout_marginStart="5dp"
+                    android:id="@+id/daftarIsi"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/deadline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="8 Mei 2000"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="@color/Red"/>
+
+                    <TextView
+                        android:id="@+id/nama_lomba"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Poster"
+                        android:textSize="15sp"
+                        android:textColor="@color/Black"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/isi_jenis_lomba"
+                        android:layout_marginTop="4dp"
+                        android:text="Poster"
+                        android:textStyle="bold"
+                        android:textColor="@color/Black"
+                        android:padding="1dp"
+                        android:textSize="15sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:maxLines="2"
+                        android:text="Jumlah Anggota : "
+                        android:padding="1dp"
+                        android:textColor="@color/Black"
+                        android:textStyle="bold"
+                        android:textSize="15sp"/>
+
+                        <TextView
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/jumlah_anggota_text"
+                            android:text="0"
+                            android:textColorHint="@color/Gray"
+                            android:textSize="15sp"
+                            android:background="@null"/>
+                    
+                </LinearLayout>
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_below="@id/gambarlomba">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="3dp"
+                        android:id="@+id/pengirim"
+                        android:textSize="15dp"
+                        android:text="Pengirim : "
+                        android:textStyle="bold"
+                        android:textColor="@color/Black"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/nama_pengirim"
+                        android:text="Sandy Setyanagara"
+                        android:layout_marginEnd="10dp"
+                        android:background="@null"
+                        android:textSize="15sp"
+                        android:textColor="@color/Black"
+                        android:layout_marginBottom="3dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/angkatan"
+                        android:text="2018"
+                        android:lines="1"
+                        android:background="@null"
+                        android:textSize="15sp"
+                        android:textColor="@color/Black"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="3dp"
+                        android:textSize="15dp"
+                        android:text="Persyaratan Anggota : "
+                        android:textStyle="bold"
+                        android:textColor="@color/Black"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/Gray"
+                        android:background="@null"
+                        android:text="Tulis Disini"
+                        android:textColor="@color/Black"
+                        android:id="@+id/syarat_anggota_text"
+                        android:textSize="15sp"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/isi_lomba"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+
+                android:layout_weight="1"
+                android:background="@drawable/border_merah"
+                android:padding="10dp"
+                android:text="Cancel"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/pilihan1"
+
+                android:layout_below="@id/isi_lomba">
+                <TableRow>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/popup_tambahan"
+                        android:text="Gabung"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:id="@+id/requestTim"
+                        android:textAlignment="center"
+                        android:layout_marginTop="10dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:padding="10dp"
+                        android:background="@drawable/border_biru"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/update"
+                        android:layout_weight="0.1"
+                        android:id="@+id/edit"
+                        android:textAlignment="center"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/ic_baseline_create_blue"
+                        android:background="@drawable/border"
+                        android:padding="10dp"/>
+                </TableRow>
+            </TableLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/dropdown_lomba"
+                android:layout_below="@+id/pilihan1"
+                android:src="@drawable/ic_baseline_arrow_drop_down_blue"
+
+                android:layout_marginEnd="12dp"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

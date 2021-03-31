@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginRight="10dp"
+    android:id="@+id/daftar_peminat">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginLeft="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/logo_dikti"
+            android:id="@+id/foto_anggota"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Sandy Setyanagara"
+            android:layout_gravity="bottom"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_toEndOf="@id/foto_anggota"
+            android:textSize="20sp"
+            android:textColor="@color/DarkSlateGray"
+            android:id="@+id/nama_anggota"
+            android:maxLength="24"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="...."
+            android:layout_gravity="bottom"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/nama_anggota"
+            android:textSize="20sp"
+            android:textColor="@color/DarkSlateGray"
+            android:id="@+id/point"
+            android:maxLength="24"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="2018"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="11dp"
+            android:layout_marginLeft="20dp"
+            android:layout_toEndOf="@id/foto_anggota"
+            android:textSize="18sp"
+            android:paddingBottom="16dp"
+            android:layout_below="@id/nama_anggota"
+            android:textColor="@color/Gray"
+            android:id="@+id/angkatan"
+            android:background="@drawable/garis"/>
+
+</RelativeLayout>
+

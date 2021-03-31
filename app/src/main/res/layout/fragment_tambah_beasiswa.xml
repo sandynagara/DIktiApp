@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/card_kembali">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_baseline_arrow_back_blue"
+                android:layout_margin="12dp"
+                android:id="@+id/kembali"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Beasiswa"
+                android:textColor="@color/deepSkyBlue"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/nama_beasiswa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Nama Beasiswa"
+                android:textColorHint="@color/DimGray"
+                android:background="@drawable/garis"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:textColor="@color/Black"
+                android:alpha="0.7"
+                android:paddingLeft="15dp"
+                android:textSize="19sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deadline"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/Black"
+                android:textSize="19sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/deadline_tanggal"
+                    android:spinnerMode="dropdown"
+                    android:layout_weight="1.2"
+                    android:background="@drawable/garis"/>
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/deadline_Bulan"
+                    android:spinnerMode="dropdown"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/garis"/>
+
+                <EditText
+                    android:id="@+id/deadline_tahun"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tahun"
+                    android:layout_weight="1"
+                    android:textColor="@color/Black"
+                    android:textColorHint="@color/Gray"
+                    android:background="@drawable/garis"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="15dp"
+                    android:textSize="19sp"/>
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/link_lomba"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:hint="Link"
+                android:textColor="@color/Black"
+                android:textColorHint="@color/Gray"
+                android:background="@drawable/garis"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingLeft="15dp"
+                android:textSize="19sp"/>
+
+            <EditText
+                android:id="@+id/deskripsi_lomba"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:hint="Deskripsi"
+                android:textColor="@color/Black"
+                android:textColorHint="@color/Gray"
+                android:background="@drawable/garis"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingLeft="15dp"
+                android:textSize="19sp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:src="@drawable/ic_baseline_camera_alt_white"
+                android:id="@+id/foto_beasiswa"
+                android:layout_marginTop="15dp"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tambah_foto"
+                android:layout_marginTop="15dp"
+                android:padding="7dp"
+                android:id="@+id/tambah_foto">
+
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_baseline_camera_alt_white"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/addData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:layout_marginTop="15dp"
+                android:text="Add"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/White"
+                android:background="@color/deepSkyBlue"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

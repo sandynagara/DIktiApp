@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:id="@+id/card_kembali">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textStyle="bold"
+            android:text="Edit"
+            android:textSize="18sp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/deepSkyBlue"
+            android:layout_margin="12dp"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/card_kembali"
+        android:layout_above="@id/toolbar">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                >
+
+                <ImageView
+                    android:id="@+id/gambarlomba"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:src="@color/LightGrey" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/deadline"
+                    android:text="17 November 2020"
+                    android:layout_below="@id/gambarlomba"
+                    android:textSize="22sp"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/Red"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="sans-serif"
+                    />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/deadline"
+                    android:id="@+id/nama_lomba"
+                    android:text="Lomba Poster Nasional Kampanye Positif Ramadhan Saat Pandemi Covid 19"
+                    android:textSize="20sp"
+                    android:lines="2"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/Black"
+                    android:fontFamily="sans-serif-light"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@drawable/pembatas_lomba"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:id="@id/informasi_lomba">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Informasi Lomba"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/Black"
+                    android:id="@+id/informasi_lomba"/>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/informasi_lomba">
+
+                    <TableRow
+                        android:layout_marginTop="6dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:text="Jenis Lomba :"
+                            android:layout_weight="1"
+                            style="@style/detail_lomba_beasiswa"
+                            android:textColor="@color/Black"/>
+
+                        <Spinner
+                            android:id="@+id/jenis_lomba"
+                            android:text="Poster"
+                            android:textColor="@color/Black"
+                            style="@style/detail_lomba_beasiswa"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textAlignment="textEnd"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_marginTop="6dp">
+                        <TextView
+                            style="@style/detail_lomba_beasiswa"
+                            android:layout_width="wrap_content"
+                            android:text="Jenis Peserta :"
+                            android:layout_weight="1"
+                            android:textColor="@color/Black"/>
+
+                        <Spinner
+                            style="@style/detail_lomba_beasiswa"
+                            android:id="@+id/jenis_peserta"
+                            android:text="Individu"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/Black"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="10dp">
+                        <TextView
+                            style="@style/detail_lomba_beasiswa"
+                            android:layout_width="wrap_content"
+                            android:text="Biaya Pendaftaran :"
+                            android:layout_weight="1"
+                            android:textColor="@color/Black"/>
+
+                        <EditText
+                            style="@style/detail_lomba_beasiswa"
+                            android:id="@+id/biaya"
+                            android:text="Gratis"
+                            android:textAlignment="textEnd"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/Black"/>
+                    </TableRow>
+
+                </TableLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="@drawable/pembatas_lomba"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Link Lomba"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/Black" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
+                    style="@style/detail_lomba_beasiswa"
+                    android:id="@+id/link"
+                    android:text="HTTP"
+                    android:textColor="@color/Black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="@drawable/pembatas_lomba"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Deskripsi Lomba"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/Black" />
+
+                <EditText
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/deskripsi_lomba"
+                    android:text="Lomba ini diselengarakan oleh ....."
+                    android:textColor="@color/Black" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/toolbar">
+
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Update"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:id="@+id/update"
+                android:layout_margin="5dp"
+                android:textAlignment="gravity"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_centerVertical="true"
+                android:background="@drawable/border_biru"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Cancel"
+                android:textStyle="bold"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:id="@+id/cancel"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:textAlignment="gravity"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:background="@drawable/border"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:id="@+id/hapus"
+                android:layout_weight="0.1"
+                android:layout_margin="5dp"
+                android:textAlignment="gravity"
+                android:gravity="center"
+                android:src="@drawable/ic_baseline_delete_white"
+                android:layout_centerVertical="true"
+                android:background="@drawable/border_merah"/>
+        </TableRow>
+    </TableLayout>
+
+</RelativeLayout>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content">
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        app:cardBackgroundColor="@color/Black"
+        app:cardElevation="1dp"
+        app:cardCornerRadius="12dp"
+        android:id="@+id/cardTim">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="14dp"
+                android:id="@+id/close"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_baseline_close_white" />
+        </RelativeLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="15dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:src="@drawable/penginderaan_jauh"
+                android:id="@+id/gambarTim"/>
+
+            <TextView
+                android:id="@+id/nama_tim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Geodinamika dan Remote Sensing"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="250dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/nama_lomba"
+                    android:layout_marginTop="8dp"
+                    android:justificationMode="inter_word"
+                    android:text="Geodinamika adalah cabang ilmu geofisika yang menjelaskan mengenai dinamika bumi. Ilmu matematika, fisika dan kimia digunakan dalam geodinamika berguna untuk memahami arus konveksi yang ada di mantel bumi yang berperan dalam pergerakan lempeng yang ada di bumi. Dan juga berguna untuk memahami fenomena geologi seperti pemekaran samudra, pembentukan pegunungan, gunung api, patahan dan masih banyak lagi. Selain itu juga dapat digunakan untuk menyelidiki interior di bawah permukaan bumi dengan cara pengukuran medan magnet, gravitasi, gelombang seismic, dan mineral yang terkandung dalam batuan. Geodinamika tidak hanya berlaku dibumi saja melainkan dapat diaplikasikan di planet lain"
+                    android:textColor="@color/white"
+                    android:padding="1dp"
+                    android:textSize="15sp"
+                    android:id="@+id/deskripsi_tim"/>
+            </ScrollView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nama_lomba"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/border_putih"
+                android:layout_gravity="center"
+                android:paddingTop="7dp"
+                android:paddingStart="40dp"
+                android:paddingEnd="40dp"
+                android:paddingBottom="7dp"
+                android:textAlignment="center"
+                android:text="Join"
+                android:textColor="@color/Black"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:id="@+id/link_tim"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="10dp">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/kembali"
+            android:src="@drawable/ic_baseline_arrow_back_blue"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Tambah Informasi"
+            android:id="@+id/tambah"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/deepSkyBlue"/>
+    </RelativeLayout>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Masukkan Judul"
+            android:id="@+id/judul_informasi"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Masukkan Isi"
+            android:id="@+id/isi_informasi"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Masukkan link (Opsional)"
+            android:id="@+id/link_informasi"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gambar_geodesi_bangga"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tambah_foto"
+            android:layout_marginTop="15dp"
+            android:padding="7dp"
+            android:id="@+id/tambah_foto">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_baseline_camera_alt_white"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/hapusdata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:text="Delete"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/White"
+                android:background="@drawable/border_merah"/>
+
+            <TextView
+                android:id="@+id/addData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:layout_weight="1"
+                android:layout_marginTop="15dp"
+                android:text="Add"
+                android:layout_marginStart="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/White"
+                android:background="@drawable/border_biru"/>
+        </TableRow>
+
+    </LinearLayout>
+</ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/home1">
+
+            <ImageView
+                android:id="@+id/simbol_home"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_baseline_home_brown" />
+            <TextView
+                android:id="@+id/text_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="2dp"
+                android:text="Home"
+                android:textStyle="bold"
+                android:textColor="@color/Gray"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/simbol_home"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/anggota">
+
+            <ImageView
+                android:id="@+id/simbol_anggota"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_baseline_group_gray"
+                android:scaleType="centerCrop"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/text_anggota"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="6dp"
+                android:text="Anggota"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/Gray"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/simbol_anggota"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/bank_soal">
+
+            <ImageView
+                android:id="@+id/simbol_bank_soal"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_baseline_insert_drive_file_gray"
+                android:scaleType="centerCrop"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/text_bank_soal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:text="Bank Soal"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/Gray"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/simbol_bank_soal"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/lomba">
+
+            <ImageView
+                android:id="@+id/simbol_lomba"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_baseline_emoji_events_gray"
+                android:scaleType="centerCrop"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/text_lomba"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="2dp"
+                android:text="Lomba"
+                android:textStyle="bold"
+                android:textColor="@color/Gray"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/simbol_lomba"/>
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+</RelativeLayout>
