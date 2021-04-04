@@ -2,10 +2,11 @@ package com.example.dikti.anggota.tambahAnggota;
 
 public class VariabelTambahAnggota {
 
-    private String Departemen,Email,Line,Password,Posisi,Username,queryNama,queryangkatan,querycampuran,querydepartemen,NIM,Telepon,Foto,namaLengkap,aboutMe,alamat,Angkatan;
+    private String Departemen,pesanToken,Email,Line,Password,Posisi,Username,queryNama,queryangkatan,querycampuran,querydepartemen,NIM,Telepon,Foto,namaLengkap,aboutMe,alamat,Angkatan;
 
-    public VariabelTambahAnggota(String departemen, String email, String line, String password, String posisi, String username, String queryNama, String queryangkatan, String querycampuran, String querydepartemen, String NIM, String telepon, String foto, String namaLengkap, String aboutMe, String alamat, String angkatan) {
+    public VariabelTambahAnggota(String departemen, String pesanToken, String email, String line, String password, String posisi, String username, String queryNama, String queryangkatan, String querycampuran, String querydepartemen, String NIM, String telepon, String foto, String namaLengkap, String aboutMe, String alamat, String angkatan) {
         Departemen = departemen;
+        this.pesanToken = pesanToken;
         Email = email;
         Line = line;
         Password = password;
@@ -22,6 +23,14 @@ public class VariabelTambahAnggota {
         this.aboutMe = aboutMe;
         this.alamat = alamat;
         Angkatan = angkatan;
+    }
+
+    public String getPesanToken() {
+        return pesanToken;
+    }
+
+    public void setPesanToken(String pesanToken) {
+        this.pesanToken = pesanToken;
     }
 
     public String getAngkatan() {

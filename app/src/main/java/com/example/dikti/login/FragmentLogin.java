@@ -2,6 +2,7 @@ package com.example.dikti.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,15 +18,25 @@ import androidx.fragment.app.FragmentManager;
 import com.example.dikti.MainActivity;
 import com.example.dikti.Preference;
 import com.example.dikti.R;
+import com.example.dikti.anggota.tambahAnggota.VariabelTambahAnggota;
 import com.example.dikti.fragment_Home;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static android.content.ContentValues.TAG;
 
 public class FragmentLogin extends Fragment implements View.OnClickListener {
 
     private EditText username,password;
+    private String token;
 
     @Nullable
     @Override
@@ -57,7 +68,7 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
         if (view.getId() == R.id.login){
             final String isiUsername = username.getText().toString();
             final String isiPassword = password.getText().toString();
-            FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+            final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
             Task<DocumentSnapshot> documentReference = firebaseFirestore.document("Anggota/" + isiUsername).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -71,11 +82,13 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
                                 Preference.setDataAs(getContext(), "Admin");
                                 Preference.setDataLogin(getContext(), true);
                                 Preference.setDataUsername(getContext(), isiUsername);
+                                Notifikasi(isiUsername);
                                 startActivity(new Intent(getContext(), MainActivity.class));
                             } else if (cekAdmin.equals("User")) {
                                 Preference.setDataLogin(getContext(), true);
                                 Preference.setDataAs(getContext(), "User");
                                 Preference.setDataUsername(getContext(), isiUsername);
+                                Notifikasi(isiUsername);
                                 startActivity(new Intent(getContext(), MainActivity.class));
                             }
                         } else {
@@ -87,5 +100,27 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
                 }
             });
         }
+    }
+
+    private void Notifikasi(final String isiUsername){
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+                        // Get new FCM registration token
+                        token = task.getResult();
+                        Log.d(TAG, token);
+                        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+                        DocumentReference isiData=firebaseFirestore.collection("Anggota").document(isiUsername);
+                        Map<String,Object> map = new HashMap<>();
+                        map.put("token",token);
+                        isiData.update(map);
+                    }
+                });
     }
 }

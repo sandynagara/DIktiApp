@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/toolbar"
+        android:layout_below="@id/dashboard"
+        android:id="@+id/isi_peta_anggota"
+        class="com.google.android.gms.maps.SupportMapFragment"/>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:id="@+id/dashboard"
+        android:layout_marginBottom="5dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/anggota"
+            android:layout_marginStart="20dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_baseline_group_gray"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="2dp"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/peta_anggota"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_baseline_map_blue"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="2dp"
+            android:layout_weight="1"/>
+
+    </TableRow>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dashboard"
+        android:layout_marginTop="5dp"
+        android:id="@+id/search_bar">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/search2"
+            android:background="@drawable/border">
+
+            <SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:queryHint="Search Here"
+                android:id="@+id/search"
+                android:iconifiedByDefault="false"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:background="@null" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_bar"
+        android:id="@+id/filter">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border"
+            android:padding="7dp"
+            android:id="@+id/filter_departemen"
+            android:layout_marginLeft="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Departemen : All"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:id="@+id/daftarDepartemen"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border"
+            android:padding="7dp"
+            android:layout_toEndOf="@+id/filter_departemen"
+            android:id="@+id/filter_angkatan"
+            android:layout_marginLeft="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Angkatan : All"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:id="@+id/daftar_angkatan"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_buttom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

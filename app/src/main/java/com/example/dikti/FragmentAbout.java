@@ -16,8 +16,6 @@ import java.util.Objects;
 
 public class FragmentAbout extends Fragment {
 
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

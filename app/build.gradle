@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -51,10 +51,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'android.arch.paging:runtime:2.1.1'
-    implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
-    implementation 'com.zolad:zoominimageview:1.0.0'
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    implementation 'com.google.firebase:firebase-messaging'
 }
 
-apply plugin: 'com.google.gms.google-services'
+

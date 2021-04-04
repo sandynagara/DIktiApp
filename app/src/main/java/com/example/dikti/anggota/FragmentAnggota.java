@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.dikti.Preference;
 import com.example.dikti.R;
+import com.example.dikti.anggota.petaAnggota.PetaAnggota;
 import com.example.dikti.anggota.tambahAnggota.FragmentTambahAnggota;
 import com.example.dikti.banksoal.Fragment_Home_Bank_Soal;
 import com.example.dikti.fragment_Home;
@@ -40,7 +41,7 @@ public class FragmentAnggota extends Fragment implements View.OnClickListener {
     private RecyclerView namaAnggota;
     private FirestoreRecyclerOptions<VariabelAnggota> options;
     private FirebaseFirestore firebaseFirestore;
-    private TextView daftarDepartemen;
+    private TextView daftarDepartemen,daftarAngkatan;
 
     @Nullable
     @Override
@@ -52,20 +53,22 @@ public class FragmentAnggota extends Fragment implements View.OnClickListener {
             FragmentLogin fragmentLogin = new FragmentLogin();
             fragmentManager.beginTransaction().replace(R.id.contain_all, fragmentLogin).commit();
         }
+
         View filterDepartemen = view.findViewById(R.id.filter_departemen);
         View filterAngkatan = view.findViewById(R.id.filter_angkatan);
         daftarDepartemen = view.findViewById(R.id.daftarDepartemen);
-        TextView daftarAngkatan = view.findViewById(R.id.daftar_angkatan);
+        daftarAngkatan = view.findViewById(R.id.daftar_angkatan);
         SearchView searchView = view.findViewById(R.id.search);
         namaAnggota = view.findViewById(R.id.daftaranggota);
         View tambahAnggota = view.findViewById(R.id.tambah_anggota);
         View toolbar = view.findViewById(R.id.toolbar);
         View anggota = toolbar.findViewById(R.id.anggota);
-        View profile1 = toolbar.findViewById(R.id.bank_soal);
+        View banksoal = toolbar.findViewById(R.id.bank_soal);
         ImageView tombolAnggota = toolbar.findViewById(R.id.simbol_anggota);
         TextView textAnggota = toolbar.findViewById(R.id.text_anggota);
         View lomba = toolbar.findViewById(R.id.lomba);
         View beasiswa = toolbar.findViewById(R.id.home1);
+        ImageView petaAnggota = view.findViewById(R.id.peta_anggota);
 
         namaAnggota.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL));
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -202,9 +205,10 @@ public class FragmentAnggota extends Fragment implements View.OnClickListener {
         });
 
         anggota.setOnClickListener(this);
-        profile1.setOnClickListener(this);
+        banksoal.setOnClickListener(this);
         lomba.setOnClickListener(this);
         beasiswa.setOnClickListener(this);
+        petaAnggota.setOnClickListener(this);
 
         return view;
     }
@@ -298,13 +302,15 @@ public class FragmentAnggota extends Fragment implements View.OnClickListener {
             fragmentManager.beginTransaction().replace(R.id.contain_all, new FragmentTambahAnggota()).commit();
         }
         else if (view.getId() == R.id.anggota) {
-            fragmentManager.beginTransaction().replace(R.id.contain_all, new FragmentAnggota()).addToBackStack(null).commit();
+            fragmentManager.beginTransaction().replace(R.id.contain_all, new FragmentAnggota()).commit();
         } else if (view.getId() == R.id.bank_soal) {
-            fragmentManager.beginTransaction().replace(R.id.contain_all, new Fragment_Home_Bank_Soal()).addToBackStack(null).commit();
+            fragmentManager.beginTransaction().replace(R.id.contain_all, new Fragment_Home_Bank_Soal()).commit();
         }else if (view.getId() == R.id.lomba) {
-            fragmentManager.beginTransaction().replace(R.id.contain_all, new fragment_lomba()).addToBackStack(null).commit();
+            fragmentManager.beginTransaction().replace(R.id.contain_all, new fragment_lomba()).commit();
         }else if (view.getId() == R.id.home1) {
-            fragmentManager.beginTransaction().replace(R.id.contain_all, new fragment_Home()).addToBackStack(null).commit();
+            fragmentManager.beginTransaction().replace(R.id.contain_all, new fragment_Home()).commit();
+        }else if (view.getId() == R.id.peta_anggota) {
+            fragmentManager.beginTransaction().replace(R.id.contain_all, new PetaAnggota()).commit();
         }
     }
 }

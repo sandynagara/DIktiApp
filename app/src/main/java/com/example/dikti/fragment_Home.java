@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,15 +40,19 @@ import com.example.dikti.lombaBeasiswa.lomba.VariabelLomba;
 import com.example.dikti.lombaBeasiswa.lomba.fragment_lomba;
 import com.example.dikti.profil.FragmentProfil;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static android.content.ContentValues.TAG;
 
 public class fragment_Home extends Fragment implements View.OnClickListener {
 
@@ -87,6 +93,9 @@ public class fragment_Home extends Fragment implements View.OnClickListener {
         tambahGeodesiBangga.setVisibility(View.GONE);
         View lainnyaGeodesiBangga = view.findViewById(R.id.card_lainnya);
 
+        //Notifikasi();
+
+        //TambahInformasi
         tambahInformasi.setVisibility(View.INVISIBLE);
         if (Preference.getDataAs(getContext()).equals("Admin")){
             tambahInformasi.setVisibility(View.VISIBLE);
@@ -111,12 +120,11 @@ public class fragment_Home extends Fragment implements View.OnClickListener {
             });
         }
 
-
-
         Preference.clearAngkatan(getContext());
         Preference.clearDepartemen(getContext());
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
+        //Mengecheck SDK dan Kondisi Login
         home.setImageDrawable(getActivity().getDrawable(R.drawable.ic_baseline_home_blue));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             textHome.setTextColor(getActivity().getColor(R.color.deepSkyBlue));
@@ -145,6 +153,7 @@ public class fragment_Home extends Fragment implements View.OnClickListener {
             });
         }
 
+        //Firestore untuk Banner
         FirestoreRecyclerOptions<VariabelBanner> optionBanner =new FirestoreRecyclerOptions.Builder<VariabelBanner>()
                 .setQuery(firebaseFirestore.collection("Banner"), VariabelBanner.class)
                 .build();
@@ -154,28 +163,28 @@ public class fragment_Home extends Fragment implements View.OnClickListener {
         adapterBanner.startListening();
         banner.setAdapter(adapterBanner);
 
+        //Firestore untuk Lomba
         FirestoreRecyclerOptions optionsLomba = new FirestoreRecyclerOptions.Builder<VariabelLomba>()
                 .setQuery(firebaseFirestore.collection("Lomba").orderBy("favorit").startAt(true),VariabelLomba.class)
                 .build();
-
         lomba1.setLayoutManager(new StaggeredGridLayoutManager(1,LinearLayoutManager.HORIZONTAL));
         AdapterHome adapterLomba = new AdapterHome(optionsLomba);
         adapterLomba.startListening();
         lomba1.setAdapter(adapterLomba);
 
+        //Firestore untuk Informasi
         FirestoreRecyclerOptions optionsInformasi = new FirestoreRecyclerOptions.Builder<VariabelInformasi>()
                 .setQuery(firebaseFirestore.collection("Informasi").orderBy("time", Query.Direction.DESCENDING),VariabelInformasi.class)
                 .build();
-
         informasi.setLayoutManager(new StaggeredGridLayoutManager(1,LinearLayoutManager.VERTICAL));
         final AdapterInformasi adapterInformasi = new AdapterInformasi(optionsInformasi,getContext());
         adapterInformasi.startListening();
         informasi.setAdapter(adapterInformasi);
 
+        //Firestore untuk Geodesi Bangga
         FirestoreRecyclerOptions optionsGeodesiBangga = new FirestoreRecyclerOptions.Builder<VariabelGeodesiBangga>()
                 .setQuery(firebaseFirestore.collection("Geodesi Bangga"),VariabelGeodesiBangga.class)
                 .build();
-
         geodesiBangga.setLayoutManager(new StaggeredGridLayoutManager(1,LinearLayoutManager.HORIZONTAL));
         final AdapterGeodesiBangga adapterGeodesiBangga = new AdapterGeodesiBangga(optionsGeodesiBangga,"1");
         adapterGeodesiBangga.startListening();
@@ -274,4 +283,25 @@ public class fragment_Home extends Fragment implements View.OnClickListener {
 
         });
     }
+
+    private void Notifikasi(){
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+                        Log.d(TAG, token);
+                        Toast.makeText(getContext(), token, Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+
 }
