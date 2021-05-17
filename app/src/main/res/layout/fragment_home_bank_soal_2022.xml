@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/kurikulum"
+        android:background="@color/deepSkyBlue"
+        android:paddingStart="10dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="10dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/logo_dikti"
+            android:src="@drawable/logo_dikti"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_toEndOf="@id/logo_dikti"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            android:layout_marginStart="10dp"
+            android:text="Kurikulum"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+    </RelativeLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/kurikulum"
+        android:id="@+id/dashboard">
+        <TableRow
+            android:id="@+id/pilihan"
+            android:layout_width="match_parent"
+            android:background="@color/deepSkyBlue"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:id="@+id/k_2016"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="@drawable/garis_biru_muda"
+                android:paddingBottom="3dp"
+                android:text="2016"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textColor="#A3C5FC"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/k_2022"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:background="@drawable/garis_putih"
+                android:paddingBottom="3dp"
+                android:text="2021"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </TableRow>
+    </TableLayout>
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:src="@drawable/logo_dikti"
+        android:id="@id/logo_dikti"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:textSize="25sp"
+        android:layout_below="@id/logo_dikti"
+        android:text="Coming Soon"/>
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_buttom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

@@ -29,7 +29,7 @@
                 android:textSize="18sp"
                 android:textColor="@color/DarkSlateGray"
                 android:id="@+id/nama_anggota"
-                android:maxLength="15"/>
+                android:maxLength="22"/>
 
         <TextView
             android:layout_width="wrap_content"

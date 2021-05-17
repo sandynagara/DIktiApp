@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentManager;
 import com.bumptech.glide.Glide;
 import com.example.dikti.Preference;
 import com.example.dikti.R;
+import com.example.dikti.banksoal.FragmentDetailSoal;
 import com.example.dikti.lombaBeasiswa.Beasiswa.FragmentBeasiswa;
 import com.example.dikti.lombaBeasiswa.Beasiswa.FragmentEditBeasiswa;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,10 +39,10 @@ public class FragmentDetailBeasiswa extends Fragment {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_detail_beasiswa,container,false);
 
         gambarBeasiswa = view.findViewById(R.id.gambar_beasiswa);
-        ImageView edit = view.findViewById(R.id.edit);
+        final ImageView edit = view.findViewById(R.id.edit);
         edit.setVisibility(View.INVISIBLE);
         ImageView kembali = view.findViewById(R.id.kembali);
-        ImageView link = view.findViewById(R.id.link_browser);
+        final TextView link = view.findViewById(R.id.link_browser);
         namaBeasiswa = view.findViewById(R.id.nama_beasiswa);
         deadline = view.findViewById(R.id.deadline);
         deskripsi = view.findViewById(R.id.deskripsi_beasiswa);
@@ -69,15 +70,34 @@ public class FragmentDetailBeasiswa extends Fragment {
                 isiLink = documentSnapshot.getString("link");
                 String isiDeskripsi = documentSnapshot.getString("deskripsi");
                 username = documentSnapshot.getString("username");
+                String pengirim = documentSnapshot.getString("pengirim");
 
                 namaBeasiswa.setText(isiNamaLomba);
                 deadline.setText(deadlineTanggal.toString() + " " + deadlineBulan + " " + deadlineTahun.toString());
                 deskripsi.setText(isiDeskripsi);
+                link.setText(isiLink);
+
+                if (Preference.getDataAs(getContext()).equals("Admin") || Preference.getDataUsername(getContext()).equals(pengirim)){
+                    edit.setVisibility(View.VISIBLE);
+                }
 
                 Glide.with(getContext())
                         .load(isiFoto)
                         .placeholder(R.drawable.logo_dikti)
                         .into(gambarBeasiswa);
+
+                gambarBeasiswa.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("1",idBeasiswa);
+                        bundle.putString("2","Beasiswa");
+                        FragmentDetailSoal fragmentDetailSoal = new FragmentDetailSoal();
+                        fragmentDetailSoal.setArguments(bundle);
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        fragmentManager.beginTransaction().replace(R.id.contain_all,fragmentDetailSoal).commit();
+                    }
+                });
             }
 
         });
@@ -96,7 +116,7 @@ public class FragmentDetailBeasiswa extends Fragment {
                 FragmentEditBeasiswa fragmentEditBeasiswa = new FragmentEditBeasiswa();
                 fragmentEditBeasiswa.setArguments(bundle);
                 FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.contain_all,new FragmentEditBeasiswa()).commit();
+                fragmentManager.beginTransaction().replace(R.id.contain_all,fragmentEditBeasiswa).commit();
             }
         });
 

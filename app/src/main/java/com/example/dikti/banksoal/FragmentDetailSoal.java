@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.dikti.R;
 
+import com.example.dikti.lombaBeasiswa.Beasiswa.tambahBeasiswa.FragmentDetailBeasiswa;
 import com.example.dikti.lombaBeasiswa.lomba.FragmentDetailLomba;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -49,22 +50,36 @@ public class FragmentDetailSoal extends Fragment {
         matkul = getArguments().getString("2");
         download.setVisibility(View.GONE);
 
-        if (matkul.equals("lomba")){
+        if (matkul.equals("Lomba") || matkul.equals("Beasiswa")){
 
-            kembali.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                    FragmentDetailLomba fragmentDetailLomba = new FragmentDetailLomba();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("1",idSoal);
-                    fragmentDetailLomba.setArguments(bundle);
-                    fragmentManager.beginTransaction().replace(R.id.contain_all,fragmentDetailLomba).commit();
+           if (matkul.equals("Lomba")){
+                kembali.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        FragmentDetailLomba fragmentDetailLomba = new FragmentDetailLomba();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("1",idSoal);
+                        fragmentDetailLomba.setArguments(bundle);
+                        fragmentManager.beginTransaction().replace(R.id.contain_all,fragmentDetailLomba).commit();
+                    }
+                });
+            }else {
+                kembali.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        FragmentDetailBeasiswa fragmentDetailBeasiswa = new FragmentDetailBeasiswa();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("1",idSoal);
+                        fragmentDetailBeasiswa.setArguments(bundle);
+                        fragmentManager.beginTransaction().replace(R.id.contain_all,fragmentDetailBeasiswa).commit();
+                    }
+                });
+            }
 
-                }
-            });
 
-            Task<DocumentSnapshot> documentReference = FirebaseFirestore.getInstance().document("Lomba/"+idSoal).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            Task<DocumentSnapshot> documentReference = FirebaseFirestore.getInstance().document(matkul+"/"+idSoal).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     Foto = documentSnapshot.getString("foto");
@@ -74,7 +89,7 @@ public class FragmentDetailSoal extends Fragment {
                     ImageLoader.getInstance().displayImage(Foto, fotoSoal);
                 }
             });
-        }else {
+        } else {
             semester = getArguments().getString("3");
 
             kembali.setOnClickListener(new View.OnClickListener() {

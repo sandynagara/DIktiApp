@@ -16,6 +16,7 @@
         android:label="Dikti"
         android:testOnly="false"
         android:roundIcon="@drawable/logo_dikti"
+
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 

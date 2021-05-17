@@ -30,6 +30,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import static android.content.ContentValues.TAG;
 
@@ -76,20 +77,21 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
                     if (isiUsername.equals(cekUsername)) {
                         String cekPassword = documentSnapshot.getString("password");
                         if (isiPassword.equals(cekPassword)) {
-                            String cekAdmin = documentSnapshot.getString("posisi");
+                            String cekAdmin = documentSnapshot.getString("status");
                             assert cekAdmin != null;
+                            FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
                             if (cekAdmin.equals("Admin")) {
                                 Preference.setDataAs(getContext(), "Admin");
                                 Preference.setDataLogin(getContext(), true);
                                 Preference.setDataUsername(getContext(), isiUsername);
                                 Notifikasi(isiUsername);
-                                startActivity(new Intent(getContext(), MainActivity.class));
+                                fragmentManager.beginTransaction().replace(R.id.contain_all, new fragment_Home()).commit();
                             } else if (cekAdmin.equals("User")) {
                                 Preference.setDataLogin(getContext(), true);
                                 Preference.setDataAs(getContext(), "User");
                                 Preference.setDataUsername(getContext(), isiUsername);
                                 Notifikasi(isiUsername);
-                                startActivity(new Intent(getContext(), MainActivity.class));
+                                fragmentManager.beginTransaction().replace(R.id.contain_all, new fragment_Home()).commit();
                             }
                         } else {
                             Toast.makeText(getContext(), "Password salah", Toast.LENGTH_SHORT).show();

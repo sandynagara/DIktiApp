@@ -1,16 +1,19 @@
 package com.example.dikti.anggota.tambahAnggota;
 
+import com.google.firebase.firestore.GeoPoint;
+
 public class VariabelTambahAnggota {
 
-    private String Departemen,pesanToken,Email,Line,Password,Posisi,Username,queryNama,queryangkatan,querycampuran,querydepartemen,NIM,Telepon,Foto,namaLengkap,aboutMe,alamat,Angkatan;
+    private String Departemen,pesanToken,Email,Line,Password,status,Username,queryNama,queryangkatan,querycampuran,querydepartemen,NIM,Telepon,Foto,namaLengkap,aboutMe,alamat,Angkatan;
+    private GeoPoint Posisi;
 
-    public VariabelTambahAnggota(String departemen, String pesanToken, String email, String line, String password, String posisi, String username, String queryNama, String queryangkatan, String querycampuran, String querydepartemen, String NIM, String telepon, String foto, String namaLengkap, String aboutMe, String alamat, String angkatan) {
+    public VariabelTambahAnggota(String departemen, String pesanToken, String email, String line, String password, String status, String username, String queryNama, String queryangkatan, String querycampuran, String querydepartemen, String NIM, String telepon, String foto, String namaLengkap, String aboutMe, String alamat, String angkatan, GeoPoint posisi) {
         Departemen = departemen;
         this.pesanToken = pesanToken;
         Email = email;
         Line = line;
         Password = password;
-        Posisi = posisi;
+        this.status = status;
         Username = username;
         this.queryNama = queryNama;
         this.queryangkatan = queryangkatan;
@@ -23,6 +26,23 @@ public class VariabelTambahAnggota {
         this.aboutMe = aboutMe;
         this.alamat = alamat;
         Angkatan = angkatan;
+        Posisi = posisi;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public GeoPoint getPosisi() {
+        return Posisi;
+    }
+
+    public void setPosisi(GeoPoint posisi) {
+        Posisi = posisi;
     }
 
     public String getPesanToken() {
@@ -115,14 +135,6 @@ public class VariabelTambahAnggota {
 
     public void setPassword(String password) {
         Password = password;
-    }
-
-    public String getPosisi() {
-        return Posisi;
-    }
-
-    public void setPosisi(String posisi) {
-        Posisi = posisi;
     }
 
     public String getUsername() {

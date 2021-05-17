@@ -2,61 +2,141 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/soal"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:text="Bank Soal"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/deepSkyBlue"/>
+        android:id="@+id/kurikulum"
+        android:background="@color/deepSkyBlue"
+        android:paddingStart="10dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="10dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/logo_dikti"
+            android:src="@drawable/logo_dikti"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_toEndOf="@id/logo_dikti"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            android:layout_marginStart="10dp"
+            android:text="Kurikulum"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+    </RelativeLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/kurikulum"
+        android:id="@+id/dashboard">
+        <TableRow
+            android:id="@+id/pilihan"
+            android:layout_width="match_parent"
+            android:background="@color/deepSkyBlue"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:id="@+id/k_2016"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="@drawable/garis_putih"
+                android:paddingBottom="3dp"
+                android:text="2016"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/k_2022"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:textColor="#A3C5FC"
+                android:textAlignment="center"
+                android:background="@drawable/garis_biru_muda"
+                android:paddingBottom="3dp"
+                android:text="2021"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </TableRow>
+    </TableLayout>
 
     <ScrollView
             android:layout_width="match_parent"
-            android:layout_below="@+id/soal"
+            android:layout_below="@+id/dashboard"
             android:layout_above="@id/toolbar"
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <TextView
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:text="Semester 1"
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
                         android:id="@+id/semester_1"
-                        android:textColor="@color/white"
-                        android:paddingStart="48dp"
-                        android:paddingEnd="20dp"
-                        android:paddingTop="10dp"
-                        android:textAlignment="center"
-                        android:layout_marginStart="-30dp"
-                        android:paddingBottom="10dp"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:background="@drawable/expandablede_bank_soal"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp" />
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginTop="5dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:background="@color/ForestGreen">
+
+                            <TextView
+                                android:layout_marginTop="5dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginBottom="3dp"
+                                android:textStyle="bold"
+                                android:textSize="18sp"
+                                android:textColor="@color/white"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Semester 1"/>
+
+                            <TextView
+                                android:layout_marginStart="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:textSize="10sp"
+                                android:maxLines="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:text="Kalkulus 1 ,Geologi, Bahasa Inggris, Aljabar Liner, Hukum Agraria, ..... "/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/matkul_semester1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingStart="48dp"
-                        android:paddingEnd="20dp"
-                        android:layout_marginStart="-30dp"
-                        android:layout_marginRight="10dp" />
+                        style="@style/matkul"
+                        tools:listitem="@layout/expandable_bank_soal" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -64,31 +144,49 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical">
-                    <TextView
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:text="Semester 2"
-                        android:textAlignment="center"
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
                         android:id="@+id/semester_2"
-                        android:textColor="@color/white"
-                        android:paddingStart="48dp"
-                        android:paddingEnd="20dp"
-                        android:paddingTop="10dp"
-                        android:layout_marginStart="-30dp"
-                        android:paddingBottom="10dp"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:background="@drawable/expandablede_bank_soal"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"/>
+                        style="@style/bank_soal"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:background="@color/LimeGreen">
+
+                            <TextView
+                                android:layout_marginTop="10dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginBottom="3dp"
+                                android:textStyle="bold"
+                                android:textSize="18sp"
+                                android:textColor="@color/white"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Semester 2"/>
+
+                            <TextView
+                                android:layout_marginStart="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:textSize="10sp"
+                                android:maxLines="1"
+                                android:layout_marginEnd="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:text="Hitung Perataan, Kalkulus 2, Kartografi 1,PKn, Pendaftaran Tanah,....."/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/matkul_semester2"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="20dp"
-                        android:layout_marginRight="10dp" />
+                        style="@style/matkul" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -96,32 +194,48 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical">
-                    <TextView
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:text="Semester 3"
-                        android:textAlignment="center"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
                         android:id="@+id/semester_3"
-                        android:textColor="@color/white"
-                        android:paddingStart="48dp"
-                        android:paddingEnd="20dp"
-                        android:paddingTop="10dp"
-                        android:layout_marginStart="-30dp"
-                        android:paddingBottom="10dp"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:background="@drawable/expandablede_bank_soal"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"/>
+                        style="@style/bank_soal"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:background="@color/OrangeRed">
+
+                            <TextView
+                                android:layout_marginTop="10dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginBottom="3dp"
+                                android:textStyle="bold"
+                                android:textSize="18sp"
+                                android:textColor="@color/white"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Semester 3"/>
+
+                            <TextView
+                                android:layout_marginStart="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:textSize="10sp"
+                                android:maxLines="1"
+                                android:layout_marginEnd="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:text="Penginderaan Jauh, Matematika Geodesi, Oseanografis, Sistem Basis Data,....."/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/matkul_semester3"
-                        android:paddingStart="48dp"
-                        android:paddingEnd="20dp"
-                        android:layout_marginStart="-30dp"
-                        android:layout_marginRight="10dp"/>
+                        style="@style/matkul"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -129,32 +243,48 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical">
-                    <TextView
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:text="Semester 4"
-                        android:textAlignment="center"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
                         android:id="@+id/semester_4"
-                        android:textColor="@color/white"
-                        android:paddingStart="48dp"
-                        android:paddingEnd="20dp"
-                        android:paddingTop="10dp"
-                        android:layout_marginStart="-30dp"
-                        android:paddingBottom="10dp"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:background="@drawable/expandablede_bank_soal"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"/>
+                        style="@style/bank_soal"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:background="@color/DarkRed">
+
+                            <TextView
+                                android:layout_marginTop="10dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginBottom="3dp"
+                                android:textStyle="bold"
+                                android:textSize="18sp"
+                                android:textColor="@color/white"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Semester 4"/>
+
+                            <TextView
+                                android:layout_marginStart="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:textSize="10sp"
+                                android:maxLines="1"
+                                android:layout_marginEnd="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:text="Sistem Informasi Geografis, Geodesi Satelit, Survey Rekayasa, Kartografi 1,....."/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/matkul_semester4"
-                        android:paddingStart="48dp"
-                        android:paddingEnd="20dp"
-                        android:layout_marginStart="-30dp"
-                        android:layout_marginRight="10dp"/>
+                        style="@style/matkul"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -162,32 +292,48 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical">
-                    <TextView
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:text="Semester 5"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
                         android:id="@+id/semester_5"
-                        android:textColor="@color/white"
-                        android:paddingStart="48dp"
-                        android:paddingEnd="20dp"
-                        android:textAlignment="center"
-                        android:paddingTop="10dp"
-                        android:layout_marginStart="-30dp"
-                        android:paddingBottom="10dp"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:background="@drawable/expandablede_bank_soal"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"/>
+                        style="@style/bank_soal"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:background="@color/DeepPink">
+
+                            <TextView
+                                android:layout_marginTop="10dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginBottom="3dp"
+                                android:textStyle="bold"
+                                android:textSize="18sp"
+                                android:textColor="@color/white"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Semester 5"/>
+
+                            <TextView
+                                android:layout_marginStart="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:textSize="10sp"
+                                android:maxLines="1"
+                                android:layout_marginEnd="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:text="Survey GNSS, Survey Hidrografi 2, Geodesi Fisis, Proyeksi Peta, Model Terrain Digital,......"/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/matkul_semester5"
-                        android:paddingStart="48dp"
-                        android:paddingEnd="20dp"
-                        android:layout_marginStart="-30dp"
-                        android:layout_marginRight="10dp"/>
+                        style="@style/matkul"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -195,32 +341,48 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical">
-                    <TextView
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:text="Semester 6"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
                         android:id="@+id/semester_6"
-                        android:textColor="@color/white"
-                        android:paddingStart="48dp"
-                        android:paddingEnd="20dp"
-                        android:paddingTop="10dp"
-                        android:textAlignment="center"
-                        android:layout_marginStart="-30dp"
-                        android:paddingBottom="10dp"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:background="@drawable/expandablede_bank_soal"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"/>
+                        style="@style/bank_soal"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:background="@color/MediumVioletRed">
+
+                            <TextView
+                                android:layout_marginTop="10dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginBottom="3dp"
+                                android:textStyle="bold"
+                                android:textSize="18sp"
+                                android:textColor="@color/white"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Semester 6"/>
+
+                            <TextView
+                                android:layout_marginStart="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:textSize="10sp"
+                                android:maxLines="1"
+                                android:layout_marginEnd="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:text="Jaring Kontrol Geodesi, Pengolahan Citra Digital, Pengolahan Wilayah Pesisir, ...."/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/matkul_semester6"
-                        android:paddingStart="48dp"
-                        android:paddingEnd="20dp"
-                        android:layout_marginStart="-30dp"
-                        android:layout_marginRight="10dp"/>
+                        style="@style/matkul"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -228,32 +390,48 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical">
-                    <TextView
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:text="Semester 7"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
                         android:id="@+id/semester_7"
-                        android:textColor="@color/white"
-                        android:paddingStart="48dp"
-                        android:paddingEnd="20dp"
-                        android:textAlignment="center"
-                        android:paddingTop="10dp"
-                        android:layout_marginStart="-30dp"
-                        android:paddingBottom="10dp"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:background="@drawable/expandablede_bank_soal"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"/>
+                        style="@style/bank_soal"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:background="@color/DarkBlue">
+
+                            <TextView
+                                android:layout_marginTop="10dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginBottom="3dp"
+                                android:textStyle="bold"
+                                android:textSize="18sp"
+                                android:textColor="@color/white"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Semester 7"/>
+
+                            <TextView
+                                android:layout_marginStart="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:textSize="10sp"
+                                android:maxLines="1"
+                                android:layout_marginEnd="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:text="Metodologi Penelitian, Manajemen Kewirausahaan"/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/matkul_semester7"
-                        android:paddingStart="48dp"
-                        android:paddingEnd="20dp"
-                        android:layout_marginStart="-30dp"
-                        android:layout_marginRight="10dp"/>
+                        style="@style/matkul"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -261,98 +439,98 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical">
-                    <TextView
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:text="Semester 8"
-                        android:id="@+id/semester_8"
-                        android:textColor="@color/white"
-                        android:paddingStart="48dp"
-                        android:paddingEnd="20dp"
-                        android:paddingTop="10dp"
-                        android:textAlignment="center"
-                        android:layout_marginStart="-30dp"
-                        android:paddingBottom="10dp"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:background="@drawable/expandablede_bank_soal"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"/>
-
-                    <androidx.recyclerview.widget.RecyclerView
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/matkul_semester8"
-                        android:paddingStart="48dp"
-                        android:paddingEnd="20dp"
-                        android:layout_marginStart="-30dp"
-                        android:layout_marginRight="10dp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:text="Pilihan Gasal"
                         android:id="@+id/semester_pilihan_gesal"
-                        android:textColor="@color/white"
-                        android:paddingStart="48dp"
-                        android:paddingEnd="20dp"
-                        android:textAlignment="center"
-                        android:paddingTop="10dp"
-                        android:layout_marginStart="-30dp"
-                        android:paddingBottom="10dp"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:background="@drawable/expandablede_bank_soal"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"/>
+                        style="@style/bank_soal"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:background="@color/deepSkyBlue">
+
+                            <TextView
+                                android:layout_marginTop="10dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginBottom="3dp"
+                                android:textStyle="bold"
+                                android:textSize="18sp"
+                                android:textColor="@color/white"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Pilihan Gasal"/>
+
+                            <TextView
+                                android:layout_marginStart="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:textSize="10sp"
+                                android:maxLines="1"
+                                android:layout_marginEnd="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:text="Basis Data Spasial, SIG Terapan, Survey Rekayasa Laut ,IIG, Manajemen Pertanahan, ....."/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/matkul_semester_pilihan_gasal"
-                        android:paddingStart="48dp"
-                        android:paddingEnd="20dp"
-                        android:layout_marginStart="-30dp"
-                        android:layout_marginRight="10dp"/>
+                        style="@style/matkul"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:orientation="vertical">
-                    <TextView
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:text="Pilihan Genap"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
                         android:id="@+id/semester_pilihan_genap"
-                        android:textColor="@color/white"
-                        android:paddingStart="48dp"
-                        android:paddingEnd="20dp"
-                        android:textAlignment="center"
-                        android:paddingTop="10dp"
-                        android:layout_marginStart="-30dp"
-                        android:paddingBottom="10dp"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:background="@drawable/expandablede_bank_soal"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"/>
+                        style="@style/bank_soal"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:background="@color/Red">
+
+                            <TextView
+                                android:layout_marginTop="10dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginBottom="3dp"
+                                android:textStyle="bold"
+                                android:textSize="18sp"
+                                android:textColor="@color/white"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Pilihan Genap"/>
+
+                            <TextView
+                                android:layout_marginStart="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:textSize="10sp"
+                                android:maxLines="1"
+                                android:layout_marginEnd="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:text="GNSS Terapan, Survey Laut, Hukum Laut, Hitung Perataan Terapan,...."/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/matkul_semester_pilihan_genap"
-                        android:paddingStart="48dp"
-                        android:paddingEnd="20dp"
-                        android:layout_marginStart="-30dp"
-                        android:layout_marginRight="10dp"/>
+                        style="@style/matkul"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -367,8 +545,8 @@
         android:id="@+id/tambah_soal"
         android:background="@drawable/lingkaran_biru">
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/ic_baseline_add_white"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"/>

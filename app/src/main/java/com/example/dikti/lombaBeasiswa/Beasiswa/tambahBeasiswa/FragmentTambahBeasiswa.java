@@ -1,6 +1,8 @@
 package com.example.dikti.lombaBeasiswa.Beasiswa.tambahBeasiswa;
 
+import android.app.NotificationManager;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -45,6 +48,7 @@ public class FragmentTambahBeasiswa extends Fragment {
     private Long isiDeadlineTahunLong,isiDeadlineTanggalLong,deadline;
     private FirebaseFirestore firebaseFirestore;
     private StorageReference storageReference;
+    private  TextView tambah;
     private String isiNamaBeasiswa,isiLink,isiDeskripsi,isiDeadlineBulan,isiDeadlineTanggal,isiDeadlineTanggalint,isiDeadlineBulanint;
     public Uri gambar;
 
@@ -62,7 +66,7 @@ public class FragmentTambahBeasiswa extends Fragment {
         View tambahFoto = view.findViewById(R.id.tambah_foto);
         fotoLomba = view.findViewById(R.id.foto_beasiswa);
         fotoLomba.setVisibility(View.GONE);
-        TextView tambah = view.findViewById(R.id.addData);
+        tambah = view.findViewById(R.id.addData);
 
         ImageView kembali = view.findViewById(R.id.kembali);
 
@@ -144,6 +148,8 @@ public class FragmentTambahBeasiswa extends Fragment {
     }
 
     private void Upload(){
+        showNotification("Beasiswa sedang ditambahkan","Tunggu hingga muncul notifikasi berikutnya");
+        tambah.setText("Tunggu");
         isiNamaBeasiswa = namaBeasiswa.getText().toString();
         isiDeskripsi = deskripsi.getText().toString();
         isiLink = link.getText().toString();
@@ -170,22 +176,29 @@ public class FragmentTambahBeasiswa extends Fragment {
                         variabelBeasiswa.setLink(isiLink);
                         variabelBeasiswa.setNama(isiNamaBeasiswa);
                         variabelBeasiswa.setQueryNama(isiNamaBeasiswa.toLowerCase());
-                        variabelBeasiswa.setPengirim(pengirim);
+                        if (Preference.getDataUsername(getContext()).isEmpty()){
+                            variabelBeasiswa.setPengirim("Tidak Diketahui");
+                        }else {
+                            variabelBeasiswa.setPengirim(pengirim);
+                        }
                         variabelBeasiswa.setFavorit(false);
                         isiData.set(variabelBeasiswa);
-                        Toast.makeText(getContext(),"Upload Success",Toast.LENGTH_SHORT).show();
+                        tambah.setText("Add");
+                        showNotification(isiNamaBeasiswa+" berhasil ditambahkan","Terima kasih telah menambahkan daftar beasiswa");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getContext(),"Upload Gagal",Toast.LENGTH_SHORT).show();
+                        tambah.setText("Add");
+                        showNotification("Beasiswa gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
                     }
                 });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(),"Upload Gagal",Toast.LENGTH_SHORT).show();
+                tambah.setText("Add");
+                showNotification("Beasiswa gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
             }
         });
     }
@@ -206,6 +219,17 @@ public class FragmentTambahBeasiswa extends Fragment {
         ContentResolver contentResolver = Objects.requireNonNull(getActivity()).getContentResolver();
         MimeTypeMap mimeTypeMap=MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+    }
+
+    public void showNotification(String title, String message) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext())
+                .setSmallIcon(R.drawable.logo_dikti)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setAutoCancel(true);
+
+        NotificationManager notificationManager = (NotificationManager) Objects.requireNonNull(getActivity()).getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0,builder.build());
     }
 
     private void convertBulan (String string){

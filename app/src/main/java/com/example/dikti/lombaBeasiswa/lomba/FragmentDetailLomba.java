@@ -1,6 +1,7 @@
 package com.example.dikti.lombaBeasiswa.lomba;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -54,12 +55,12 @@ public class FragmentDetailLomba extends Fragment {
         link=view.findViewById(R.id.link);
         deskripsi=view.findViewById(R.id.deskripsi_lomba);
         gambarLomba=view.findViewById(R.id.gambarlomba);
-        TextView requestTim = view.findViewById(R.id.requestTim);
-        ImageView editLomba = view.findViewById(R.id.edit);
-        ImageView linkBrowser = view.findViewById(R.id.link_browser);
+        final TextView requestTim = view.findViewById(R.id.requestTim);
+        final ImageView editLomba = view.findViewById(R.id.edit);
         request = view.findViewById(R.id.request);
         TextView daftarTim = view.findViewById(R.id.daftar_tim);
         request.setVisibility(View.GONE);
+        editLomba.setVisibility(view.GONE);
 
         ImageView kembali = view.findViewById(R.id.kembali);
 
@@ -87,6 +88,7 @@ public class FragmentDetailLomba extends Fragment {
                 String isiDeskripsi = documentSnapshot.getString("deskripsi");
                 Long isiBiaya = documentSnapshot.getLong("biaya");
                 isiPeserta = documentSnapshot.getString("peserta");
+                String pengirim = documentSnapshot.getString("pengirim");
 
                 namaLomba.setText(isiNamaLomba);
                 deadline.setText(deadlineTanggal.toString() + " " + deadlineBulan + " " + deadlineTahun.toString());
@@ -98,6 +100,11 @@ public class FragmentDetailLomba extends Fragment {
 
                 if (isiPeserta.equals("Tim")){
                     request.setVisibility(View.VISIBLE);
+                    request.setBackgroundColor(Color.TRANSPARENT);
+                }
+
+                if (Preference.getDataAs(getContext()).equals("Admin") || Preference.getDataUsername(getContext()).equals(pengirim)){
+                    editLomba.setVisibility(View.VISIBLE);
                 }
 
                 Glide.with(getContext())
@@ -110,7 +117,7 @@ public class FragmentDetailLomba extends Fragment {
                     public void onClick(View view) {
                         Bundle bundle = new Bundle();
                         bundle.putString("1",idLomba);
-                        bundle.putString("2","lomba");
+                        bundle.putString("2","Lomba");
                         FragmentDetailSoal fragmentDetailSoal = new FragmentDetailSoal();
                         fragmentDetailSoal.setArguments(bundle);
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

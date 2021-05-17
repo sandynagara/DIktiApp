@@ -1,6 +1,8 @@
 package com.example.dikti.geodesiBangga;
 
+import android.app.NotificationManager;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -73,8 +76,8 @@ public class TambahGeodesiBangga extends Fragment {
         storageReference = FirebaseStorage.getInstance().getReference();
 
         tambah.setText("Tambah Geodesi Bangga");
-        judul.setHint("Lomba yang dimenangkan");
-        pemenang.setHint("Nama Pemenang (Nama Lengkap_Angkatan)");
+        judul.setHint("Nama Lomba");
+        pemenang.setHint("Nama Pemenang");
         link.setHint("Deskripsi (Opsional)");
 
         add.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +106,8 @@ public class TambahGeodesiBangga extends Fragment {
     }
 
     private void Upload(){
+        showNotification("Geodesi Bangga sedang ditambahkan","Tunggu hingga muncul notifikasi berikutnya");
+        add.setText("Tunggu");
         final StorageReference ref=storageReference.child("Geodesi Bangga/"+judul.getText().toString()+"."+getExtension(gambar));
         ref.putFile(gambar).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -121,19 +126,20 @@ public class TambahGeodesiBangga extends Fragment {
                             variabelGeodesiBangga.setDeskripsi(link.getText().toString());
                         }
                         isiData.set(variabelGeodesiBangga);
-                        Toast.makeText(getContext(),"Upload Success",Toast.LENGTH_SHORT).show();
+                        showNotification("Geodesi Bannga berhasil ditambahkan","");
+                        add.setText("Add");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getContext(),"Upload Gagal",Toast.LENGTH_SHORT).show();
+                        showNotification("Geodesi Bannga gagal ditambahkan","");
                     }
                 });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(),"Upload Gagal",Toast.LENGTH_SHORT).show();
+                showNotification("Geodesi Bannga gagal ditambahkan","");
             }
         });
     }
@@ -141,5 +147,16 @@ public class TambahGeodesiBangga extends Fragment {
         ContentResolver contentResolver = Objects.requireNonNull(getActivity()).getContentResolver();
         MimeTypeMap mimeTypeMap=MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+    }
+
+    public void showNotification(String title, String message) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext())
+                .setSmallIcon(R.drawable.logo_dikti)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setAutoCancel(true);
+
+        NotificationManager notificationManager = (NotificationManager) Objects.requireNonNull(getActivity()).getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0,builder.build());
     }
 }

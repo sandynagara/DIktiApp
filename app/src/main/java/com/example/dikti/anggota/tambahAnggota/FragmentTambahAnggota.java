@@ -1,7 +1,10 @@
 package com.example.dikti.anggota.tambahAnggota;
 
+import android.app.NotificationManager;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,6 +21,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -29,6 +33,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
@@ -50,6 +55,7 @@ public class FragmentTambahAnggota extends Fragment {
     private CircleImageView fotoAnggota;
     private String isiUsername,isiNamaLengkap,isiNim,isiAngkatan,isiDepartemen;
     private Long isiAngkatanInt;
+    private TextView add;
     private VariabelTambahAnggota variabelTambahAnggota;
     public Uri gambar;
 
@@ -65,7 +71,7 @@ public class FragmentTambahAnggota extends Fragment {
         nim = view.findViewById(R.id.NIM);
         angkatan = view.findViewById(R.id.angkatan);
         ImageView tambahFoto = view.findViewById(R.id.add_foto);
-        TextView add = view.findViewById(R.id.addData);
+        add = view.findViewById(R.id.addData);
 
         ImageView kembali = view.findViewById(R.id.kembali);
 
@@ -145,22 +151,21 @@ public class FragmentTambahAnggota extends Fragment {
     }
 
     private void Uploadgambar(){
-
+        showNotification("Anggota sedang ditambahkan","Tunggu hingga muncul notifikasi berikutnya");
+        add.setText("Tunggu");
         isiUsername=username.getText().toString();
         isiNamaLengkap=namaLengkap.getText().toString();
         isiNim = nim.getText().toString();
         isiAngkatan = angkatan.getText().toString();
-
-        final StorageReference ref=storageReference.child("Anggota/"+isiAngkatanInt+"/"+isiDepartemen+"/"+isiNamaLengkap+"."+getExtension(gambar));
+        final GeoPoint geoPoint = new GeoPoint(0,0);
+        final StorageReference ref=storageReference.child("Anggota/"+isiAngkatan+"/"+isiDepartemen+"/"+isiNamaLengkap+"."+getExtension(gambar));
         ref.putFile(gambar)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
                         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(final Uri uri) {
-
                                 DocumentReference isiData=firebaseFirestore.collection("Anggota").document(isiUsername);
                                 variabelTambahAnggota.setAngkatan(isiAngkatan);
                                 variabelTambahAnggota.setFoto(String.valueOf(uri));
@@ -169,7 +174,8 @@ public class FragmentTambahAnggota extends Fragment {
                                 variabelTambahAnggota.setLine("-");
                                 variabelTambahAnggota.setPassword(isiUsername);
                                 variabelTambahAnggota.setNIM(isiNim);
-                                variabelTambahAnggota.setPosisi("User");
+                                variabelTambahAnggota.setStatus("User");
+                                variabelTambahAnggota.setPosisi(geoPoint);
                                 variabelTambahAnggota.setQueryangkatan(isiAngkatan+" "+isiNamaLengkap.toLowerCase());
                                 variabelTambahAnggota.setQuerycampuran(isiAngkatan+" "+isiDepartemen+" "+isiNamaLengkap.toLowerCase());
                                 variabelTambahAnggota.setQuerydepartemen(isiDepartemen+" "+isiNamaLengkap.toLowerCase());
@@ -179,8 +185,26 @@ public class FragmentTambahAnggota extends Fragment {
                                 variabelTambahAnggota.setNamaLengkap(isiNamaLengkap);
                                 variabelTambahAnggota.setAboutMe("-");
                                 variabelTambahAnggota.setAlamat("-");
-                                isiData.set(variabelTambahAnggota);
-                                Toast.makeText(getContext(),"Upload Success",Toast.LENGTH_SHORT).show();
+                                isiData.set(variabelTambahAnggota).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        add.setText("Add");
+                                        showNotification(isiNamaLengkap+" berhasil ditambahkan","Terima kasih telah menambahkan anggota");
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        add.setText("Add");
+                                        showNotification("Anggota gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
+                                    }
+                                });
+
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                showNotification("Anggota gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
+                                add.setText("Add");
                             }
                         });
 
@@ -189,7 +213,7 @@ public class FragmentTambahAnggota extends Fragment {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
-                        Toast.makeText(getContext(),"Upload Gagal",Toast.LENGTH_SHORT).show();
+                        showNotification("Anggota gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
                     }
                 });
     }
@@ -198,5 +222,16 @@ public class FragmentTambahAnggota extends Fragment {
         ContentResolver contentResolver = Objects.requireNonNull(getActivity()).getContentResolver();
         MimeTypeMap mimeTypeMap=MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+    }
+
+    public void showNotification(String title, String message) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext())
+                .setSmallIcon(R.drawable.logo_dikti)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setAutoCancel(true);
+
+        NotificationManager notificationManager = (NotificationManager) Objects.requireNonNull(getActivity()).getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0,builder.build());
     }
 }

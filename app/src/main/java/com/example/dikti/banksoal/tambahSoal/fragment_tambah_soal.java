@@ -1,6 +1,8 @@
 package com.example.dikti.banksoal.tambahSoal;
 
+import android.app.NotificationManager;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -48,6 +51,7 @@ public class fragment_tambah_soal extends Fragment {
     private EditText dosen,tahunSoal;
     private List<String> isiMatkullist;
     public Uri gambar;
+    private TextView add;
     private ImageView fotoSoal;
     private String isiSemester,isiKelas,isiMatkul;
 
@@ -61,7 +65,7 @@ public class fragment_tambah_soal extends Fragment {
         kelas = view.findViewById(R.id.kelas);
         dosen = view.findViewById(R.id.dosen);
         tahunSoal = view.findViewById(R.id.tahun_soal);
-        TextView add = view.findViewById(R.id.addData);
+        add = view.findViewById(R.id.addData);
         fotoSoal = view.findViewById(R.id.foto_soal);
         View tambahFoto= view.findViewById(R.id.tambah_foto);
 
@@ -129,6 +133,17 @@ public class fragment_tambah_soal extends Fragment {
         startActivityForResult(intent,2);
     }
 
+    public void showNotification(String title, String message) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext())
+                .setSmallIcon(R.drawable.logo_dikti)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setAutoCancel(true);
+
+        NotificationManager notificationManager = (NotificationManager) Objects.requireNonNull(getActivity()).getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0,builder.build());
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -139,7 +154,8 @@ public class fragment_tambah_soal extends Fragment {
     }
 
     private void Upload(){
-
+        add.setText("Tunggu");
+        showNotification("Soal sedang ditambahkan","Tunggu hingga muncul notifikasi berikutnya");
         final StorageReference ref= FirebaseStorage.getInstance().getReference().child("Bank Soal/"+isiSemester+"/"+isiMatkul+"/"+tahunSoal.getText().toString()+" "+kelas.getSelectedItem().toString()+" "+isiMatkul+"."+getExtension(gambar));
         ref.putFile(gambar).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -155,19 +171,22 @@ public class fragment_tambah_soal extends Fragment {
                         variabelBankSoal.setTahun(Long.parseLong(tahunSoal.getText().toString()));
                         variabelBankSoal.setFoto(String.valueOf(uri));
                         isiData.set(variabelBankSoal);
-                        Toast.makeText(getContext(),"Upload Success",Toast.LENGTH_SHORT).show();
+                        showNotification("Soal berhasil ditambahkan","Terima kasih telah menambahkan soal");
+                        add.setText("Add");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getContext(),"Upload Gagal",Toast.LENGTH_SHORT).show();
+                        showNotification("Soal gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
+                        add.setText("Add");
                     }
                 });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(),"Upload Gagal",Toast.LENGTH_SHORT).show();
+                showNotification("Soal gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
+                add.setText("Add");
             }
         });
     }

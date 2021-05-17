@@ -54,9 +54,9 @@ public class AdapterLomba extends FirestoreRecyclerAdapter<VariabelLomba, Adapte
         }
 
         if (favorit1){
-            viewHolder.favorit.setImageResource(R.drawable.ic_baseline_favorite_red);
+            viewHolder.favorit.setImageResource(R.drawable.ic_baseline_star_gold);
         }else {
-            viewHolder.favorit.setImageResource(R.drawable.ic_baseline_favorite_gray);
+            viewHolder.favorit.setImageResource(R.drawable.ic_baseline_star_grey);
         }
 
         viewHolder.favorit.setOnClickListener(new View.OnClickListener() {

@@ -34,7 +34,7 @@ public class FragmentEditBeasiswa extends Fragment implements View.OnClickListen
     private ImageView gambarBeasiswa;
     private TextView deadline;
     private EditText namaBeasiswa,link,deskripsi;
-    private final Dialog dialog = new Dialog(getContext());
+    Dialog dialog;
     private String idBeasiswa;
 
     @Nullable
@@ -42,7 +42,6 @@ public class FragmentEditBeasiswa extends Fragment implements View.OnClickListen
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_edit_beasiswa,container,false);
 
-        gambarBeasiswa = view.findViewById(R.id.gambar_beasiswa);
         ImageView hapus = view.findViewById(R.id.hapus);
         deadline = view.findViewById(R.id.deadline);
         TextView update = view.findViewById(R.id.update);
@@ -53,14 +52,13 @@ public class FragmentEditBeasiswa extends Fragment implements View.OnClickListen
 
         idBeasiswa = getArguments().getString("1");
 
-        Task<DocumentSnapshot> documentReference =  FirebaseFirestore.getInstance().document("Lomba/"+idBeasiswa).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        Task<DocumentSnapshot> documentReference =  FirebaseFirestore.getInstance().document("Beasiswa/"+idBeasiswa).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 String isiNamaLomba = documentSnapshot.getString("nama");
                 Long deadlineTanggal = documentSnapshot.getLong("deadlineTanggal");
                 String deadlineBulan = documentSnapshot.getString("deadlineBulan");
                 Long deadlineTahun = documentSnapshot.getLong("deadlineTahun");
-                String isiFoto = documentSnapshot.getString("foto");
                 String isiLink = documentSnapshot.getString("link");
                 String isiDeskripsi = documentSnapshot.getString("deskripsi");
 
@@ -68,10 +66,6 @@ public class FragmentEditBeasiswa extends Fragment implements View.OnClickListen
                 deadline.setText(deadlineTanggal.toString()+" "+deadlineBulan+" "+deadlineTahun.toString());
                 link.setText(isiLink);
                 deskripsi.setText(isiDeskripsi);
-
-                Glide.with(getContext())
-                        .load(isiFoto)
-                        .into(gambarBeasiswa);
             }
 
         });
@@ -169,7 +163,7 @@ public class FragmentEditBeasiswa extends Fragment implements View.OnClickListen
                     documentReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            fragmentManager.beginTransaction().replace(R.id.contain_all,new fragment_lomba()).addToBackStack(null).commit();
+                            fragmentManager.beginTransaction().replace(R.id.contain_all,new FragmentBeasiswa()).addToBackStack(null).commit();
                             dialog.dismiss();
                         }
                     });

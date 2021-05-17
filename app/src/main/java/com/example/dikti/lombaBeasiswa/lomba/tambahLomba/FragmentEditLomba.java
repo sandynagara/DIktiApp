@@ -146,7 +146,7 @@ public class FragmentEditLomba extends Fragment implements View.OnClickListener 
                         isiJenisLombalist.add(subject);
                     }
 
-                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(Objects.requireNonNull(getActivity()),R.layout.spinner_departemen,isiJenisLombalist);
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(Objects.requireNonNull(getActivity()),R.layout.support_simple_spinner_dropdown_item,isiJenisLombalist);
                     arrayAdapter.setDropDownViewResource(R.layout.spinner_departemen);
                     jenisLomba.setAdapter(arrayAdapter);
                 }
@@ -156,7 +156,7 @@ public class FragmentEditLomba extends Fragment implements View.OnClickListener 
 
     private void SpinnerString (String[] strings,Spinner spinner){
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(strings));
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(Objects.requireNonNull(getActivity()),R.layout.spinner_departemen,arrayList);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(Objects.requireNonNull(getActivity()),R.layout.support_simple_spinner_dropdown_item,arrayList);
         spinner.setAdapter(arrayAdapter);
     }
 

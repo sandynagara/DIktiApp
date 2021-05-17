@@ -17,14 +17,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dikti.Preference;
 import com.example.dikti.R;
+import com.example.dikti.anggota.FragmentAnggota;
+import com.example.dikti.banksoal.Fragment_Home_Bank_Soal;
+import com.example.dikti.fragment_Home;
+import com.example.dikti.login.FragmentLogin;
+import com.example.dikti.lombaBeasiswa.Beasiswa.FragmentBeasiswa;
 import com.example.dikti.lombaBeasiswa.lomba.PopBottomJenisLomba;
 import com.example.dikti.lombaBeasiswa.lomba.fragment_lomba;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.Objects;
 
-public class FragmentRequesLomba extends Fragment {
+public class FragmentRequesLomba extends Fragment implements View.OnClickListener {
 
     private AdapterRequestLomba adapterRequestLomba;
     private RecyclerView daftarRequest;
@@ -37,25 +43,47 @@ public class FragmentRequesLomba extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_daftar_request, container, false);
+        fragmentManager = getActivity().getSupportFragmentManager();
+
+        if (Preference.getDataUsername(getContext()).isEmpty()) {
+            FragmentLogin fragmentLogin = new FragmentLogin();
+            fragmentManager.beginTransaction().replace(R.id.contain_all, fragmentLogin).commit();
+        }
 
         daftarRequest = view.findViewById(R.id.daftar_request);
         SearchView searchView = view.findViewById(R.id.search);
         jenisLomba = view.findViewById(R.id.jenis_lomba);
         myRequest = view.findViewById(R.id.filter_myRequest);
+        TextView pindahBeasiswa = view.findViewById(R.id.fragment_beasiswa);
+        TextView pindahLomba = view.findViewById(R.id.fragment_lomba);
+        View toolbar = view.findViewById(R.id.toolbar);
+        View anggota = toolbar.findViewById(R.id.anggota);
+        View bankSoal = toolbar.findViewById(R.id.bank_soal);
+        View lomba1 = toolbar.findViewById(R.id.lomba);
+        View home = toolbar.findViewById(R.id.home1);
+        ImageView tombolLomba = toolbar.findViewById(R.id.simbol_lomba);
+        TextView textLomba = toolbar.findViewById(R.id.text_lomba);
 
-        ImageView kembali = view.findViewById(R.id.kembali);
+        tombolLomba.setImageDrawable(getActivity().getDrawable(R.drawable.ic_baseline_emoji_events_blue));
+        textLomba.setTextColor(getActivity().getColor(R.color.deepSkyBlue));
+        textLomba.setText("Tim");
 
-        kembali.setOnClickListener(new View.OnClickListener() {
+        pindahBeasiswa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.contain_all,new fragment_lomba()).addToBackStack(null).commit();
+                fragmentManager.beginTransaction().replace(R.id.contain_all, new FragmentBeasiswa()).commit();
             }
         });
 
+        pindahLomba.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fragmentManager.beginTransaction().replace(R.id.contain_all, new fragment_lomba()).commit();
+            }
+        });
 
         String idLomba = Objects.requireNonNull(getArguments()).getString("1");
-        if (!idLomba.equals("kosong")){
+        if (!idLomba.equals("kosong")) {
             options = new FirestoreRecyclerOptions.Builder<VariabelRequestLomba>()
                     .setQuery(FirebaseFirestore.getInstance().collection("Request Tim").orderBy("namaLomba").startAt(idLomba).endAt(idLomba+"\ufaff"), VariabelRequestLomba.class)
                     .build();
@@ -63,9 +91,10 @@ public class FragmentRequesLomba extends Fragment {
             adapterRequestLomba = new AdapterRequestLomba(options);
             adapterRequestLomba.startListening();
             daftarRequest.setAdapter(adapterRequestLomba);
-        }else {
+        }
+        else {
             options = new FirestoreRecyclerOptions.Builder<VariabelRequestLomba>()
-                    .setQuery(FirebaseFirestore.getInstance().collection("Request Tim").orderBy("deadline"), VariabelRequestLomba.class)
+                    .setQuery(FirebaseFirestore.getInstance().collection("Request Tim").orderBy("deadline", Query.Direction.ASCENDING), VariabelRequestLomba.class)
                     .build();
 
             adapterRequestLomba = new AdapterRequestLomba(options);
@@ -73,9 +102,11 @@ public class FragmentRequesLomba extends Fragment {
             daftarRequest.setAdapter(adapterRequestLomba);
         }
 
-        jenisLomba.setOnClickListener(new View.OnClickListener() {
+        jenisLomba.setOnClickListener(
+                new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 PopBottomJenisLomba popBottomJenisLomba = new PopBottomJenisLomba();
                 popBottomJenisLomba.show((Objects.requireNonNull(getFragmentManager())), "FilterJenisLomba");
                 FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
@@ -124,7 +155,7 @@ public class FragmentRequesLomba extends Fragment {
                     GantiPutih(myRequest,"My Request");
                     if (Preference.getDataJenisLomba(getContext()).equals("All") || !Preference.getDataJenisLomba(getContext()).isEmpty()) {
                         options = new FirestoreRecyclerOptions.Builder<VariabelRequestLomba>()
-                                .setQuery(FirebaseFirestore.getInstance().collection("Request Tim").orderBy("deadline"), VariabelRequestLomba.class)
+                                .setQuery(FirebaseFirestore.getInstance().collection("Request Tim").orderBy("deadline", Query.Direction.ASCENDING), VariabelRequestLomba.class)
                                 .build();
                         adapterRequestLomba = new AdapterRequestLomba(options);
                         adapterRequestLomba.startListening();
@@ -174,6 +205,11 @@ public class FragmentRequesLomba extends Fragment {
             }
         });
 
+        anggota.setOnClickListener(this);
+        bankSoal.setOnClickListener(this);
+        lomba1.setOnClickListener(this);
+        home.setOnClickListener(this);
+
         return view;
     }
 
@@ -209,6 +245,19 @@ public class FragmentRequesLomba extends Fragment {
         adapterRequestLomba = new AdapterRequestLomba(options);
         adapterRequestLomba.startListening();
         daftarRequest.setAdapter(adapterRequestLomba);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.anggota) {
+            fragmentManager.beginTransaction().replace(R.id.contain_all, new FragmentAnggota()).commit();
+        } else if (view.getId() == R.id.bank_soal) {
+            fragmentManager.beginTransaction().replace(R.id.contain_all, new Fragment_Home_Bank_Soal()).commit();
+        }else if (view.getId() == R.id.lomba) {
+            fragmentManager.beginTransaction().replace(R.id.contain_all, new FragmentBeasiswa()).commit();
+        }else if (view.getId() == R.id.home1) {
+            fragmentManager.beginTransaction().replace(R.id.contain_all, new fragment_Home()).commit();
+        }
     }
 }
 

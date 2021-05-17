@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.dikti.Preference;
 import com.example.dikti.R;
+import com.example.dikti.lombaBeasiswa.lomba.FragmentDetailLomba;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -49,6 +50,9 @@ public class AdapterRequestLomba extends FirestoreRecyclerAdapter<VariabelReques
         viewHolder.syaratAnggota.setText(variabelRequestLomba.getSyaratAnggota());
         viewHolder.namaPengirim.setText(variabelRequestLomba.getNamaPengirim());
         viewHolder.angkatan.setText(variabelRequestLomba.getAngkatan());
+
+        final String idLomba = variabelRequestLomba.getIdLomba();
+
         viewHolder.dropdown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,15 +64,27 @@ public class AdapterRequestLomba extends FirestoreRecyclerAdapter<VariabelReques
                 else {
                     viewHolder.meluas=false;
                     float scale = view.getContext().getResources().getDisplayMetrics().density;
-                    int pixels = (int) (160 * scale + 0.5f);
+                    int pixels = (int) (145 * scale + 0.5f);
                     viewHolder.dropdown.setImageResource(R.drawable.ic_baseline_arrow_drop_down_blue);
                     viewHolder.isiLomba.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, pixels));
                 }
             }
         });
 
+        final FragmentManager fragmentManager = ((AppCompatActivity) viewHolder.itemView.getContext()).getSupportFragmentManager();
+
         viewHolder.cancel.setVisibility(View.GONE);
         viewHolder.pilihan1.setVisibility(View.GONE);
+        viewHolder.detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentDetailLomba fragmentDetailLomba = new FragmentDetailLomba();
+                Bundle bundle = new Bundle();
+                bundle.putString("1",idLomba);
+                fragmentDetailLomba.setArguments(bundle);
+                fragmentManager.beginTransaction().replace(R.id.contain_all,fragmentDetailLomba).commit();
+            }
+        });
 
         Task<DocumentSnapshot> documentReference = FirebaseFirestore.getInstance().collection("Request Tim").document(variabelRequestLomba.getNamaLomba()+" "+variabelRequestLomba.getNamaPengirim())
                 .collection("Peminat").document(Preference.getDataUsername(viewHolder.itemView.getContext())).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -98,7 +114,7 @@ public class AdapterRequestLomba extends FirestoreRecyclerAdapter<VariabelReques
                     }
                 });
 
-        final FragmentManager fragmentManager = ((AppCompatActivity) viewHolder.itemView.getContext()).getSupportFragmentManager();
+
 
         if (!Preference.getDataUsername(viewHolder.itemView.getContext()).equals(variabelRequestLomba.getIdPengirim())){
             viewHolder.pilihan1.setVisibility(View.VISIBLE);
@@ -172,21 +188,10 @@ public class AdapterRequestLomba extends FirestoreRecyclerAdapter<VariabelReques
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-            final ImageView gambarLomba;
-        final ImageView dropdown;
-        final ImageView edit;
-            final TextView namaLomba;
-        final TextView bergabung;
-        final TextView jumlahAnggota;
-        final TextView syaratAnggota;
-        final TextView isiJenisLomba;
-        final TextView namaPengirim;
-        final TextView deadline;
-        final TextView cancel;
-        final TextView angkatan;
-            final View isiLomba;
-        final View pilihan1;
-            Boolean meluas = false;
+        ImageView gambarLomba,dropdown,edit,detail;
+        TextView namaLomba,bergabung,jumlahAnggota,syaratAnggota,isiJenisLomba,namaPengirim,deadline,cancel,angkatan;
+        View isiLomba,pilihan1;
+        Boolean meluas = false;
 
            public ViewHolder(@NonNull View itemView) {
                super(itemView);
@@ -204,6 +209,7 @@ public class AdapterRequestLomba extends FirestoreRecyclerAdapter<VariabelReques
                edit = itemView.findViewById(R.id.edit);
                cancel = itemView.findViewById(R.id.cancel);
                angkatan = itemView.findViewById(R.id.angkatan);
+               detail = itemView.findViewById(R.id.detail);
            }
        }
 }

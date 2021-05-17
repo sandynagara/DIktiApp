@@ -24,6 +24,7 @@ import com.example.dikti.banksoal.Fragment_Home_Bank_Soal;
 import com.example.dikti.fragment_Home;
 import com.example.dikti.lombaBeasiswa.Beasiswa.tambahBeasiswa.FragmentTambahBeasiswa;
 import com.example.dikti.lombaBeasiswa.lomba.fragment_lomba;
+import com.example.dikti.lombaBeasiswa.lomba.requestTim.FragmentRequesLomba;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -48,11 +49,12 @@ public class FragmentBeasiswa extends Fragment implements View.OnClickListener {
         TextView pindahLomba = view.findViewById(R.id.fragment_lomba);
         View toolbar = view.findViewById(R.id.toolbar);
         View anggota = toolbar.findViewById(R.id.anggota);
-        View profile1 = toolbar.findViewById(R.id.bank_soal);
+        View bankSoal = toolbar.findViewById(R.id.bank_soal);
         ImageView tombolLomba = toolbar.findViewById(R.id.simbol_lomba);
         TextView textLomba = toolbar.findViewById(R.id.text_lomba);
+        TextView tim = view.findViewById(R.id.daftar_request_lomba);
         View lomba1 = toolbar.findViewById(R.id.lomba);
-        View beasiswa1 = toolbar.findViewById(R.id.home1);
+        View home = toolbar.findViewById(R.id.home1);
         View tambahBeasiswa = view.findViewById(R.id.tambah_beasiswa);
 
         tombolLomba.setImageDrawable(getActivity().getDrawable(R.drawable.ic_baseline_emoji_events_blue));
@@ -86,11 +88,12 @@ public class FragmentBeasiswa extends Fragment implements View.OnClickListener {
         });
 
         anggota.setOnClickListener(this);
-        profile1.setOnClickListener(this);
+        bankSoal.setOnClickListener(this);
         lomba1.setOnClickListener(this);
-        beasiswa1.setOnClickListener(this);
+        home.setOnClickListener(this);
         pindahLomba.setOnClickListener(this);
         tambahBeasiswa.setOnClickListener(this);
+        tim.setOnClickListener(this);
 
         return view;
     }
@@ -110,16 +113,22 @@ public class FragmentBeasiswa extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
         if (view.getId() == R.id.anggota) {
-            fragmentManager.beginTransaction().replace(R.id.contain_all, new FragmentAnggota()).addToBackStack(null).commit();
+            fragmentManager.beginTransaction().replace(R.id.contain_all, new FragmentAnggota()).commit();
         } else if (view.getId() == R.id.bank_soal) {
-            fragmentManager.beginTransaction().replace(R.id.contain_all, new Fragment_Home_Bank_Soal()).addToBackStack(null).commit();
+            fragmentManager.beginTransaction().replace(R.id.contain_all, new Fragment_Home_Bank_Soal()).commit();
         }else if (view.getId() == R.id.lomba) {
-            fragmentManager.beginTransaction().replace(R.id.contain_all, new FragmentBeasiswa()).addToBackStack(null).commit();
+            fragmentManager.beginTransaction().replace(R.id.contain_all, new FragmentBeasiswa()).commit();
         }else if (view.getId() == R.id.home1) {
-            fragmentManager.beginTransaction().replace(R.id.contain_all, new fragment_Home()).addToBackStack(null).commit();
+            fragmentManager.beginTransaction().replace(R.id.contain_all, new fragment_Home()).commit();
         }else if (view.getId() == R.id.fragment_lomba) {
-            fragmentManager.beginTransaction().replace(R.id.contain_all, new fragment_lomba()).addToBackStack(null).commit();
+            fragmentManager.beginTransaction().replace(R.id.contain_all, new fragment_lomba()).commit();
         }else if (view.getId()==R.id.tambah_beasiswa){
-            fragmentManager.beginTransaction().replace(R.id.contain_all, new FragmentTambahBeasiswa()).addToBackStack(null).commit();
+            fragmentManager.beginTransaction().replace(R.id.contain_all, new FragmentTambahBeasiswa()).commit();
+        }else if (view.getId()==R.id.daftar_request_lomba){
+            Bundle bundle =new Bundle();
+            bundle.putString("1","kosong");
+            FragmentRequesLomba fragmentRequesLomba = new FragmentRequesLomba();
+            fragmentRequesLomba.setArguments(bundle);
+            fragmentManager.beginTransaction().replace(R.id.contain_all, fragmentRequesLomba).commit();
         }
 }}

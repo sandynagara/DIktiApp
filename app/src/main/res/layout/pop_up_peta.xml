@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="bottom"
+    android:background="@color/WhiteSmoke"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="50dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:paddingTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="2sp"
+        android:id="@+id/garis"
+        android:textColor="@color/Black"
+        android:background="@drawable/garis"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/foto_anggota"
+
+        android:layout_below="@+id/garis"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/logo_dikti"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@id/foto_anggota"
+        android:orientation="vertical"
+        android:layout_below="@id/garis"
+        android:layout_marginStart="20dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/Black"
+            android:id="@+id/nama_anggota"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NIM"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/Black"
+            android:textSize="15sp"
+            android:id="@+id/nim"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Departemen"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="15sp"
+            android:textColor="@color/Black"
+            android:id="@+id/departemen"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:background="@color/deepSkyBlue"
+        android:layout_below="@id/foto_anggota"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Detail"
+        android:paddingTop="10dp"
+        android:textSize="18sp"
+        android:paddingBottom="10dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:id="@+id/detail"/>
+</RelativeLayout>

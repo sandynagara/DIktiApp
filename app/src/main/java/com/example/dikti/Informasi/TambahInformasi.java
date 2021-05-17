@@ -1,5 +1,7 @@
 package com.example.dikti.Informasi;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +13,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.dikti.R;
 import com.example.dikti.fragment_Home;
+import com.example.dikti.geodesiBangga.TambahGeodesiBangga;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -85,6 +89,8 @@ public class TambahInformasi extends Fragment {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                showNotification("Informasi sedang ditambahkan","");
+                add.setText("Tunggu");
                 DocumentReference isiData;
                 if (!idInformasi.equals("kosong")){
                     isiData= FirebaseFirestore.getInstance().collection("Informasi").document(idInformasi);
@@ -103,12 +109,24 @@ public class TambahInformasi extends Fragment {
                 isiData.set(variabelInformasi).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(getContext(),"Upload Success",Toast.LENGTH_SHORT).show();
+                        showNotification("Informasi berhasil ditambahkan","");
+                        add.setText("add");
                     }
                 });
             }
         });
 
         return view;
+    }
+
+    public void showNotification(String title, String message) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext())
+                .setSmallIcon(R.drawable.logo_dikti)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setAutoCancel(true);
+
+        NotificationManager notificationManager = (NotificationManager) Objects.requireNonNull(getActivity()).getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0,builder.build());
     }
 }

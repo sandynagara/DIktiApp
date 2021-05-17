@@ -1,6 +1,8 @@
 package com.example.dikti.lombaBeasiswa.lomba.tambahLomba;
 
+import android.app.NotificationManager;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -50,6 +53,7 @@ public class FragmentTambahLomba extends Fragment {
     private FirebaseFirestore firebaseFirestore;
     private List<String> isiJenisLombalist;
     private ImageView fotoLomba;
+    private TextView add;
     private StorageReference storageReference;
     public Uri gambar;
 
@@ -83,7 +87,7 @@ public class FragmentTambahLomba extends Fragment {
             }
         });
 
-        TextView add = view.findViewById(R.id.addData);
+        add = view.findViewById(R.id.addData);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
@@ -172,6 +176,17 @@ public class FragmentTambahLomba extends Fragment {
         startActivityForResult(intent,2);
     }
 
+    public void showNotification(String title, String message) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext())
+                .setSmallIcon(R.drawable.logo_dikti)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setAutoCancel(true);
+
+        NotificationManager notificationManager = (NotificationManager) Objects.requireNonNull(getActivity()).getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0,builder.build());
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -183,6 +198,8 @@ public class FragmentTambahLomba extends Fragment {
     }
 
     private void Upload(){
+        showNotification("Lomba sedang ditambahkan","Tunggu hingga muncul notifikasi berikutnya");
+        add.setText("Tunggu");
         isiNamaLomba = namaLomba.getText().toString();
         isiDeskripsi = deskripsi.getText().toString();
         isiLink = link.getText().toString();
@@ -221,19 +238,22 @@ public class FragmentTambahLomba extends Fragment {
                         }
                         variabelTambahLomba.setFavorit(false);
                         isiData.set(variabelTambahLomba);
-                        Toast.makeText(getContext(),"Upload Success",Toast.LENGTH_SHORT).show();
+                        showNotification(isiNamaLomba+" berhasil ditambahkan","Terima kasih telah menambahkan daftar lomba");
+                        add.setText("Add");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getContext(),"Upload Gagal",Toast.LENGTH_SHORT).show();
+                        showNotification("Lomba gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
+                        add.setText("Add");
                     }
                 });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(),"Upload Gagal",Toast.LENGTH_SHORT).show();
+                showNotification("Lomba gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
+                add.setText("Add");
             }
         });
     }

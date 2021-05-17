@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +27,7 @@ public class AdapterBanner extends FirestoreRecyclerAdapter<VariabelBanner, Adap
         Glide.with(viewHolder.imageView.getContext())
                 .load(variabelBanner.getFotoBanner())
                 .into(viewHolder.imageView);
+        viewHolder.namaBanner.setText(variabelBanner.getJudul());
         final String key = getSnapshots().getSnapshot(i).getId();
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,10 +50,12 @@ public class AdapterBanner extends FirestoreRecyclerAdapter<VariabelBanner, Adap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
+        TextView namaBanner;
         final ImageView imageView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.gambarbanner);
+            namaBanner = itemView.findViewById(R.id.nama_banner);
         }
     }
 

@@ -55,7 +55,7 @@ public class fragment_lomba extends Fragment implements View.OnClickListener {
         View filterJenisLomba = view.findViewById(R.id.filter_jenis_lomba);
         namaJenisLomba = view.findViewById(R.id.jenis_lomba);
         View tambahLomba = view.findViewById(R.id.tambah_lomba);
-        ImageView daftarRequestLomba = view.findViewById(R.id.daftar_request_lomba);
+        TextView daftarRequestLomba = view.findViewById(R.id.daftar_request_lomba);
         View toolbar = view.findViewById(R.id.toolbar);
         View anggota = toolbar.findViewById(R.id.anggota);
         View profile1 = toolbar.findViewById(R.id.bank_soal);
@@ -66,11 +66,7 @@ public class fragment_lomba extends Fragment implements View.OnClickListener {
         TextView pindahBeasiswa = view.findViewById(R.id.fragment_beasiswa);
 
         tombolLomba.setImageDrawable(getActivity().getDrawable(R.drawable.ic_baseline_emoji_events_blue));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            textLomba.setTextColor(getActivity().getColor(R.color.deepSkyBlue));
-        }else {
-            textLomba.setTextColor(ContextCompat.getColor(getContext(),R.color.deepSkyBlue));
-        }
+        textLomba.setTextColor(getActivity().getColor(R.color.deepSkyBlue));
 
         lomba.setLayoutManager(new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL));
         firebaseFirestore = FirebaseFirestore.getInstance();

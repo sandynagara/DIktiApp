@@ -6,55 +6,104 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
-        android:id="@+id/pilihan"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="13dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/fragment_lomba"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginBottom="13dp"
-            android:background="@drawable/garis_blue"
-            android:fontFamily="sans-serif-medium"
-            android:paddingBottom="3dp"
-            android:text="Lomba"
-            android:textColor="@color/deepSkyBlue"
-            android:textSize="22sp" />
-
-        <TextView
-            android:id="@+id/fragment_beasiswa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="13dp"
-            android:layout_toEndOf="@id/fragment_lomba"
-            android:background="@drawable/garis"
-            android:paddingBottom="3dp"
-            android:text="Beasiswa"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+        android:id="@+id/search_bar"
+        android:background="@color/deepSkyBlue"
+        android:paddingStart="10dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="10dp">
 
         <ImageView
-            android:id="@+id/daftar_request_lomba"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="40dp"
-            android:src="@drawable/ic_baseline_group_add_blue" />
+            android:id="@+id/logo_dikti"
 
+            android:src="@drawable/logo_dikti"/>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_toRightOf="@id/logo_dikti"
+            android:id="@+id/search2"
+            android:background="@drawable/border">
+
+            <SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:queryHint="Cari Lomba"
+                android:id="@+id/search"
+                android:iconifiedByDefault="false"
+                android:layout_centerVertical="true"
+                android:background="@null" />
+
+        </RelativeLayout>
     </RelativeLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_bar"
+        android:id="@+id/dashboard">
+        <TableRow
+            android:id="@+id/pilihan"
+            android:layout_width="match_parent"
+            android:background="@color/deepSkyBlue"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:paddingTop="10dp"
+            android:layout_below="@id/search_bar">
+
+            <TextView
+                android:id="@+id/fragment_lomba"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="@drawable/garis_putih"
+                android:paddingBottom="3dp"
+                android:text="Lomba"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/fragment_beasiswa"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:textColor="#A3C5FC"
+                android:textAlignment="center"
+                android:background="@drawable/garis_biru_muda"
+                android:paddingBottom="3dp"
+                android:text="Beasiswa"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/daftar_request_lomba"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:text="Tim"
+                android:layout_alignParentEnd="true"
+                android:textColor="#A3C5FC"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:background="@drawable/garis_biru_muda"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:src="@drawable/ic_baseline_group_add_blue" />
+
+
+        </TableRow>
+    </TableLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_below="@id/pilihan"
+        android:layout_below="@id/dashboard"
         android:layout_above="@id/toolbar"
         android:layout_height="wrap_content">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
@@ -62,38 +111,8 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/search_bar"
-                android:layout_below="@id/fragment_lomba"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="5dp"
-                    android:id="@+id/search2"
-                    android:background="@drawable/border">
-
-                    <SearchView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:queryHint="Search Here"
-                        android:id="@+id/search"
-                        android:iconifiedByDefault="false"
-                        android:layout_marginLeft="10dp"
-                        android:layout_centerVertical="true"
-                        android:background="@null" />
-
-                </RelativeLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/search_bar"
                 android:id="@+id/filter"
-                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp">
 
                 <RelativeLayout
@@ -107,7 +126,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Jenis Lomba : All"
-                        android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:id="@+id/jenis_lomba"/>
                 </RelativeLayout>
@@ -118,8 +136,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/daftarLomba"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_below="@id/filter"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
@@ -137,8 +155,8 @@
         android:id="@+id/tambah_lomba"
         android:background="@drawable/lingkaran_biru">
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/ic_baseline_add_white"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"/>

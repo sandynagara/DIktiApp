@@ -5,34 +5,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_bar"
+        android:background="@color/deepSkyBlue"
+        android:paddingStart="10dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="10dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/logo_dikti"
+
+            android:src="@drawable/logo_dikti"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toRightOf="@id/logo_dikti"
+            android:id="@+id/search2"
+            android:background="@drawable/border">
+
+            <SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:queryHint="Cari Anggota"
+                android:id="@+id/search"
+                android:iconifiedByDefault="false"
+                android:layout_centerVertical="true"
+                android:background="@null" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
     <TableRow
         android:layout_width="match_parent"
         android:id="@+id/dashboard"
-        android:layout_marginBottom="8dp"
+        android:layout_below="@id/search_bar"
+        android:background="@color/deepSkyBlue"
         android:layout_height="wrap_content">
         <ImageView
             android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/anggota"
-            android:layout_marginStart="20dp"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/ic_baseline_group_blue"
+            android:src="@drawable/ic_baseline_group_white"
             android:layout_alignParentRight="true"
-            android:paddingBottom="2dp"
-            android:background="@drawable/garis_blue"
+            android:paddingBottom="8dp"
+            android:background="@drawable/garis_putih"
             android:layout_weight="1"/>
 
         <ImageView
             android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/peta_anggota"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/ic_baseline_map_gray"
-            android:background="@drawable/garis"
+            android:src="@drawable/ic_baseline_map_biru_muda"
+            android:background="@drawable/garis_biru_muda"
             android:layout_alignParentRight="true"
-            android:paddingBottom="2dp"
+            android:paddingBottom="8dp"
             android:layout_weight="1"/>
 
     </TableRow>
@@ -47,41 +82,13 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_above="@id/toolbar"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginTop="5dp"
             android:layout_below="@id/dashboard"
             android:layout_marginBottom="10dp">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/search_bar">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="5dp"
-                    android:id="@+id/search2"
-                    android:background="@drawable/border">
-
-                    <SearchView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:queryHint="Search Here"
-                        android:id="@+id/search"
-                        android:iconifiedByDefault="false"
-                        android:layout_marginLeft="10dp"
-                        android:layout_centerVertical="true"
-                        android:background="@null" />
-
-                </RelativeLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/search_bar"
                 android:id="@+id/filter">
 
                 <RelativeLayout
@@ -121,6 +128,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_below="@id/filter"
+                android:paddingRight="13dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:id="@+id/daftaranggota"
@@ -139,8 +147,8 @@
             android:id="@+id/tambah_anggota"
             android:background="@drawable/lingkaran_biru">
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:src="@drawable/ic_baseline_person_add_24"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"/>

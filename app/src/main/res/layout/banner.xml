@@ -26,12 +26,12 @@
                 android:id="@+id/gambarbanner"/>
 
             <TextView
-                android:id="@id/nama_anggota"
+                android:id="@+id/nama_banner"
                 style="@style/AudioFileInfoOverlayText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:textSize="12sp"
+                android:textSize="15sp"
                 android:layout_marginStart="15dp"
                 android:layout_marginBottom="15dp"
                 android:layout_alignParentBottom="true"

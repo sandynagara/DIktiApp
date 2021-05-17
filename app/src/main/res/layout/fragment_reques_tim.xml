@@ -7,17 +7,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Request Tim"
+            android:text="Buat Tim"
             android:textStyle="bold"
             android:textAlignment="center"
             android:textSize="17sp"
             android:textColor="@color/deepSkyBlue"
             android:layout_margin="10dp"/>
 
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="380dp">
+        android:layout_height="wrap_content">
         <RelativeLayout
             android:layout_width="wrap_content"
 
@@ -34,8 +33,8 @@
                 android:id="@+id/isi_lomba">
 
                 <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="220dp"
+                    android:layout_width="95dp"
+                    android:layout_height="130dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/logo_dikti"
                     android:id="@+id/gambarlomba"/>
@@ -53,7 +52,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="8 Mei 2000"
-                        android:textSize="17sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="5dp"
                         android:textColor="@color/Red"/>
@@ -63,7 +62,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Lomba Poster Nasional “Kampanye Positif Ramadhan Saat Pandemi Covid 19”"
-                        android:textSize="17sp"
+                        android:textSize="15sp"
                         android:textColor="@color/Black"/>
 
                     <TextView
@@ -75,7 +74,7 @@
                         android:textStyle="bold"
                         android:textColor="@color/Black"
                         android:padding="1dp"
-                        android:textSize="17sp"/>
+                        android:textSize="15sp"/>
 
                 </LinearLayout>
 
@@ -98,7 +97,7 @@
                     android:padding="1dp"
                     android:textColor="@color/Black"
                     android:textStyle="bold"
-                    android:textSize="17sp"/>
+                    android:textSize="15sp"/>
 
                 <EditText
                     android:layout_marginEnd="5dp"
@@ -115,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:layout_marginBottom="3dp"
-                    android:textSize="17dp"
+                    android:textSize="15dp"
                     android:text="Persyaratan Anggota : "
                     android:textStyle="bold"
                     android:textColor="@color/Black"/>
@@ -201,7 +200,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Buat Team"
+                    android:text="Buat Tim"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="1"
                     android:id="@+id/requestTim"
@@ -226,6 +225,7 @@
                     android:background="@drawable/border"
                     android:padding="10dp"/>
             </TableRow>
+
         </TableLayout>
     </RelativeLayout>
 </LinearLayout>

@@ -13,8 +13,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp">
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_marginStart="10dp"
                 android:id="@+id/kembali"
                 android:src="@drawable/ic_baseline_arrow_back_blue"/>
@@ -24,7 +24,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:text="Profil"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/deepSkyBlue"/>
         </RelativeLayout>
@@ -37,327 +37,385 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/logo_dikti"
-                    android:id="@+id/foto_anggota"/>
-            </RelativeLayout>
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/Nama"
-                android:layout_marginStart="20dp"
-                android:layout_below="@id/foto_anggota"
-                android:layout_marginTop="30dp">
-                <ImageView
-                    style="@style/icon_profil"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_baseline_person"
-                    android:id="@+id/icon_person" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="Nama"
-                    android:textSize="20dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_toRightOf="@id/icon_person"
-                    android:textStyle="bold"
-                    android:id="@+id/nama"/>
-                <TextView
-                    style="@style/batas_nama_profil"
-                    android:layout_height="wrap_content"
-                    android:text="Sandy Setyanagara"
-                    android:layout_below="@id/icon_person"
-                    android:layout_toRightOf="@id/icon_person"
-                    android:id="@+id/namaprofil"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@id/email"
-                android:layout_below="@id/Nama"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp">
-                <ImageView
-                    style="@style/icon_profil"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_baseline_location_on_blue"
-                    android:id="@+id/alamat"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="Alamat"
-                    android:textSize="20sp"
-                    android:layout_marginTop="7dp"
-                    android:layout_toEndOf="@id/alamat"
-                    android:textStyle="bold"
-                    android:id="@+id/alamat1"/>
-                <TextView
-                    style="@style/batas_nama_profil"
-                    android:layout_height="wrap_content"
-                    android:text="Tausan22@gmail.com"
-                    android:textSize="15sp"
-                    android:layout_toEndOf="@id/alamat"
-                    android:layout_below="@id/alamat"
-                    android:id="@+id/alamat2"/>
-
-                <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="20dp"
-                    android:src="@drawable/pensil"
-                    android:id="@+id/edit_alamat"
-                    android:background="@color/white"
-                    />
-
-            </RelativeLayout>
-
-            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@id/email"
-                android:layout_below="@id/Nama"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp">
-                <ImageView
-                    style="@style/icon_profil"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_baseline_email"
-                    android:id="@+id/email"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="Email"
-                    android:textSize="20sp"
-                    android:layout_toRightOf="@id/email"
-                    android:textStyle="bold"
-                    android:id="@+id/email1"
-                    android:layout_marginTop="7dp"/>
-                <TextView
-                    style="@style/batas_nama_profil"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="Tausan22@gmail.com"
-                    android:layout_below="@id/email"
-                    android:layout_toRightOf="@id/email"
-                    android:id="@+id/email2"/>
-
-                <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/pensil"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="20dp"
-                    android:id="@+id/editEmail"
-                    android:background="@color/white"
-                    android:layout_centerVertical="true"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/password"
-                android:layout_below="@id/email"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp">
-                <ImageView
-                    style="@style/icon_profil"
-                    android:src="@drawable/ic_baseline_lock1"
-                    android:id="@+id/icon_password"
-                    android:layout_centerVertical="true"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="Password"
-                    android:textSize="20sp"
-                    android:layout_marginTop="7dp"
-                    android:layout_toEndOf="@id/icon_password"
-                    android:textStyle="bold"
-                    android:id="@+id/password1"/>
-                <TextView
-                    style="@style/batas_nama_profil"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="Nagara12"
-                    android:password="true"
-                    android:layout_below="@id/icon_password"
-                    android:layout_toEndOf="@id/icon_password"
-                    android:id="@+id/password2"/>
-
-                <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_alignParentEnd="true"
-                    android:src="@drawable/pensil"
-                    android:id="@+id/editPassword"
-                    android:background="@color/white"
-                    android:layout_centerVertical="true"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/no_telepon"
-                android:layout_below="@id/password"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp">
-                <ImageView
-                    style="@style/icon_profil"
-                    android:src="@drawable/ic_baseline_call_profil"
-                    android:id="@+id/icon_telepon"
-                    android:layout_centerVertical="true"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="Nomor Handphone"
-                    android:textSize="20sp"
-                    android:layout_marginTop="7dp"
-                    android:layout_toEndOf="@id/icon_telepon"
-                    android:textStyle="bold"
-                    android:id="@+id/no_telepon1"/>
-                <TextView
-                    style="@style/batas_nama_profil"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="083866676262"
-                    android:layout_below="@id/icon_telepon"
-                    android:layout_toEndOf="@id/icon_telepon"
-                    android:id="@+id/no_telepon2"/>
-
-                <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/pensil"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="20dp"
-                    android:id="@+id/editNoHp"
-                    android:background="@color/white"
-                    android:layout_centerVertical="true"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/id_line"
-                android:layout_below="@id/no_telepon"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp">
-                <ImageView
-                    style="@style/icon_profil"
-                    android:src="@drawable/line"
-                    android:layout_centerVertical="true"
-                    android:id="@+id/icon_line"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="Id Line"
-                    android:textSize="20sp"
-                    android:layout_marginTop="7dp"
-                    android:layout_toEndOf="@id/icon_line"
-                    android:textStyle="bold"
-                    android:id="@+id/id_line1"/>
-                <TextView
-                    style="@style/batas_nama_profil"
-                    android:layout_height="wrap_content"
-                    android:text="Sandy_Setya"
-                    android:layout_below="@id/icon_line"
-                    android:layout_toEndOf="@id/icon_line"
-                    android:id="@+id/id_line2"/>
-
-                <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="20dp"
-                    android:src="@drawable/pensil"
-                    android:layout_alignParentEnd="true"
-                    android:id="@+id/editLine"
-                    android:background="@color/white"
-                    android:layout_centerVertical="true"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/no_telepon"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp">
-
-                <ImageView
-                    style="@style/icon_profil"
-                    android:id="@+id/about_me"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_baseline_more_blue" />
-
-                <TextView
-                    android:layout_width="220dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginStart="20dp"
-                    android:text="About Me"
-                    android:textSize="20sp"
-                    android:layout_toEndOf="@id/about_me"
-                    android:textStyle="bold"
-                    android:id="@+id/about_me1"/>
-
-                <TextView
-                    style="@style/batas_nama_profil"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_me2"
-                    android:layout_toRightOf="@id/about_me"
-                    android:text="Sandy_Setya"
-                    android:layout_below="@id/about_me" />
-
-                <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="20dp"
-                    android:src="@drawable/pensil"
-                    android:id="@+id/edit_about_me"
-                    android:background="@color/white"
-                    />
-            </RelativeLayout>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="180dp"
-                android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:layout_below="@id/id_line"
-                android:layout_marginBottom="30dp"
-                app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="#FF0000"
-                android:id="@+id/log_out">
+                android:layout_height="match_parent">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/foto_anggota"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="25dp"
+                    android:src="@drawable/logo_dikti" />
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="LOG OUT"
-                    android:textSize="20sp"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-            </androidx.cardview.widget.CardView>
+                    android:layout_height="wrap_content"
+                    android:text="Nama"
+                    android:textSize="18sp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="20dp"
+                    android:textStyle="bold"
+                    android:layout_toEndOf="@id/foto_anggota"
+                    android:id="@+id/namaprofil"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Departemen"
+                    android:textSize="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/namaprofil"
+                    android:layout_toEndOf="@id/foto_anggota"
+                    android:id="@+id/departemen"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/border_biru_2"
+                android:orientation="vertical"
+                android:paddingStart="40dp"
+                android:paddingEnd="40dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
+
+                <RelativeLayout
+                    android:id="@id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:id="@+id/alamat"
+                        style="@style/icon_profil"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_baseline_location_on_blue" />
+
+                    <TextView
+                        android:id="@+id/alamat1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@id/alamat"
+                        android:text="Alamat"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/alamat2"
+                        style="@style/batas_nama_profil"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/alamat1"
+                        android:layout_toEndOf="@id/alamat"
+                        android:text="Alamat"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:id="@+id/edit_alamat"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="20dp"
+                        android:src="@drawable/pensil" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@id/email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:id="@+id/posisi"
+                        style="@style/icon_profil"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_baseline_gps_fixed_blue" />
+
+                    <TextView
+                        android:id="@+id/posisi1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@id/posisi"
+                        android:text="Posisi"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/posisilintang"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/posisi1"
+                        android:maxLength="10"
+                        android:layout_toEndOf="@id/posisi"
+                        android:textColor="#808080"
+                        android:textSize="15sp"
+                        android:text="0," />
+
+                    <TextView
+                        android:id="@+id/posisibujur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/posisi1"
+                        android:textColor="#808080"
+                        android:textSize="15sp"
+                        android:maxLength="10"
+                        android:layout_toStartOf="@id/editPosisi"
+                        android:layout_toEndOf="@id/posisilintang"
+                        android:text="0" />
+
+                    <ImageView
+                        android:id="@+id/editPosisi"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="20dp"
+                        android:src="@drawable/pensil" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@id/email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:id="@+id/email"
+                        style="@style/icon_profil"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_baseline_email" />
+
+                    <TextView
+                        android:id="@+id/email1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@id/email"
+                        android:text="Email"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/email2"
+                        style="@style/batas_nama_profil"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/email1"
+                        android:layout_toStartOf="@id/editEmail"
+                        android:layout_toEndOf="@id/email"
+                        android:text="email" />
+
+                    <ImageView
+                        android:id="@+id/editEmail"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="20dp"
+                        android:src="@drawable/pensil" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/email"
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:id="@+id/icon_password"
+                        style="@style/icon_profil"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_baseline_lock1" />
+
+                    <TextView
+                        android:id="@+id/password1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@id/icon_password"
+                        android:text="Password"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/password2"
+                        style="@style/batas_nama_profil"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/password1"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@id/icon_password"
+                        android:password="true"
+                        android:text="Password" />
+
+                    <ImageView
+                        android:id="@+id/editPassword"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="20dp"
+                        android:src="@drawable/pensil" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/no_telepon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/password"
+
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:id="@+id/icon_telepon"
+                        style="@style/icon_profil"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_baseline_call_profil" />
+
+                    <TextView
+                        android:id="@+id/no_telepon1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@id/icon_telepon"
+                        android:text="Nomor WA"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/no_telepon2"
+                        style="@style/batas_nama_profil"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/no_telepon1"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@id/icon_telepon"
+                        android:text="Wa" />
+
+                    <ImageView
+                        android:id="@+id/editNoHp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="20dp"
+                        android:src="@drawable/pensil" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/id_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/no_telepon"
+
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:id="@+id/icon_line"
+                        style="@style/icon_profil"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/line" />
+
+                    <TextView
+                        android:id="@+id/id_line1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@id/icon_line"
+                        android:text="Id Line"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/id_line2"
+                        style="@style/batas_nama_profil"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/id_line1"
+                        android:layout_toEndOf="@id/icon_line"
+                        android:text="idLine" />
+
+                    <ImageView
+                        android:id="@+id/editLine"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="20dp"
+                        android:src="@drawable/pensil" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_below="@id/no_telepon"
+
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:id="@+id/about_me"
+                        style="@style/icon_profil"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_baseline_more_blue" />
+
+                    <TextView
+                        android:id="@+id/about_me1"
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@id/about_me"
+                        android:text="About Me"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/about_me2"
+                        style="@style/batas_nama_profil"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/about_me1"
+                        android:layout_toRightOf="@id/about_me"
+                        android:text="aboutMe" />
+
+                    <ImageView
+                        android:id="@+id/edit_about_me"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="20dp"
+                        android:src="@drawable/pensil" />
+                </RelativeLayout>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/log_out"
+                        android:text="LOG OUT"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:layout_marginTop="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:background="@drawable/border_merah"
+                        android:textStyle="bold" />
+
+            </LinearLayout>
+
+
         </LinearLayout>
 
     </ScrollView>

@@ -32,24 +32,25 @@ public class Fragment_Home_Bank_Soal extends Fragment implements View.OnClickLis
     }
 
     private FirebaseFirestore firebaseFirestore;
-    private RecyclerView matkulSemester1,matkulSemester2,matkulSemester3,matkulSemester4,matkulSemester5,matkulSemester6,matkulSemester7,matkulSemester8,matkulSemesterGasal,matkulSemesterGenap;
-    private Boolean cek1,cek2,cek3,cek4,cek5,cek6,cek7,cek8,cek9,cek10;
+    private RecyclerView matkulSemester1,matkulSemester2,matkulSemester3,matkulSemester4,matkulSemester5,matkulSemester6,matkulSemester7,matkulSemesterGasal,matkulSemesterGenap;
+    private Boolean cek1,cek2,cek3,cek4,cek5,cek6,cek7,cek9,cek10;
+    private TextView k2016,k2022;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment__home__bank__soal, container, false);
 
-        TextView semester1 = view.findViewById(R.id.semester_1);
-        TextView semester2 = view.findViewById(R.id.semester_2);
-        TextView semester3 = view.findViewById(R.id.semester_3);
-        TextView semester4 = view.findViewById(R.id.semester_4);
-        TextView semester5 = view.findViewById(R.id.semester_5);
-        TextView semester6 = view.findViewById(R.id.semester_6);
-        TextView semester7 = view.findViewById(R.id.semester_7);
-        TextView semester8 = view.findViewById(R.id.semester_8);
-        TextView pilihanGasal = view.findViewById(R.id.semester_pilihan_gesal);
-        TextView pilihanGenap = view.findViewById(R.id.semester_pilihan_genap);
+        View semester1 = view.findViewById(R.id.semester_1);
+        View semester2 = view.findViewById(R.id.semester_2);
+        View semester3 = view.findViewById(R.id.semester_3);
+        View semester4 = view.findViewById(R.id.semester_4);
+        View semester5 = view.findViewById(R.id.semester_5);
+        View semester6 = view.findViewById(R.id.semester_6);
+        View semester7 = view.findViewById(R.id.semester_7);
+        View pilihanGasal = view.findViewById(R.id.semester_pilihan_gesal);
+        View pilihanGenap = view.findViewById(R.id.semester_pilihan_genap);
+        k2022 = view.findViewById(R.id.k_2022);
         matkulSemester1 = view.findViewById(R.id.matkul_semester1);
         matkulSemester2 = view.findViewById(R.id.matkul_semester2);
         matkulSemester3 = view.findViewById(R.id.matkul_semester3);
@@ -57,7 +58,6 @@ public class Fragment_Home_Bank_Soal extends Fragment implements View.OnClickLis
         matkulSemester5 = view.findViewById(R.id.matkul_semester5);
         matkulSemester6 = view.findViewById(R.id.matkul_semester6);
         matkulSemester7 = view.findViewById(R.id.matkul_semester7);
-        matkulSemester8 = view.findViewById(R.id.matkul_semester8);
         matkulSemesterGasal = view.findViewById(R.id.matkul_semester_pilihan_gasal);
         matkulSemesterGenap = view.findViewById(R.id.matkul_semester_pilihan_genap);
         View toolbar = view.findViewById(R.id.toolbar);
@@ -76,7 +76,7 @@ public class Fragment_Home_Bank_Soal extends Fragment implements View.OnClickLis
         }
 
         firebaseFirestore = FirebaseFirestore.getInstance();
-        cek1 = true;cek2 = true ;cek3 =true ;cek4 = true;cek5 = true ;cek6 =true ;cek7 = true;cek8 = true;cek9 =true;cek10 =true;
+        cek1 = true;cek2 = true ;cek3 =true ;cek4 = true;cek5 = true ;cek6 =true ;cek7 = true;cek9 =true;cek10 =true;
 
         semester1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,14 +134,6 @@ public class Fragment_Home_Bank_Soal extends Fragment implements View.OnClickLis
             }
         });
 
-        semester8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Dropdown("Semester 8",matkulSemester8,cek8);
-                cek8= !cek8;
-            }
-        });
-
         pilihanGasal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -172,6 +164,7 @@ public class Fragment_Home_Bank_Soal extends Fragment implements View.OnClickLis
             });
         }
 
+        k2022.setOnClickListener(this);
         anggota.setOnClickListener(this);
         profile1.setOnClickListener(this);
         lomba.setOnClickListener(this);
@@ -200,13 +193,15 @@ public class Fragment_Home_Bank_Soal extends Fragment implements View.OnClickLis
     public void onClick(View view) {
         FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
         if (view.getId() == R.id.anggota) {
-            fragmentManager.beginTransaction().replace(R.id.contain_all, new FragmentAnggota()).addToBackStack(null).commit();
+            fragmentManager.beginTransaction().replace(R.id.contain_all, new FragmentAnggota()).commit();
         } else if (view.getId() == R.id.bank_soal) {
-            fragmentManager.beginTransaction().replace(R.id.contain_all, new Fragment_Home_Bank_Soal()).addToBackStack(null).commit();
+            fragmentManager.beginTransaction().replace(R.id.contain_all, new Fragment_Home_Bank_Soal()).commit();
         }else if (view.getId() == R.id.lomba) {
-            fragmentManager.beginTransaction().replace(R.id.contain_all, new fragment_lomba()).addToBackStack(null).commit();
+            fragmentManager.beginTransaction().replace(R.id.contain_all, new fragment_lomba()).commit();
         }else if (view.getId() == R.id.home1) {
-            fragmentManager.beginTransaction().replace(R.id.contain_all, new fragment_Home()).addToBackStack(null).commit();
+            fragmentManager.beginTransaction().replace(R.id.contain_all, new fragment_Home()).commit();
+        }else if (view.getId() == R.id.k_2022){
+            fragmentManager.beginTransaction().replace(R.id.contain_all, new Fragment_Home_Bank_Soal_2022()).commit();
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.dikti;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -43,6 +44,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -58,12 +60,13 @@ public class fragment_Home extends Fragment implements View.OnClickListener {
 
     private CircleImageView circleImageView;
     private Dialog dialog;
+    private Context mContext;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_home,container,false);
+        final View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_home,container,false);
 
         circleImageView = view.findViewById(R.id.foto_anggota);
         dialog =new Dialog(getContext());
@@ -77,7 +80,6 @@ public class fragment_Home extends Fragment implements View.OnClickListener {
         View lomba = toolbar.findViewById(R.id.lomba);
         View beasiswa = toolbar.findViewById(R.id.home1);
         View dasboard = view.findViewById(R.id.dashboard);
-        ImageView credit = view.findViewById(R.id.credit);
         final TextView loginAtauUsername = view.findViewById(R.id.login_atau_username);
         RecyclerView banner = view.findViewById(R.id.banner);
         RecyclerView lomba1 = view.findViewById(R.id.daftarLomba1);
@@ -102,7 +104,7 @@ public class fragment_Home extends Fragment implements View.OnClickListener {
             tambahInformasi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
                     TambahInformasi tambahInformasi = new TambahInformasi();
                     Bundle bundle = new Bundle();
                     bundle.putString("1","kosong");
@@ -114,7 +116,7 @@ public class fragment_Home extends Fragment implements View.OnClickListener {
             tambahGeodesiBangga.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
                     fragmentManager.beginTransaction().replace(R.id.contain_all,new TambahGeodesiBangga()).commit();
                 }
             });
@@ -126,11 +128,8 @@ public class fragment_Home extends Fragment implements View.OnClickListener {
 
         //Mengecheck SDK dan Kondisi Login
         home.setImageDrawable(getActivity().getDrawable(R.drawable.ic_baseline_home_blue));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            textHome.setTextColor(getActivity().getColor(R.color.deepSkyBlue));
-        }else {
-            textHome.setTextColor(ContextCompat.getColor(getContext(),R.color.deepSkyBlue));
-        }
+        textHome.setTextColor(ContextCompat.getColor(getContext(),R.color.deepSkyBlue));
+
 
         if (!Preference.getDataLogin(getContext())){
             circleImageView.setImageDrawable(getActivity().getDrawable(R.drawable.ic_baseline_person_24));
@@ -143,12 +142,16 @@ public class fragment_Home extends Fragment implements View.OnClickListener {
                     String dataNama = documentSnapshot.getString("namaLengkap");
                     String Foto = documentSnapshot.getString("foto");
 
-                    Glide.with(Objects.requireNonNull(getActivity()).getApplicationContext())
+                    Glide.with(mContext)
                             .load(Foto)
                             .placeholder(R.drawable.logo_dikti)
                             .into(circleImageView);
 
                     loginAtauUsername.setText(dataNama);
+                    if (loginAtauUsername.length()>22){
+                        TextView point = view.findViewById(R.id.point);
+                        point.setText("...");
+                    }
                 }
             });
         }
@@ -165,7 +168,7 @@ public class fragment_Home extends Fragment implements View.OnClickListener {
 
         //Firestore untuk Lomba
         FirestoreRecyclerOptions optionsLomba = new FirestoreRecyclerOptions.Builder<VariabelLomba>()
-                .setQuery(firebaseFirestore.collection("Lomba").orderBy("favorit").startAt(true),VariabelLomba.class)
+                .setQuery(firebaseFirestore.collection("Lomba").orderBy("favorit").limit(8).startAt(true),VariabelLomba.class)
                 .build();
         lomba1.setLayoutManager(new StaggeredGridLayoutManager(1,LinearLayoutManager.HORIZONTAL));
         AdapterHome adapterLomba = new AdapterHome(optionsLomba);
@@ -174,7 +177,7 @@ public class fragment_Home extends Fragment implements View.OnClickListener {
 
         //Firestore untuk Informasi
         FirestoreRecyclerOptions optionsInformasi = new FirestoreRecyclerOptions.Builder<VariabelInformasi>()
-                .setQuery(firebaseFirestore.collection("Informasi").orderBy("time", Query.Direction.DESCENDING),VariabelInformasi.class)
+                .setQuery(firebaseFirestore.collection("Informasi").orderBy("time", Query.Direction.DESCENDING).limit(2),VariabelInformasi.class)
                 .build();
         informasi.setLayoutManager(new StaggeredGridLayoutManager(1,LinearLayoutManager.VERTICAL));
         final AdapterInformasi adapterInformasi = new AdapterInformasi(optionsInformasi,getContext());
@@ -183,7 +186,7 @@ public class fragment_Home extends Fragment implements View.OnClickListener {
 
         //Firestore untuk Geodesi Bangga
         FirestoreRecyclerOptions optionsGeodesiBangga = new FirestoreRecyclerOptions.Builder<VariabelGeodesiBangga>()
-                .setQuery(firebaseFirestore.collection("Geodesi Bangga"),VariabelGeodesiBangga.class)
+                .setQuery(firebaseFirestore.collection("Geodesi Bangga").limit(8),VariabelGeodesiBangga.class)
                 .build();
         geodesiBangga.setLayoutManager(new StaggeredGridLayoutManager(1,LinearLayoutManager.HORIZONTAL));
         final AdapterGeodesiBangga adapterGeodesiBangga = new AdapterGeodesiBangga(optionsGeodesiBangga,"1");
@@ -208,55 +211,49 @@ public class fragment_Home extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
         if (view.getId() == R.id.anggota) {
-            FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.contain_all, new FragmentAnggota()).commit();
         } else if (view.getId() == R.id.bank_soal) {
-            FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.contain_all, new Fragment_Home_Bank_Soal()).commit();
         }else if (view.getId() == R.id.lomba) {
-            FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.contain_all, new fragment_lomba()).commit();
         }else if (view.getId() == R.id.dashboard) {
             if (!Preference.getDataLogin(getContext())) {
-                FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.contain_all, new FragmentLogin()).addToBackStack(null).commit();
             }else {
-                FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.contain_all, new FragmentProfil()).addToBackStack(null).commit();
             }
         }else if (view.getId()==R.id.cardinformasi){
-            FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.contain_all, new FragmentInformasi()).commit();
         }else if (view.getId()==R.id.about_pj){
-            PopUp("Geodinamika",R.color.Black,R.drawable.penginderaan_jauh);
+            PopUp("Geodinamika",R.drawable.border_geodinamika,R.drawable.penginderaan_jauh);
         }else if (view.getId()==R.id.about_hidro){
-            PopUp("Surhid",R.color.DarkBlue,R.drawable.hidro);
+            PopUp("Surhid",R.drawable.border_hidro,R.drawable.hidro);
         }else if (view.getId()==R.id.about_sig){
-            PopUp("Sig",R.color.DarkOrange,R.drawable.sig);
+            PopUp("Sig",R.drawable.border_sig,R.drawable.sig);
         }else if (view.getId()==R.id.about_sutris){
-            PopUp("Sutris",R.color.DarkGreen,R.drawable.sutris);
+            PopUp("Sutris",R.drawable.border_sutris,R.drawable.sutris);
         }else if (view.getId()==R.id.credit){
-            FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.contain_all, new FragmentAbout()).commit();
         }else if (view.getId()==R.id.card_lainnya){
-            FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.contain_all, new FragmentGeodesiBangga()).commit();
         }
     }
 
-    private void PopUp(String namaTim, final int color, final int gamber){
+    private void PopUp(String namaTim, final int backgroud, final int gamber){
         Task<DocumentSnapshot> documentReference = FirebaseFirestore.getInstance().document("Tim/" + namaTim).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(final DocumentSnapshot documentSnapshot) {
                 dialog.setContentView(R.layout.pop_up_tim_keilmuan);
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                 ImageView gambarTim = dialog.findViewById(R.id.gambarTim);
                 TextView nama = dialog.findViewById(R.id.nama_tim);
                 TextView deskripsiTim = dialog.findViewById(R.id.deskripsi_tim);
                 TextView join = dialog.findViewById(R.id.link_tim);
                 View card = dialog.findViewById(R.id.cardTim);
                 ImageView close = dialog.findViewById(R.id.close);
-                card.setBackgroundColor(getResources().getColor(color));
+                card.setBackground(getActivity().getDrawable(backgroud));
                 gambarTim.setImageResource(gamber);
                 nama.setText(documentSnapshot.getString("nama"));
                 deskripsiTim.setText(documentSnapshot.getString("isi"));
@@ -303,5 +300,10 @@ public class fragment_Home extends Fragment implements View.OnClickListener {
                 });
     }
 
-
+    // Initialise it from onAttach()
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
 }

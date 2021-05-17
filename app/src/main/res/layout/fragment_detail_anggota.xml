@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="10dp"
@@ -30,190 +30,205 @@
                 android:layout_marginTop="10dp"
                 android:id="@+id/kembali"/>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:orientation="vertical"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="10dp"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@id/nama_anggota"
-                    style="@style/AudioFileInfoOverlayText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="Minatozaki Sana"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    style="@style/AudioFileInfoOverlayText"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="2018"
-                    android:textSize="20sp"
-                    android:layout_marginBottom="5dp"
-                    android:id="@+id/angkatan"/>
-            </LinearLayout>
-
         </RelativeLayout>
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginStart="20dp"
-            android:text="NIM"
-            android:textSize="17dp"
-            android:textColor="@color/Black"
-            android:textStyle="bold"
-            android:paddingTop="9dp"
-            android:paddingBottom="5dp"/>
+            android:layout_above="@+id/data"
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="10dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@id/nama_anggota"
+                style="@style/AudioFileInfoOverlayText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="Minatozaki Sana"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/nim"
-            android:layout_height="wrap_content"
+            <TextView
+                style="@style/AudioFileInfoOverlayText"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="2018"
+                android:textSize="20sp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/angkatan"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:background="@drawable/garis"
-            android:layout_marginStart="20dp"
-            android:paddingBottom="13dp"
-            android:textSize="15dp"
-            android:text="18/428735/TK/47237" />
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:id="@+id/data"
+            android:layout_below="@id/nama_foto"
+            android:layout_marginTop="-30dp"
+            android:background="@drawable/border_biru_2"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/departemen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="Departemen"
-            android:textSize="17dp"
-            android:textColor="@color/Black"
-            android:textStyle="bold"
-            android:paddingTop="9dp"
-            android:paddingBottom="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="NIM"
+                android:textSize="17dp"
+                android:textColor="@color/Black"
+                android:textStyle="bold"
+                android:paddingTop="9dp"
+                android:paddingBottom="5dp"/>
 
-        <TextView
-            android:id="@+id/nama_departemen"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:background="@drawable/garis"
-            android:layout_marginStart="20dp"
-            android:paddingBottom="13dp"
-            android:textSize="15dp"
-            android:text="Pendidikan dan Penelitian" />
+            <TextView
+                android:id="@+id/nim"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="@drawable/garis"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:paddingBottom="13dp"
+                android:textSize="15dp"
+                android:text="18/428735/TK/47237" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="Alamat"
-            android:textSize="17dp"
-            android:textColor="@color/Black"
-            android:textStyle="bold"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"/>
+            <TextView
+                android:id="@+id/departemen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Departemen"
+                android:textSize="17dp"
+                android:textColor="@color/Black"
+                android:textStyle="bold"
+                android:paddingTop="9dp"
+                android:paddingBottom="5dp"/>
 
-        <TextView
-            android:id="@+id/alamat"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_marginStart="20dp"
-            android:paddingBottom="13dp"
-            android:textSize="15dp"
-            android:text="Jalan Merpati No 5 Batokan" />
+            <TextView
+                android:id="@+id/nama_departemen"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="@drawable/garis"
+                android:layout_marginStart="20dp"
+                android:paddingBottom="13dp"
+                android:textSize="15dp"
+                android:layout_marginEnd="20dp"
+                android:text="Pendidikan dan Penelitian" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="7dp"
-            android:background="@color/LightGrey"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Alamat"
+                android:textSize="17dp"
+                android:textColor="@color/Black"
+                android:textStyle="bold"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="Nomor Telepon "
-            android:textSize="17dp"
-            android:textColor="@color/Black"
-            android:textStyle="bold"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"/>
+            <TextView
+                android:id="@+id/alamat"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginStart="20dp"
+                android:paddingBottom="13dp"
+                android:textSize="15dp"
+                android:background="@drawable/garis"
+                android:layout_marginEnd="20dp"
+                android:text="Jalan Merpati No 5 Batokan" />
 
-        <TextView
-            android:id="@+id/no_telepon2"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_marginStart="20dp"
-            android:paddingBottom="13dp"
-            android:textSize="15dp"
-            android:text="083482384238"
-            android:background="@drawable/garis"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="Email "
-            android:textSize="17dp"
-            android:textColor="@color/Black"
-            android:textStyle="bold"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Nomor Telepon "
+                android:textSize="17dp"
+                android:textColor="@color/Black"
+                android:textStyle="bold"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
 
-        <TextView
-            android:id="@+id/email2"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_marginStart="20dp"
-            android:paddingBottom="13dp"
-            android:textSize="15dp"
-            android:text="083482384238"
-            android:background="@drawable/garis"/>
+            <TextView
+                android:id="@+id/no_telepon2"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginStart="20dp"
+                android:paddingBottom="13dp"
+                android:layout_marginEnd="20dp"
+                android:textSize="15dp"
+                android:text="083482384238"
+                android:background="@drawable/garis"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="Id Line "
-            android:textSize="17dp"
-            android:textColor="@color/Black"
-            android:textStyle="bold"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Email "
+                android:textSize="17dp"
+                android:textColor="@color/Black"
+                android:textStyle="bold"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
 
-        <TextView
-            android:id="@+id/id_line2"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_marginStart="20dp"
-            android:paddingBottom="13dp"
-            android:textSize="15dp"
-            android:text="sandy_satya" />
+            <TextView
+                android:id="@+id/email2"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginStart="20dp"
+                android:paddingBottom="13dp"
+                android:textSize="15dp"
+                android:layout_marginEnd="20dp"
+                android:text="083482384238"
+                android:background="@drawable/garis"/>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="7dp"
-            android:background="@color/LightGrey"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Id Line "
+                android:textSize="17dp"
+                android:textColor="@color/Black"
+                android:textStyle="bold"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="About Me "
-            android:textSize="17dp"
-            android:textColor="@color/Black"
-            android:textStyle="bold"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"/>
+            <TextView
+                android:id="@+id/id_line2"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginStart="20dp"
+                android:paddingBottom="13dp"
+                android:layout_marginEnd="20dp"
+                android:textSize="15dp"
+                android:background="@drawable/garis"
+                android:text="sandy_satya" />
 
-        <TextView
-            android:id="@+id/about_me"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_marginStart="20dp"
-            android:paddingBottom="13dp"
-            android:textSize="15dp"
-            android:text="Aku................" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="About Me "
+                android:textSize="17dp"
+                android:textColor="@color/Black"
+                android:textStyle="bold"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/about_me"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginStart="20dp"
+                android:paddingBottom="13dp"
+                android:layout_marginEnd="20dp"
+                android:textSize="15dp"
+                android:text="Aku................" />
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
 
 </ScrollView>
