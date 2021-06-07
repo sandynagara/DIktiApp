@@ -53,7 +53,7 @@ public class AdapterBeasiswa extends FirestoreRecyclerAdapter<VariabelBeasiswa, 
                 FragmentDetailBeasiswa fragmentDetailBeasiswa = new FragmentDetailBeasiswa();
                 fragmentDetailBeasiswa.setArguments(bundle);
                 SplashScreen activity = (SplashScreen) view.getContext();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.contain_all,fragmentDetailBeasiswa).commit();
+                activity.getSupportFragmentManager().beginTransaction().add(R.id.contain_all,fragmentDetailBeasiswa,"FRAGMENT_BEASISWA").commit();
             }
         });
     }

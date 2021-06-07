@@ -47,12 +47,13 @@ public class FragmentDetailBeasiswa extends Fragment {
         deadline = view.findViewById(R.id.deadline);
         deskripsi = view.findViewById(R.id.deskripsi_beasiswa);
 
+        final Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag("FRAGMENT_BEASISWA");
+
         kembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.contain_all,new FragmentBeasiswa())
-                        .commit();
+                fragmentManager.beginTransaction().remove(fragment).commit();
             }
         });
 
@@ -83,7 +84,7 @@ public class FragmentDetailBeasiswa extends Fragment {
 
                 Glide.with(getContext())
                         .load(isiFoto)
-                        .placeholder(R.drawable.logo_dikti)
+                        .placeholder(R.drawable.logo_dikti_format)
                         .into(gambarBeasiswa);
 
                 gambarBeasiswa.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +96,7 @@ public class FragmentDetailBeasiswa extends Fragment {
                         FragmentDetailSoal fragmentDetailSoal = new FragmentDetailSoal();
                         fragmentDetailSoal.setArguments(bundle);
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                        fragmentManager.beginTransaction().replace(R.id.contain_all,fragmentDetailSoal).commit();
+                        fragmentManager.beginTransaction().add(R.id.contain_all,fragmentDetailSoal,"FRAGMENT_ZOOM").commit();
                     }
                 });
             }
@@ -116,7 +117,7 @@ public class FragmentDetailBeasiswa extends Fragment {
                 FragmentEditBeasiswa fragmentEditBeasiswa = new FragmentEditBeasiswa();
                 fragmentEditBeasiswa.setArguments(bundle);
                 FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.contain_all,fragmentEditBeasiswa).commit();
+                fragmentManager.beginTransaction().add(R.id.contain_all,fragmentEditBeasiswa,"Fragment_Edit_Beasiswa").commit();
             }
         });
 

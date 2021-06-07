@@ -63,12 +63,13 @@ public class FragmentDetailLomba extends Fragment {
         editLomba.setVisibility(view.GONE);
 
         ImageView kembali = view.findViewById(R.id.kembali);
+        final Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag("FRAGMENT_LOMBA");
 
         kembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.contain_all,new fragment_lomba()).addToBackStack(null).commit();
+                fragmentManager.beginTransaction().remove(fragment).addToBackStack(null).commit();
             }
         });
 
@@ -77,7 +78,7 @@ public class FragmentDetailLomba extends Fragment {
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
         Task<DocumentSnapshot> documentReference = firebaseFirestore.document("Lomba/" + idLomba).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
+            public void onSuccess(final DocumentSnapshot documentSnapshot) {
                 isiNamaLomba = documentSnapshot.getString("nama");
                 Long deadlineTanggal = documentSnapshot.getLong("deadlineTanggal");
                 String deadlineBulan = documentSnapshot.getString("deadlineBulan");
@@ -98,6 +99,15 @@ public class FragmentDetailLomba extends Fragment {
                 peserta.setText(isiPeserta);
                 link.setText(isiLink);
 
+
+                link.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(documentSnapshot.getString("link")));
+                        startActivity(intent);
+                    }
+                });
+
                 if (isiPeserta.equals("Tim")){
                     request.setVisibility(View.VISIBLE);
                     request.setBackgroundColor(Color.TRANSPARENT);
@@ -109,7 +119,7 @@ public class FragmentDetailLomba extends Fragment {
 
                 Glide.with(getContext())
                         .load(isiFoto)
-                        .placeholder(R.drawable.logo_dikti)
+                        .placeholder(R.drawable.logo_dikti_format)
                         .into(gambarLomba);
 
                 gambarLomba.setOnClickListener(new View.OnClickListener() {
@@ -121,9 +131,10 @@ public class FragmentDetailLomba extends Fragment {
                         FragmentDetailSoal fragmentDetailSoal = new FragmentDetailSoal();
                         fragmentDetailSoal.setArguments(bundle);
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                        fragmentManager.beginTransaction().replace(R.id.contain_all,fragmentDetailSoal).commit();
+                        fragmentManager.beginTransaction().add(R.id.contain_all,fragmentDetailSoal,"FRAGMENT_ZOOM").commit();
                     }
                 });
+
             }
 
         });
@@ -137,17 +148,11 @@ public class FragmentDetailLomba extends Fragment {
                 FragmentEditLomba fragmentEditLomba = new FragmentEditLomba();
                 fragmentEditLomba.setArguments(bundle);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.contain_all,fragmentEditLomba).commit();
+                fragmentManager.beginTransaction().add(R.id.contain_all,fragmentEditLomba,"Fragment_Edit_Lomba").commit();
             }
         });
 
-        link.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(isiLink));
-                startActivity(intent);
-            }
-        });
+
 
         requestTim.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,7 +184,6 @@ public class FragmentDetailLomba extends Fragment {
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     fragmentManager.beginTransaction().replace(R.id.contain_all,fragmentRequesLomba).commit();
                 }
-
             }
         });
 

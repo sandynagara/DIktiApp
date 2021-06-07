@@ -35,7 +35,7 @@
                     android:layout_height="40dp"
                     android:layout_margin="5dp"
                     android:id="@+id/rekomendasi"
-                    android:src="@drawable/ic_baseline_favorite_gray"
+                    android:src="@drawable/ic_baseline_star_grey"
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>
 
@@ -53,6 +53,7 @@
                     android:layout_below="@+id/gambarlomba"
                     android:layout_marginTop="12dp"
                     android:maxLines="2"
+                    android:textColor="@color/Black"
                     android:text="Lomba Poster Nasional “Kampanye Positif Ramadhan Saat Pandemi Covid 19”"
                     android:textSize="12sp"
                     android:textStyle="bold" />

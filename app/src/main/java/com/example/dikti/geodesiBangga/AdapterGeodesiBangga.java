@@ -37,7 +37,7 @@ public class AdapterGeodesiBangga extends FirestoreRecyclerAdapter<VariabelGeode
                 .placeholder(R.drawable.logo_dikti)
                 .into(viewHolder.foto);
         viewHolder.namaLomba.setText(variabelGeodesiBangga.getJudul());
-        viewHolder.namaLomba.setMaxLines(5);
+        viewHolder.namaLomba.setMaxLines(2);
         final String key = getSnapshots().getSnapshot(i).getId();
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +47,7 @@ public class AdapterGeodesiBangga extends FirestoreRecyclerAdapter<VariabelGeode
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 FragmentDetailGeodesiBangga fragmentDetailGeodesiBangga = new FragmentDetailGeodesiBangga();
                 fragmentDetailGeodesiBangga.setArguments(kirim);
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.contain_all,fragmentDetailGeodesiBangga).commit();
+                activity.getSupportFragmentManager().beginTransaction().add(R.id.contain_all,fragmentDetailGeodesiBangga,"FRAGMENT_GEODESI_BANGGA").commit();
             }
         });
     }

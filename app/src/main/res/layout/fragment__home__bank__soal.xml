@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
@@ -80,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_below="@+id/dashboard"
             android:layout_above="@id/toolbar"
-            android:layout_marginBottom="10dp"
+            android:paddingBottom="10dp"
             android:layout_height="wrap_content">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -186,7 +187,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/matkul_semester2"
-                        style="@style/matkul" />
+                        style="@style/matkul"
+                        tools:listitem="@layout/expandable_bank_soal" />/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -235,7 +237,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/matkul_semester3"
-                        style="@style/matkul"/>
+                        style="@style/matkul"
+                        tools:listitem="@layout/expandable_bank_soal" />/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -333,7 +336,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/matkul_semester5"
-                        style="@style/matkul"/>
+                        style="@style/matkul"
+                        tools:listitem="@layout/expandable_bank_soal" />
                 </LinearLayout>
 
                 <LinearLayout

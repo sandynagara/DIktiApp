@@ -19,15 +19,15 @@
                 android:id="@+id/gambar_soal"/>
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:src="@drawable/ic_baseline_arrow_back_white"
                 android:layout_margin="12dp"
                 android:id="@+id/kembali"/>
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginTop="12dp"
                 android:src="@drawable/ic_baseline_cloud_download_white"

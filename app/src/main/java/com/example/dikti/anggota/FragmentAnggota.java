@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,6 +33,7 @@ import com.example.dikti.anggota.tambahAnggota.FragmentTambahAnggota;
 import com.example.dikti.banksoal.Fragment_Home_Bank_Soal;
 import com.example.dikti.fragment_Home;
 import com.example.dikti.login.FragmentLogin;
+import com.example.dikti.lombaBeasiswa.lomba.AdapterLomba;
 import com.example.dikti.lombaBeasiswa.lomba.fragment_lomba;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.firebase.ui.firestore.paging.FirestorePagingAdapter;
@@ -50,7 +52,8 @@ public class FragmentAnggota extends Fragment implements View.OnClickListener {
     private RecyclerView namaAnggota;
     private FirebaseFirestore firebaseFirestore;
     private TextView daftarDepartemen,daftarAngkatan;
-    private View filterDepartemen,filterAngkatan;
+    private View filterDepartemen,filterAngkatan,fillterLimit;
+    private AdapterAnggota adapterAnggota;
     private Context mContext;
 
     @Nullable
@@ -79,11 +82,13 @@ public class FragmentAnggota extends Fragment implements View.OnClickListener {
         View lomba = toolbar.findViewById(R.id.lomba);
         View beasiswa = toolbar.findViewById(R.id.home1);
         ImageView petaAnggota = view.findViewById(R.id.peta_anggota);
+        fillterLimit = view.findViewById(R.id.filter_limit);
 
         namaAnggota.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL));
         firebaseFirestore = FirebaseFirestore.getInstance();
         filterDepartemen.setOnClickListener(this);
         filterAngkatan.setOnClickListener(this);
+        fillterLimit.setOnClickListener(this);
         tambahAnggota.setOnClickListener(this);
         tambahAnggota.setVisibility(View.GONE);
 
@@ -94,24 +99,31 @@ public class FragmentAnggota extends Fragment implements View.OnClickListener {
             tambahAnggota.setVisibility(View.VISIBLE);
         }
 
-        Preference.clearAngkatan(getContext());
-        Preference.clearDepartemen(getContext());
-
         cekKondisiAngkatan();
         cekKondisiDepartemen();
         cekKondisiAll();
 
-        PagingAwal();
+        if (!Preference.getFilterDepartemen(getContext()).isEmpty() || !Preference.getFilterAngkatan(mContext).isEmpty()){
+            if (!Preference.getFilterAngkatan(getContext()).isEmpty() && !Preference.getFilterDepartemen(getContext()).isEmpty()){
+                SearchRecyler("querycampuran",Preference.getFilterAngkatan(mContext)+" "+Preference.getFilterDepartemen(getContext()));
+            } else if (Preference.getFilterDepartemen(getContext()).isEmpty()){
+                SearchRecyler("queryangkatan",Preference.getFilterAngkatan(mContext));
+            } else if (Preference.getFilterAngkatan(getContext()).isEmpty()){
+                SearchRecyler("querydepartemen",Preference.getFilterDepartemen(mContext));
+            }
+        }else {
+            RecleylerAwal();
+        }
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-               QueryAnggota(s.toLowerCase());
+               QueryAnggotaRecyler(s.toLowerCase());
                 return false;
             }
             @Override
             public boolean onQueryTextChange(String s) {
-                QueryAnggota(s.toLowerCase());
+                QueryAnggotaRecyler(s.toLowerCase());
                 return false;
             }
         });
@@ -125,19 +137,7 @@ public class FragmentAnggota extends Fragment implements View.OnClickListener {
         return view;
     }
 
-    private void QueryAnggota(String s){
-        if (!Preference.getFilterDepartemen(getContext()).isEmpty() || !Preference.getFilterAngkatan(mContext).isEmpty()){
-            if (!Preference.getFilterAngkatan(getContext()).isEmpty() && !Preference.getFilterDepartemen(getContext()).isEmpty()){
-                SearchPaging("querycampuran",Preference.getFilterAngkatan(mContext)+" "+Preference.getFilterDepartemen(getContext())+" "+s.toLowerCase());
-            } else if (Preference.getFilterDepartemen(getContext()).isEmpty()){
-                SearchPaging("queryangkatan",Preference.getFilterAngkatan(mContext)+" "+s.toLowerCase());
-            } else if (Preference.getFilterAngkatan(getContext()).isEmpty()){
-                SearchPaging("querydepartemen",Preference.getFilterDepartemen(mContext)+" "+s.toLowerCase());
-            }
-        }else {
-            SearchPaging("queryNama",s.toLowerCase());
-        }
-    }
+
 
     public void cekKondisiAngkatan(){
         if (!Preference.getFilterAngkatan(getContext()).isEmpty() && !Preference.getFilterAngkatan(getContext()).equals("All")){
@@ -187,19 +187,69 @@ public class FragmentAnggota extends Fragment implements View.OnClickListener {
                 cekKondisiAngkatan();
                 cekKondisiDepartemen();
                 cekKondisiAll();
-                QueryAnggota("");
+                QueryAnggotaRecyler("");
             }
         }, false);
+    }
+
+    private void QueryAnggotaRecyler(String s){
+        if (!Preference.getFilterDepartemen(getContext()).isEmpty() || !Preference.getFilterAngkatan(mContext).isEmpty()){
+            if (!Preference.getFilterAngkatan(getContext()).isEmpty() && !Preference.getFilterDepartemen(getContext()).isEmpty()){
+                SearchRecyler("querycampuran",Preference.getFilterAngkatan(mContext)+" "+Preference.getFilterDepartemen(getContext())+" "+s.toLowerCase());
+            } else if (Preference.getFilterDepartemen(getContext()).isEmpty()){
+                SearchRecyler("queryangkatan",Preference.getFilterAngkatan(mContext)+" "+s.toLowerCase());
+            } else if (Preference.getFilterAngkatan(getContext()).isEmpty()){
+                SearchRecyler("querydepartemen",Preference.getFilterDepartemen(mContext)+" "+s.toLowerCase());
+            }
+        }else {
+            SearchRecyler("queryNama",s.toLowerCase());
+        }
+    }
+
+    private void SearchRecyler(String orderBy,String request){
+
+        FirestoreRecyclerOptions<VariabelAnggota> options = new FirestoreRecyclerOptions.Builder<VariabelAnggota>()
+                .setQuery(firebaseFirestore.collection("Anggota").orderBy(orderBy).startAt(request).endAt(request+"\ufaff").limit(50),VariabelAnggota.class)
+                .build();
+
+        adapterAnggota = new AdapterAnggota(options);
+        adapterAnggota.startListening();
+        namaAnggota.setAdapter(adapterAnggota);
+    }
+
+    private void RecleylerAwal(){
+        FirestoreRecyclerOptions<VariabelAnggota> options = new FirestoreRecyclerOptions.Builder<VariabelAnggota>()
+                .setQuery(firebaseFirestore.collection("Anggota").orderBy("angkatan", Query.Direction.DESCENDING).limit(50),VariabelAnggota.class)
+                .build();
+
+        adapterAnggota = new AdapterAnggota(options);
+        adapterAnggota.startListening();
+        namaAnggota.setAdapter(adapterAnggota);
+    }
+
+    /*
+    private void QueryAnggota(String s){
+        if (!Preference.getFilterDepartemen(getContext()).isEmpty() || !Preference.getFilterAngkatan(mContext).isEmpty()){
+            if (!Preference.getFilterAngkatan(getContext()).isEmpty() && !Preference.getFilterDepartemen(getContext()).isEmpty()){
+                SearchPaging("querycampuran",Preference.getFilterAngkatan(mContext)+" "+Preference.getFilterDepartemen(getContext())+" "+s.toLowerCase());
+            } else if (Preference.getFilterDepartemen(getContext()).isEmpty()){
+                SearchPaging("queryangkatan",Preference.getFilterAngkatan(mContext)+" "+s.toLowerCase());
+            } else if (Preference.getFilterAngkatan(getContext()).isEmpty()){
+                SearchPaging("querydepartemen",Preference.getFilterDepartemen(mContext)+" "+s.toLowerCase());
+            }
+        }else {
+            SearchPaging("queryNama",s.toLowerCase());
+        }
     }
 
     private void PagingAwal(){
         PagedList.Config config = new PagedList.Config.Builder()
                 .setInitialLoadSizeHint(10)
-                .setPageSize(3)
+                .setPageSize(2)
                 .build();
 
         FirestorePagingOptions<VariabelAnggota> options = new FirestorePagingOptions.Builder<VariabelAnggota>()
-                .setQuery(firebaseFirestore.collection("Anggota").orderBy("angkatan", Query.Direction.DESCENDING),config,VariabelAnggota.class)
+                .setQuery(firebaseFirestore.collection("Anggota").orderBy("angkatan", Query.Direction.DESCENDING).limit(2),config,VariabelAnggota.class)
                 .build();
 
         FirestorePagingAdapterIsi(options);
@@ -208,11 +258,11 @@ public class FragmentAnggota extends Fragment implements View.OnClickListener {
     private void SearchPaging(String orderBy,String request){
         PagedList.Config config = new PagedList.Config.Builder()
                 .setInitialLoadSizeHint(10)
-                .setPageSize(3)
+                .setPageSize(2)
                 .build();
 
         FirestorePagingOptions<VariabelAnggota> options = new FirestorePagingOptions.Builder<VariabelAnggota>()
-                .setQuery(firebaseFirestore.collection("Anggota").orderBy(orderBy).startAt(request).endAt(request+"\ufaff"),config,VariabelAnggota.class)
+                .setQuery(firebaseFirestore.collection("Anggota").orderBy(orderBy).startAt(request).endAt(request+"\ufaff").limit(2),config,VariabelAnggota.class)
                 .build();
 
         FirestorePagingAdapterIsi(options);
@@ -230,7 +280,7 @@ public class FragmentAnggota extends Fragment implements View.OnClickListener {
                 holder.namaAnggota.setText(variabelAnggota.getNamaLengkap());
                 holder.namaDepartemen.setText(variabelAnggota.getDepartemen());
                 holder.angkatan.setText(variabelAnggota.getAngkatan());
-                if (variabelAnggota.getNamaLengkap().length()<22){
+                if (variabelAnggota.getNamaLengkap().length()<18){
                     holder.point.setText("");
                 }else {
                     holder.point.setText("...");
@@ -280,6 +330,7 @@ public class FragmentAnggota extends Fragment implements View.OnClickListener {
             point = itemView.findViewById(R.id.point);
         }
     }
+    */
 
     @Override
     public void onClick(View view) {
@@ -307,6 +358,8 @@ public class FragmentAnggota extends Fragment implements View.OnClickListener {
             fragmentManager.beginTransaction().replace(R.id.contain_all, new fragment_Home()).commit();
         }else if (view.getId() == R.id.peta_anggota) {
             fragmentManager.beginTransaction().replace(R.id.contain_all, new PetaAnggota()).commit();
+        }else if (view.getId() == R.id.filter_limit) {
+            Toast.makeText(getContext(),"Maaf ,karena masih dalam tahap uji coba maka jumlah maksimal data yang dapat ditampilkan adalah 50 data",Toast.LENGTH_LONG).show();
         }
     }
 

@@ -195,7 +195,8 @@ public class FragmentEditLomba extends Fragment implements View.OnClickListener 
                         @Override
                         public void onSuccess(Void aVoid) {
                             Toast.makeText(getContext(),"Update Berhasil",Toast.LENGTH_SHORT).show();
-                            fragmentManager.beginTransaction().replace(R.id.contain_all,fragmentDetailLomba).addToBackStack(null).commit();
+                            final Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag("Fragment_Edit_Lomba");
+                            fragmentManager.beginTransaction().remove(fragment).addToBackStack(null).commit();
                             dialog.dismiss();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -223,7 +224,8 @@ public class FragmentEditLomba extends Fragment implements View.OnClickListener 
             update.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    fragmentManager.beginTransaction().replace(R.id.contain_all,fragmentDetailLomba).addToBackStack(null).commit();
+                    final Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag("Fragment_Edit_Lomba");
+                    fragmentManager.beginTransaction().remove(fragment).addToBackStack(null).commit();
                     dialog.dismiss();
                 }
             });
@@ -250,7 +252,8 @@ public class FragmentEditLomba extends Fragment implements View.OnClickListener 
                     documentReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            fragmentManager.beginTransaction().replace(R.id.contain_all,new fragment_lomba()).addToBackStack(null).commit();
+                            final Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag("Fragment_Edit_Lomba");
+                            fragmentManager.beginTransaction().remove(fragment).addToBackStack(null).commit();
                             dialog.dismiss();
                         }
                     });

@@ -1,8 +1,16 @@
 package com.example.dikti.banksoal;
 
 public class VariabelBankSoal {
-    private String mataKuliah,Dosen,foto,semester;
+    private String mataKuliah,Dosen,foto,semester,utsUas;
     private Long tahun;
+
+    public String getUtsUas() {
+        return utsUas;
+    }
+
+    public void setUtsUas(String utsUas) {
+        this.utsUas = utsUas;
+    }
 
     public String getSemester() {
         return semester;

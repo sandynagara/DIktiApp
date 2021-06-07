@@ -43,7 +43,7 @@ public class AdapterPeminatLomba extends FirestoreRecyclerAdapter<VariabelReques
                 SplashScreen activity = (SplashScreen) view.getContext();
                 Fragment_Detail_Anggota fragment_detail_anggota = new Fragment_Detail_Anggota();
                 fragment_detail_anggota.setArguments(bundle);
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.contain_all,fragment_detail_anggota).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().add(R.id.contain_all,fragment_detail_anggota,"FRAGMENT_ANGGOTA").addToBackStack(null).commit();
 
             }
         });

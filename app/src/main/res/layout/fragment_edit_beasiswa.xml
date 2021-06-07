@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
     <RelativeLayout
@@ -24,13 +25,13 @@
     </RelativeLayout>
 
     <ScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/card_kembali"
         android:layout_above="@id/toolbar">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -55,7 +56,7 @@
                     />
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/deadline"
                     android:id="@+id/nama_beasiswa"
@@ -100,7 +101,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:background="@drawable/pembatas_lomba"
+
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:orientation="vertical">

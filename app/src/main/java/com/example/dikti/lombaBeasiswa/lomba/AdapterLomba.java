@@ -90,7 +90,7 @@ public class AdapterLomba extends FirestoreRecyclerAdapter<VariabelLomba, Adapte
                 SplashScreen activity = (SplashScreen) view.getContext();
                 FragmentDetailLomba fragmentDetailLomba = new FragmentDetailLomba();
                 fragmentDetailLomba.setArguments(bundle);
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.contain_all,fragmentDetailLomba).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().add(R.id.contain_all,fragmentDetailLomba,"FRAGMENT_LOMBA").addToBackStack(null).commit();
             }
         });
     }

@@ -201,7 +201,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="Today's Work, do it tomorrow. Tomorrow's work, do it the day after tomorrow"
+        android:text="Itu bukan bugs ,Itu fitur tersembunyi"
         android:textAlignment="center"
         android:textStyle="italic"
         android:textColor="@color/deepSkyBlue"
@@ -214,7 +214,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:text="- Chillax by Twice"
+        android:text="- All Developer"
         android:textAlignment="center"
         android:textStyle="italic"
         android:padding="5dp"

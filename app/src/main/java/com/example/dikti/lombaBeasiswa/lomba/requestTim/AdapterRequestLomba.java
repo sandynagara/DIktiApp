@@ -82,7 +82,7 @@ public class AdapterRequestLomba extends FirestoreRecyclerAdapter<VariabelReques
                 Bundle bundle = new Bundle();
                 bundle.putString("1",idLomba);
                 fragmentDetailLomba.setArguments(bundle);
-                fragmentManager.beginTransaction().replace(R.id.contain_all,fragmentDetailLomba).commit();
+                fragmentManager.beginTransaction().add(R.id.contain_all,fragmentDetailLomba,"FRAGMENT_LOMBA").commit();
             }
         });
 

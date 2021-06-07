@@ -31,7 +31,11 @@ public class AdapterDaftarSoal extends FirestoreRecyclerAdapter<VariabelBankSoal
         viewholder.dosen.setText(variabelBankSoal.getDosen());
         viewholder.tahun.setText(variabelBankSoal.getTahun().toString());
         final String key = getSnapshots().getSnapshot(i).getId();
-        viewholder.buang.setVisibility(View.GONE);
+        if (variabelBankSoal.getUtsUas() == null){
+            viewholder.buang.setVisibility(View.GONE);
+        }else {
+            viewholder.buang.setText(variabelBankSoal.getUtsUas());
+        }
         viewholder.rekomnedasi.setVisibility(View.GONE);
         viewholder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +47,7 @@ public class AdapterDaftarSoal extends FirestoreRecyclerAdapter<VariabelBankSoal
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 FragmentDetailSoal fragmentDetailSoal = new FragmentDetailSoal();
                 fragmentDetailSoal.setArguments(bundle);
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.contain_all,fragmentDetailSoal).commit();
+                activity.getSupportFragmentManager().beginTransaction().add(R.id.contain_all,fragmentDetailSoal,"FRAGMENT_ZOOM").commit();
             }
         });
     }

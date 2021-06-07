@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/WhiteSmoke"
     tools:context=".MainActivity">
 
     <RelativeLayout
@@ -64,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/pembatas_lomba"
                 android:id="@+id/nama_lomba"
-                android:text="Lomba Poster Nasional Kampanye Positif Ramadhan Saat Pandemi Covid 19"
+                android:text="Loading"
                 android:textSize="18sp"
                 android:paddingBottom="10dp"
                 android:textStyle="bold"
@@ -90,6 +91,7 @@
                 android:background="@drawable/pembatas_lomba"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:textSize="16sp"
                 android:id="@+id/pemenang"
                 android:paddingBottom="10dp"
                 android:textColor="@color/Black" />
@@ -110,6 +112,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Deskripsi"
                 android:layout_marginBottom="5dp"
+                android:textSize="16sp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:id="@+id/deskripsi_geodesi_bangga"

@@ -82,23 +82,33 @@ public class RequestTim extends BottomSheetDialogFragment {
             apply.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View view) {
-                    final DocumentReference documentReference = FirebaseFirestore.getInstance().collection("Request Tim")
-                            .document(idRequest);
-                    HashMap<String,Object> map = new HashMap<>();
-                    map.put("jumlahAnggota",Long.parseLong(jumlahAnggota.getText().toString()));
-                    map.put("syaratAnggota",syaratAnggota.getText().toString());
-                    documentReference.update(map).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(view.getContext(),"Data berhasil di Update",Toast.LENGTH_SHORT);
-                            dismiss();
+                    if (!jumlahAnggota.getText().toString().isEmpty() && !syaratAnggota.getText().toString().isEmpty()){
+                        final DocumentReference documentReference = FirebaseFirestore.getInstance().collection("Request Tim")
+                                .document(idRequest);
+                        HashMap<String,Object> map = new HashMap<>();
+                        map.put("jumlahAnggota",Long.parseLong(jumlahAnggota.getText().toString()));
+                        map.put("syaratAnggota",syaratAnggota.getText().toString());
+                        documentReference.update(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(view.getContext(),"Data berhasil di Update",Toast.LENGTH_SHORT);
+                                dismiss();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(view.getContext(),"Data gagal di Update",Toast.LENGTH_SHORT);
+                            }
+                        });
+                    }else {
+                        if (jumlahAnggota.getText().toString().isEmpty()){
+                            jumlahAnggota.setError("Jumlah Anggota Tidak Boleh Kosong");
                         }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(view.getContext(),"Data gagal di Update",Toast.LENGTH_SHORT);
+
+                        if (syaratAnggota.getText().toString().isEmpty()){
+                            syaratAnggota.setError("Syarat Anggota Tidak Boleh Kosong");
                         }
-                    });
+                    }
                 }
             });
 
@@ -167,38 +177,51 @@ public class RequestTim extends BottomSheetDialogFragment {
             request.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    DocumentReference documentReference = FirebaseFirestore.getInstance().collection("Request Tim").document(namaLomba2+" "+namaPengirim);
-                    VariabelRequestLomba variabelRequestLomba = new VariabelRequestLomba();
-                    variabelRequestLomba.setDeadline(deadline);
-                    variabelRequestLomba.setDeadlineBulan(deadlineBulan);
-                    variabelRequestLomba.setDeadlineTahun(deadlineTahun);
-                    variabelRequestLomba.setDeadlineTanggal(deadlineTanggal);
-                    variabelRequestLomba.setNamaLomba(namaLomba2);
-                    variabelRequestLomba.setFoto(foto);
-                    variabelRequestLomba.setSyaratAnggota(syaratAnggota.getText().toString());
-                    variabelRequestLomba.setJumlahAnggota(Long.parseLong(jumlahAnggota.getText().toString()));
-                    variabelRequestLomba.setIdLomba(idLomba);
-                    variabelRequestLomba.setJenisLomba(isiJenisLombaString);
-                    variabelRequestLomba.setIdPengirim(Preference.getDataUsername(getContext()));
-                    variabelRequestLomba.setNamaPengirim(namaPengirim);
-                    variabelRequestLomba.setQueryJenisLomba(isiJenisLombaString+" "+namaLomba2.toLowerCase());
-                    variabelRequestLomba.setQueryNamaLomba(namaLomba2.toLowerCase());
-                    variabelRequestLomba.setAngkatan(angkatan);
-                    variabelRequestLomba.setQueryMyRequest(Preference.getDataUsername(getContext())+" "+namaLomba2.toLowerCase());
-                    variabelRequestLomba.setQueryJenisMyRequest(isiJenisLombaString+" "+Preference.getDataUsername(getContext())+" "+namaLomba2.toLowerCase());
+                    if (!jumlahAnggota.getText().toString().isEmpty() && !syaratAnggota.getText().toString().isEmpty()){
+                        DocumentReference documentReference = FirebaseFirestore.getInstance().collection("Request Tim").document(namaLomba2+" "+namaPengirim);
+                        VariabelRequestLomba variabelRequestLomba = new VariabelRequestLomba();
+                        variabelRequestLomba.setDeadline(deadline);
+                        variabelRequestLomba.setDeadlineBulan(deadlineBulan);
+                        variabelRequestLomba.setDeadlineTahun(deadlineTahun);
+                        variabelRequestLomba.setDeadlineTanggal(deadlineTanggal);
+                        variabelRequestLomba.setNamaLomba(namaLomba2);
+                        variabelRequestLomba.setFoto(foto);
+                        variabelRequestLomba.setSyaratAnggota(syaratAnggota.getText().toString());
+                        variabelRequestLomba.setJumlahAnggota(Long.parseLong(jumlahAnggota.getText().toString()));
+                        variabelRequestLomba.setIdLomba(idLomba);
+                        variabelRequestLomba.setJenisLomba(isiJenisLombaString);
+                        variabelRequestLomba.setIdPengirim(Preference.getDataUsername(getContext()));
+                        variabelRequestLomba.setNamaPengirim(namaPengirim);
+                        variabelRequestLomba.setQueryJenisLomba(isiJenisLombaString+" "+namaLomba2.toLowerCase());
+                        variabelRequestLomba.setQueryNamaLomba(namaLomba2.toLowerCase());
+                        variabelRequestLomba.setAngkatan(angkatan);
+                        variabelRequestLomba.setQueryMyRequest(Preference.getDataUsername(getContext())+" "+namaLomba2.toLowerCase());
+                        variabelRequestLomba.setQueryJenisMyRequest(isiJenisLombaString+" "+Preference.getDataUsername(getContext())+" "+namaLomba2.toLowerCase());
 
-                    documentReference.set(variabelRequestLomba).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(getContext(),"Request Tim Berhasil",Toast.LENGTH_SHORT).show();
-                            dismiss();
+                        documentReference.set(variabelRequestLomba).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(getContext(),"Request Tim Berhasil",Toast.LENGTH_SHORT).show();
+                                dismiss();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getContext(),"Request Tim Gagal",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }else {
+
+                        if (jumlahAnggota.getText().toString().isEmpty()){
+                            jumlahAnggota.setError("Jumlah Anggota Tidak Boleh Kosong");
                         }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getContext(),"Request Tim Gagal",Toast.LENGTH_SHORT).show();
+
+                        if (syaratAnggota.getText().toString().isEmpty()){
+                            syaratAnggota.setError("Syarat Anggota Tidak Boleh Kosong");
                         }
-                    });
+
+                    }
+
                 }
             });
         }

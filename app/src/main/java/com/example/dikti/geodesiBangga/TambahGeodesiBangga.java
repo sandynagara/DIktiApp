@@ -31,6 +31,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class TambahGeodesiBangga extends Fragment {
@@ -40,6 +42,7 @@ public class TambahGeodesiBangga extends Fragment {
     ImageView gambarGeodesiBangga,kembali;
     public Uri gambar;
     StorageReference storageReference;
+
 
     @Nullable
     @Override
@@ -62,6 +65,9 @@ public class TambahGeodesiBangga extends Fragment {
             }
         });
 
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
+        final String timestamp = simpleDateFormat.format(new Date());
+
         gambarGeodesiBangga = view.findViewById(R.id.gambar_geodesi_bangga);
         kembali = view.findViewById(R.id.kembali);
         kembali.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +89,7 @@ public class TambahGeodesiBangga extends Fragment {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Upload();
+                Upload(timestamp);
             }
         });
         return view;
@@ -105,17 +111,17 @@ public class TambahGeodesiBangga extends Fragment {
         }
     }
 
-    private void Upload(){
+    private void Upload(final String timestamp){
         showNotification("Geodesi Bangga sedang ditambahkan","Tunggu hingga muncul notifikasi berikutnya");
         add.setText("Tunggu");
-        final StorageReference ref=storageReference.child("Geodesi Bangga/"+judul.getText().toString()+"."+getExtension(gambar));
+        final StorageReference ref=storageReference.child("Geodesi Bangga/"+timestamp +" "+judul.getText().toString()+"."+getExtension(gambar));
         ref.putFile(gambar).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        DocumentReference isiData=FirebaseFirestore.getInstance().collection("Geodesi Bangga").document(judul.getText().toString());
+                        DocumentReference isiData=FirebaseFirestore.getInstance().collection("Geodesi Bangga").document(timestamp +" "+ judul.getText().toString());
                         VariabelGeodesiBangga variabelGeodesiBangga = new VariabelGeodesiBangga();
                         variabelGeodesiBangga.setJudul(judul.getText().toString());
                         variabelGeodesiBangga.setFoto(String.valueOf(uri));
@@ -125,21 +131,22 @@ public class TambahGeodesiBangga extends Fragment {
                         }else {
                             variabelGeodesiBangga.setDeskripsi(link.getText().toString());
                         }
+                        variabelGeodesiBangga.setTime(timestamp);
                         isiData.set(variabelGeodesiBangga);
-                        showNotification("Geodesi Bannga berhasil ditambahkan","");
+                        showNotification("Geodesi Bangga berhasil ditambahkan","");
                         add.setText("Add");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        showNotification("Geodesi Bannga gagal ditambahkan","");
+                        showNotification("Geodesi Bangga gagal ditambahkan","");
                     }
                 });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                showNotification("Geodesi Bannga gagal ditambahkan","");
+                showNotification("Geodesi Bangga gagal ditambahkan","");
             }
         });
     }

@@ -198,64 +198,86 @@ public class FragmentTambahLomba extends Fragment {
     }
 
     private void Upload(){
-        showNotification("Lomba sedang ditambahkan","Tunggu hingga muncul notifikasi berikutnya");
-        add.setText("Tunggu");
-        isiNamaLomba = namaLomba.getText().toString();
-        isiDeskripsi = deskripsi.getText().toString();
-        isiLink = link.getText().toString();
-        final String pengirim = Preference.getDataUsername(getContext());
-        isiBiayaLong = Long.parseLong(biayaPendaftaran.getText().toString());
-        isiDeadlineTanggalLong = Long.parseLong(isiDeadlineTanggal);
-        isiDeadlineTahunLong = Long.parseLong(deadlineTahun.getText().toString());
-        deadline = Long.parseLong(deadlineTahun.getText().toString()+isiDeadlineBulanint+isiDeadlineTanggalint);
+        if (!namaLomba.getText().toString().isEmpty() && !biayaPendaftaran.getText().toString().isEmpty() && !deadlineTahun.getText().toString().isEmpty()){
+            showNotification("Lomba sedang ditambahkan","Tunggu hingga muncul notifikasi berikutnya");
+            add.setText("Tunggu");
+            isiNamaLomba = namaLomba.getText().toString();
+            isiDeskripsi = deskripsi.getText().toString();
+            isiLink = link.getText().toString();
+            final String pengirim = Preference.getDataUsername(getContext());
+            isiBiayaLong = Long.parseLong(biayaPendaftaran.getText().toString());
+            isiDeadlineTanggalLong = Long.parseLong(isiDeadlineTanggal);
+            isiDeadlineTahunLong = Long.parseLong(deadlineTahun.getText().toString());
+            deadline = Long.parseLong(deadlineTahun.getText().toString()+isiDeadlineBulanint+isiDeadlineTanggalint);
 
-        final StorageReference ref=storageReference.child("Lomba/"+isiDeadlineTahunLong+"/"+isiDeadlineBulan+"/"+isiJenislomba+"/"+isiNamaLomba+"."+getExtension(gambar));
-        ref.putFile(gambar).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        DocumentReference isiData=firebaseFirestore.collection("Lomba").document(isiNamaLomba);
-                        VariabelTambahLomba variabelTambahLomba = new VariabelTambahLomba();
-                        variabelTambahLomba.setBiaya(isiBiayaLong);
-                        variabelTambahLomba.setDeadline(deadline);
-                        variabelTambahLomba.setDeadlineBulan(isiDeadlineBulan);
-                        variabelTambahLomba.setDeadlineTahun(isiDeadlineTahunLong);
-                        variabelTambahLomba.setDeadlineTanggal(isiDeadlineTanggalLong);
-                        variabelTambahLomba.setDeskripsi(isiDeskripsi);
-                        variabelTambahLomba.setFoto(String.valueOf(uri));
-                        variabelTambahLomba.setJenis(isiJenislomba);
-                        variabelTambahLomba.setLink(isiLink);
-                        variabelTambahLomba.setNama(isiNamaLomba);
-                        variabelTambahLomba.setPeserta(isiJenisPeserta);
-                        variabelTambahLomba.setQueryJenis(isiJenislomba+" "+isiNamaLomba.toLowerCase());
-                        variabelTambahLomba.setQueryNama(isiNamaLomba.toLowerCase());
-                        if (Preference.getDataUsername(getContext()).isEmpty()){
-                            variabelTambahLomba.setPengirim("Tidak Diketahui");
-                        }else {
-                            variabelTambahLomba.setPengirim(pengirim);
+            final StorageReference ref=storageReference.child("Lomba/"+isiDeadlineTahunLong+"/"+isiDeadlineBulan+"/"+isiJenislomba+"/"+isiNamaLomba+"."+getExtension(gambar));
+            ref.putFile(gambar).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            DocumentReference isiData=firebaseFirestore.collection("Lomba").document(isiNamaLomba);
+                            VariabelTambahLomba variabelTambahLomba = new VariabelTambahLomba();
+                            variabelTambahLomba.setBiaya(isiBiayaLong);
+                            variabelTambahLomba.setDeadline(deadline);
+                            variabelTambahLomba.setDeadlineBulan(isiDeadlineBulan);
+                            variabelTambahLomba.setDeadlineTahun(isiDeadlineTahunLong);
+                            variabelTambahLomba.setDeadlineTanggal(isiDeadlineTanggalLong);
+                            if (isiLink.equals("")){
+                                variabelTambahLomba.setDeskripsi(" ");
+                            }else {
+                                variabelTambahLomba.setDeskripsi(isiDeskripsi);
+                            }
+                            variabelTambahLomba.setFoto(String.valueOf(uri));
+                            variabelTambahLomba.setJenis(isiJenislomba);
+                            if (isiLink.equals("")){
+                                variabelTambahLomba.setLink(" ");
+                            }else {
+                                variabelTambahLomba.setLink(isiLink);
+                            }
+                            variabelTambahLomba.setNama(isiNamaLomba);
+                            variabelTambahLomba.setPeserta(isiJenisPeserta);
+                            variabelTambahLomba.setQueryJenis(isiJenislomba+" "+isiNamaLomba.toLowerCase());
+                            variabelTambahLomba.setQueryNama(isiNamaLomba.toLowerCase());
+                            if (Preference.getDataUsername(getContext()).isEmpty()){
+                                variabelTambahLomba.setPengirim("Tidak Diketahui");
+                            }else {
+                                variabelTambahLomba.setPengirim(pengirim);
+                            }
+                            variabelTambahLomba.setFavorit(false);
+                            isiData.set(variabelTambahLomba);
+                            showNotification(isiNamaLomba+" berhasil ditambahkan","Terima kasih telah menambahkan daftar lomba");
+                            add.setText("Add");
                         }
-                        variabelTambahLomba.setFavorit(false);
-                        isiData.set(variabelTambahLomba);
-                        showNotification(isiNamaLomba+" berhasil ditambahkan","Terima kasih telah menambahkan daftar lomba");
-                        add.setText("Add");
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        showNotification("Lomba gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
-                        add.setText("Add");
-                    }
-                });
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            showNotification("Lomba gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
+                            add.setText("Add");
+                        }
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    showNotification("Lomba gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
+                    add.setText("Add");
+                }
+            });
+        }else {
+            if (namaLomba.getText().toString().isEmpty()){
+                namaLomba.setError("Nama Lomba Tidak boleh Kosong");
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                showNotification("Lomba gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
-                add.setText("Add");
+
+            if (biayaPendaftaran.getText().toString().isEmpty()){
+                biayaPendaftaran.setError("Biaya Pendaftaran Tidak boleh Kosong");
             }
-        });
+
+            if (deadlineTahun.getText().toString().isEmpty()){
+                deadlineTahun.setError("Deadline Tahun Tidak boleh Kosong");
+            }
+        }
     }
     private String getExtension(Uri uri){
         ContentResolver contentResolver = Objects.requireNonNull(getActivity()).getContentResolver();

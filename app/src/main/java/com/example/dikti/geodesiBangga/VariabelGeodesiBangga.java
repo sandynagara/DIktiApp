@@ -1,7 +1,15 @@
 package com.example.dikti.geodesiBangga;
 
 public class VariabelGeodesiBangga {
-    String foto,judul,pemenang,deskripsi;
+    String foto,judul,pemenang,deskripsi,time;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public String getDeskripsi() {
         return deskripsi;

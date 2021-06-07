@@ -42,12 +42,13 @@ public class Fragment_Detail_Anggota extends Fragment {
         nim = view.findViewById(R.id.nim);
 
         String anggotaDetail = getArguments().getString("1");
+        final Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag("FRAGMENT_ANGGOTA");
 
         kembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.contain_all,new FragmentAnggota()).addToBackStack(null).commit();
+                fragmentManager.beginTransaction().remove(fragment).addToBackStack(null).commit();
             }
         });
 
@@ -77,7 +78,7 @@ public class Fragment_Detail_Anggota extends Fragment {
 
                 Glide.with(getContext())
                         .load(Foto)
-                        .placeholder(R.drawable.logo_dikti)
+                        .placeholder(R.drawable.logo_dikti_format)
                         .into(fotoAnggota);
             }
         });

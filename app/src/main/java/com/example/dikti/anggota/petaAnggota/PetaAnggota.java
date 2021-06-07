@@ -190,7 +190,7 @@ public class PetaAnggota extends Fragment implements View.OnClickListener {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            int n = 1;
+                            int n = 0;
                             for (DocumentSnapshot document : task.getResult()){
                                 String id = document.getId();
                                 String localName = (String) document.get("namaLengkap");
@@ -201,25 +201,32 @@ public class PetaAnggota extends Fragment implements View.OnClickListener {
                                 String campuran = (String) document.get("querycampuran");
                                 assert location != null;
                                 LatLng localPosition = new LatLng(location.getLatitude(), location.getLongitude());
+                                LatLng localPositionKosong = new LatLng(0,0);
 
                                 if (!Preference.getFilterDepartemen(getContext()).isEmpty() || !Preference.getFilterAngkatan(getContext()).isEmpty()){
                                      if (!Preference.getFilterAngkatan(getContext()).isEmpty() && !Preference.getFilterDepartemen(getContext()).isEmpty()){
                                         if (campuran.startsWith(Preference.getFilterAngkatan(getContext())+" "+Preference.getFilterDepartemen(getContext())+" "+s.toLowerCase())){
                                             Titik(localPosition,localName,foto,id);
-                                            n++;
-                                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(localPosition,14));
+                                            if (!localPosition.equals(localPositionKosong)){
+                                                map.moveCamera(CameraUpdateFactory.newLatLngZoom(localPosition,14));
+                                                n++;
+                                            }
                                         }
                                     } else if (Preference.getFilterDepartemen(getContext()).isEmpty()){
                                         if (angkatan.startsWith(Preference.getFilterAngkatan(getContext())+" "+s.toLowerCase())){
                                             Titik(localPosition,localName,foto,id);
-                                            n++;
-                                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(localPosition,14));
+                                            if (!localPosition.equals(localPositionKosong)){
+                                                map.moveCamera(CameraUpdateFactory.newLatLngZoom(localPosition,14));
+                                                n++;
+                                            }
                                         }
                                     } else if (Preference.getFilterAngkatan(getContext()).isEmpty()){
                                         if (departemen.startsWith(Preference.getFilterDepartemen(getContext())+" "+s.toLowerCase())) {
                                             Titik(localPosition,localName,foto,id);
-                                            n++;
-                                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(localPosition,14));
+                                            if (!localPosition.equals(localPositionKosong)){
+                                                map.moveCamera(CameraUpdateFactory.newLatLngZoom(localPosition,14));
+                                                n++;
+                                            }
                                         }
                                     }
 
@@ -233,14 +240,19 @@ public class PetaAnggota extends Fragment implements View.OnClickListener {
                                     else {
                                         if (localName.toLowerCase().startsWith(s.toLowerCase())) {
                                             Titik(localPosition,localName,foto,id);
-                                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(localPosition,14));
-                                            n++;
+                                            if (!localPosition.equals(localPositionKosong)){
+                                                map.moveCamera(CameraUpdateFactory.newLatLngZoom(localPosition,14));
+                                                n++;
+                                            }
                                         }
                                     }
                                 }
                                 if (n>50){
                                     break;
                                 }
+                            }
+                            if (n==0){
+                                Toast.makeText(getContext(),"Anggota Tidak Ditemukan",Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -299,7 +311,7 @@ public class PetaAnggota extends Fragment implements View.OnClickListener {
                         bundle.putString("1",id);
                         Fragment_Detail_Anggota fragment_detail_anggota = new Fragment_Detail_Anggota();
                         fragment_detail_anggota.setArguments(bundle);
-                        fragmentManager.beginTransaction().replace(R.id.contain_all,fragment_detail_anggota).commit();
+                        fragmentManager.beginTransaction().add(R.id.contain_all,fragment_detail_anggota,"FRAGMENT_ANGGOTA").commit();
                         dialog.dismiss();
                     }
                 });

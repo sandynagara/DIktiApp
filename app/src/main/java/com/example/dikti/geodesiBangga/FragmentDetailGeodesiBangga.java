@@ -37,11 +37,13 @@ public class FragmentDetailGeodesiBangga extends Fragment {
 
         final String idGeodesiBangga = getArguments().getString("1");
 
+        final Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag("FRAGMENT_GEODESI_BANGGA");
+
         kembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.contain_all,new FragmentGeodesiBangga()).addToBackStack(null).commit();
+                fragmentManager.beginTransaction().remove(fragment).addToBackStack(null).commit();
             }
         });
 

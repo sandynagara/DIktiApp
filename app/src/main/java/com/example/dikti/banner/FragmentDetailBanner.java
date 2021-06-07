@@ -1,5 +1,7 @@
 package com.example.dikti.banner;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,10 +57,20 @@ public class FragmentDetailBanner extends Fragment {
                 isi.setText(documentSnapshot.getString("isi"));
                 link.setText(documentSnapshot.getString("link"));
 
+                final String isiLink = documentSnapshot.getString("link");
+
                 Glide.with(getContext())
                         .load(documentSnapshot.getString("fotoBanner"))
                         .placeholder(R.drawable.logo_dikti)
                         .into(banner);
+
+                link.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(isiLink));
+                        startActivity(intent);
+                    }
+                });
             }
 
         });

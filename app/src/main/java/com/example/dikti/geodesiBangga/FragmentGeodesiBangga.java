@@ -19,6 +19,7 @@ import com.example.dikti.R;
 import com.example.dikti.fragment_Home;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 public class FragmentGeodesiBangga extends Fragment {
 
@@ -42,7 +43,7 @@ public class FragmentGeodesiBangga extends Fragment {
         judul.setText("Geodesi Bangga");
 
         FirestoreRecyclerOptions optionsGeodesiBangga = new FirestoreRecyclerOptions.Builder<VariabelGeodesiBangga>()
-                .setQuery(FirebaseFirestore.getInstance().collection("Geodesi Bangga"),VariabelGeodesiBangga.class)
+                .setQuery(FirebaseFirestore.getInstance().collection("Geodesi Bangga").orderBy("time", Query.Direction.DESCENDING),VariabelGeodesiBangga.class)
                 .build();
 
         daftar.setLayoutManager(new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL));

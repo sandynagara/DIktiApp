@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/WhiteSmoke"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
@@ -11,8 +12,8 @@
         android:background="@color/white"
         android:id="@+id/card_kembali">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:src="@drawable/ic_baseline_arrow_back_blue"
             android:layout_margin="10dp"
             android:id="@+id/kembali"/>
@@ -46,6 +47,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <ImageView
@@ -76,7 +78,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/deadline"
-                        android:text="17 November 2020"
+                        android:text="Loading"
                         android:textSize="18sp"
                         android:layout_marginTop="10dp"
                         android:textStyle="bold"
@@ -90,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/deadline"
                         android:id="@+id/nama_lomba"
-                        android:text="Lomba Poster Nasional Kampanye Positif Ramadhan Saat Pandemi Covid 19"
+                        android:text="Loading"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="@color/Black"
@@ -131,7 +133,7 @@
 
                             <TextView
                                 android:id="@+id/jenis_lomba"
-                                android:text="Poster"
+                                android:text="Loading"
                                 android:textColor="@color/Black"
                                 style="@style/detail_lomba_beasiswa"
                                 android:layout_height="wrap_content"
@@ -151,7 +153,7 @@
                             <TextView
                                 style="@style/detail_lomba_beasiswa"
                                 android:id="@+id/jenis_peserta"
-                                android:text="Individu"
+                                android:text="Loading"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:textAlignment="textEnd"
@@ -171,7 +173,7 @@
                             <TextView
                                 style="@style/detail_lomba_beasiswa"
                                 android:id="@+id/biaya"
-                                android:text="Gratis"
+                                android:text="Loading"
                                 android:textAlignment="textEnd"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -223,6 +225,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Deskripsi Lomba"
+                        android:justificationMode="inter_word"
                         android:textStyle="bold"
                         android:textSize="18sp"
                         android:textColor="@color/Black" />
@@ -232,8 +235,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:justificationMode="inter_word"
                         android:id="@+id/deskripsi_lomba"
-                        android:text="Lomba ini diselengarakan oleh ....."
+                        android:text="Loading"
                         android:textColor="@color/Black" />
                 </LinearLayout>
             </LinearLayout>

@@ -186,7 +186,7 @@ public class fragment_Home extends Fragment implements View.OnClickListener {
 
         //Firestore untuk Geodesi Bangga
         FirestoreRecyclerOptions optionsGeodesiBangga = new FirestoreRecyclerOptions.Builder<VariabelGeodesiBangga>()
-                .setQuery(firebaseFirestore.collection("Geodesi Bangga").limit(8),VariabelGeodesiBangga.class)
+                .setQuery(firebaseFirestore.collection("Geodesi Bangga").orderBy("time", Query.Direction.DESCENDING).limit(8),VariabelGeodesiBangga.class)
                 .build();
         geodesiBangga.setLayoutManager(new StaggeredGridLayoutManager(1,LinearLayoutManager.HORIZONTAL));
         final AdapterGeodesiBangga adapterGeodesiBangga = new AdapterGeodesiBangga(optionsGeodesiBangga,"1");

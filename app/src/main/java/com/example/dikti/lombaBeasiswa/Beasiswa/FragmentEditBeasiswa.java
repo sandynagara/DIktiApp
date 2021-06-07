@@ -34,7 +34,6 @@ public class FragmentEditBeasiswa extends Fragment implements View.OnClickListen
     private ImageView gambarBeasiswa;
     private TextView deadline;
     private EditText namaBeasiswa,link,deskripsi;
-    Dialog dialog;
     private String idBeasiswa;
 
     @Nullable
@@ -79,12 +78,6 @@ public class FragmentEditBeasiswa extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        TextView update,cancel,popup_masukan,popup_tambahan;
-        dialog.setContentView(R.layout.popup_peringatan);
-        popup_masukan = dialog.findViewById(R.id.popup_masukan);
-        popup_tambahan = dialog.findViewById(R.id.popup_tambahan);
-        update = dialog.findViewById(R.id.update);
-        cancel = dialog.findViewById(R.id.cancel);
 
         Bundle bundle = new Bundle();
         bundle.putString("1",idBeasiswa);
@@ -95,9 +88,7 @@ public class FragmentEditBeasiswa extends Fragment implements View.OnClickListen
         final DocumentReference documentReference = FirebaseFirestore.getInstance().collection("Beasiswa").document(idBeasiswa);
 
         if (view.getId()==R.id.update){
-            update.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+
                     Map<String,Object> map = new HashMap<>();
                     map.put("nama",namaBeasiswa.getText().toString());
                     map.put("link",link.getText().toString());
@@ -108,8 +99,9 @@ public class FragmentEditBeasiswa extends Fragment implements View.OnClickListen
                         @Override
                         public void onSuccess(Void aVoid) {
                             Toast.makeText(getContext(),"Update Berhasil",Toast.LENGTH_SHORT).show();
-                            fragmentManager.beginTransaction().replace(R.id.contain_all,fragmentDetailBeasiswa).addToBackStack(null).commit();
-                            dialog.dismiss();
+                            final Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag("Fragment_Edit_Beasiswa");
+                            fragmentManager.beginTransaction().remove(fragment).addToBackStack(null).commit();
+
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -117,68 +109,29 @@ public class FragmentEditBeasiswa extends Fragment implements View.OnClickListen
                             Toast.makeText(getContext(),"Update Gagal",Toast.LENGTH_SHORT).show();
                         }
                     });
-                }
-            });
 
-            cancel.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View view) {
-                                              dialog.dismiss();
-                                          }
-                                      }
-            );
-            dialog.show();
+
+
         }
         else if (view.getId()==R.id.cancel){
-            popup_masukan.setText("Apa anda Yakin ?");
-            popup_tambahan.setText("Data yang anda masukan akan ke reset");
-            update.setText("Ya");
-            update.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    fragmentManager.beginTransaction().replace(R.id.contain_all,fragmentDetailBeasiswa).addToBackStack(null).commit();
-                    dialog.dismiss();
-                }
-            });
 
-            cancel.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View view) {
-                                              dialog.dismiss();
-                                          }
-                                      }
-            );
+                    final Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag("Fragment_Edit_Beasiswa");
+                    fragmentManager.beginTransaction().remove(fragment).addToBackStack(null).commit();
 
-            dialog.show();
+
+
         }
         else if (view.getId()==R.id.hapus){
-            popup_masukan.setText("Apa anda Yakin ?");
-            popup_tambahan.setText("Data yang anda masukan akan ke hilang secara permanen");
-            update.setText("Ya");
-            update.setBackground(getActivity().getDrawable(R.drawable.border_merah));
-            update.setPadding(28,28,28,28);
-            update.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+
                     documentReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            fragmentManager.beginTransaction().replace(R.id.contain_all,new FragmentBeasiswa()).addToBackStack(null).commit();
-                            dialog.dismiss();
+                            final Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag("Fragment_Edit_Beasiswa");
+                            fragmentManager.beginTransaction().remove(fragment).addToBackStack(null).commit();
+
                         }
                     });
-                }
-            });
 
-            cancel.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View view) {
-                                              dialog.dismiss();
-                                          }
-                                      }
-            );
-
-            dialog.show();
         }
     }
 }

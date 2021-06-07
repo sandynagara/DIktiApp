@@ -37,12 +37,13 @@ public class Fragement_detail_matkul extends Fragment {
 
         ImageView kembali = view.findViewById(R.id.kembali);
 
+        final Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag("FRAGMENT_BANK_SOAL");
 
         kembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.contain_all,new Fragment_Home_Bank_Soal()).addToBackStack(null).commit();
+                fragmentManager.beginTransaction().remove(fragment).addToBackStack(null).commit();
             }
         });
 

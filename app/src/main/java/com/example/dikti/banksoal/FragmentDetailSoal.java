@@ -1,7 +1,9 @@
 package com.example.dikti.banksoal;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,36 +50,17 @@ public class FragmentDetailSoal extends Fragment {
 
         idSoal =getArguments().getString("1");
         matkul = getArguments().getString("2");
-        download.setVisibility(View.GONE);
+
+        final Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag("FRAGMENT_ZOOM");
+        kembali.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().remove(fragment).commit();
+            }
+        });
 
         if (matkul.equals("Lomba") || matkul.equals("Beasiswa")){
-
-           if (matkul.equals("Lomba")){
-                kembali.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                        FragmentDetailLomba fragmentDetailLomba = new FragmentDetailLomba();
-                        Bundle bundle = new Bundle();
-                        bundle.putString("1",idSoal);
-                        fragmentDetailLomba.setArguments(bundle);
-                        fragmentManager.beginTransaction().replace(R.id.contain_all,fragmentDetailLomba).commit();
-                    }
-                });
-            }else {
-                kembali.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                        FragmentDetailBeasiswa fragmentDetailBeasiswa = new FragmentDetailBeasiswa();
-                        Bundle bundle = new Bundle();
-                        bundle.putString("1",idSoal);
-                        fragmentDetailBeasiswa.setArguments(bundle);
-                        fragmentManager.beginTransaction().replace(R.id.contain_all,fragmentDetailBeasiswa).commit();
-                    }
-                });
-            }
-
 
             Task<DocumentSnapshot> documentReference = FirebaseFirestore.getInstance().document(matkul+"/"+idSoal).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
@@ -87,24 +70,19 @@ public class FragmentDetailSoal extends Fragment {
                     ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getContext()).defaultDisplayImageOptions(defaultOptions).build();
                     ImageLoader.getInstance().init(config);
                     ImageLoader.getInstance().displayImage(Foto, fotoSoal);
+                    download.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(Foto));
+                            startActivity(intent);
+                        }
+                    });
                 }
             });
+
+
         } else {
             semester = getArguments().getString("3");
-
-            kembali.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                    Fragement_detail_matkul fragement_detail_matkul = new Fragement_detail_matkul();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("1",semester);
-                    bundle.putString("3",matkul);
-                    fragement_detail_matkul.setArguments(bundle);
-                    fragmentManager.beginTransaction().replace(R.id.contain_all,fragement_detail_matkul).commit();
-
-                }
-            });
 
             Task<DocumentSnapshot> documentReference = FirebaseFirestore.getInstance().document(semester+"/"+matkul+"/"+matkul+"/"+idSoal).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
@@ -117,11 +95,14 @@ public class FragmentDetailSoal extends Fragment {
                     download.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Toast.makeText(getContext(),"Masih dalam tahap Pengembangan",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(Foto));
+                            startActivity(intent);
                         }
                     });
                 }
             });
+
+
         }
 
 

@@ -46,7 +46,7 @@ import java.util.Objects;
 
 public class fragment_tambah_soal extends Fragment {
 
-    private Spinner semester,matkul,kelas;
+    private Spinner semester,matkul,kelas,utsUas;
     private FirebaseFirestore firebaseFirestore;
     private EditText dosen,tahunSoal;
     private List<String> isiMatkullist;
@@ -67,6 +67,7 @@ public class fragment_tambah_soal extends Fragment {
         tahunSoal = view.findViewById(R.id.tahun_soal);
         add = view.findViewById(R.id.addData);
         fotoSoal = view.findViewById(R.id.foto_soal);
+        utsUas = view.findViewById(R.id.uts_atau_uas);
         View tambahFoto= view.findViewById(R.id.tambah_foto);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -81,10 +82,12 @@ public class fragment_tambah_soal extends Fragment {
             }
         });
 
-        final String[] isiSemesterList = {"Semester 1","Semester 2","Semester 3","Semester 4","Semester 5","Semester 6","Semester 7","Semester 8","Pilihan Semester Ganjit","Pilihan Semester Genap"};
+        final String[] isiSemesterList = {"Semester 1","Semester 2","Semester 3","Semester 4","Semester 5","Semester 6","Semester 7","Semester 8","Semester Gasal","Semester Genap"};
         String[] isiKelasList = {"A","B","C"};
+        String[] isiUTSUASList = {"UTS","UAS"};
         SpinnerString(isiSemesterList,semester);
         SpinnerString(isiKelasList,kelas);
+        SpinnerString(isiUTSUASList,utsUas);
 
         semester.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -154,41 +157,53 @@ public class fragment_tambah_soal extends Fragment {
     }
 
     private void Upload(){
-        add.setText("Tunggu");
-        showNotification("Soal sedang ditambahkan","Tunggu hingga muncul notifikasi berikutnya");
-        final StorageReference ref= FirebaseStorage.getInstance().getReference().child("Bank Soal/"+isiSemester+"/"+isiMatkul+"/"+tahunSoal.getText().toString()+" "+kelas.getSelectedItem().toString()+" "+isiMatkul+"."+getExtension(gambar));
-        ref.putFile(gambar).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        DocumentReference isiData= FirebaseFirestore.getInstance().document(isiSemester+"/"+isiMatkul+"/"+isiMatkul+"/"+tahunSoal.getText().toString()+" "+kelas.getSelectedItem().toString()+" "+isiMatkul);
-                        VariabelBankSoal variabelBankSoal = new VariabelBankSoal();
-                        variabelBankSoal.setDosen(dosen.getText().toString());
-                        variabelBankSoal.setSemester(isiSemester);
-                        variabelBankSoal.setMataKuliah(isiMatkul);
-                        variabelBankSoal.setTahun(Long.parseLong(tahunSoal.getText().toString()));
-                        variabelBankSoal.setFoto(String.valueOf(uri));
-                        isiData.set(variabelBankSoal);
-                        showNotification("Soal berhasil ditambahkan","Terima kasih telah menambahkan soal");
-                        add.setText("Add");
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        showNotification("Soal gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
-                        add.setText("Add");
-                    }
-                });
+        if (!dosen.getText().toString().isEmpty() && !tahunSoal.getText().toString().isEmpty()){
+            add.setText("Tunggu");
+            showNotification("Soal sedang ditambahkan","Tunggu hingga muncul notifikasi berikutnya");
+            final StorageReference ref= FirebaseStorage.getInstance().getReference().child("Bank Soal/"+isiSemester+"/"+isiMatkul+"/"+tahunSoal.getText().toString()+" "+utsUas.getSelectedItem().toString()+" "+kelas.getSelectedItem().toString()+" "+isiMatkul+"."+getExtension(gambar));
+            ref.putFile(gambar).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            DocumentReference isiData= FirebaseFirestore.getInstance().document(isiSemester+"/"+isiMatkul+"/"+isiMatkul+"/"+tahunSoal.getText().toString()+" "+utsUas.getSelectedItem().toString()+" "+kelas.getSelectedItem().toString()+" "+isiMatkul);
+                            VariabelBankSoal variabelBankSoal = new VariabelBankSoal();
+                            variabelBankSoal.setDosen(dosen.getText().toString());
+                            variabelBankSoal.setSemester(isiSemester);
+                            variabelBankSoal.setMataKuliah(isiMatkul);
+                            variabelBankSoal.setTahun(Long.parseLong(tahunSoal.getText().toString()));
+                            variabelBankSoal.setFoto(String.valueOf(uri));
+                            variabelBankSoal.setUtsUas(utsUas.getSelectedItem().toString());
+                            isiData.set(variabelBankSoal);
+                            showNotification("Soal berhasil ditambahkan","Terima kasih telah menambahkan soal");
+                            add.setText("Add");
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            showNotification("Soal gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
+                            add.setText("Add");
+                        }
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    showNotification("Soal gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
+                    add.setText("Add");
+                }
+            });
+        }else {
+            if (dosen.getText().toString().isEmpty()){
+                dosen.setError("Tidak Boleh Kosong");
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                showNotification("Soal gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
-                add.setText("Add");
+
+            if (tahunSoal.getText().toString().isEmpty()){
+                tahunSoal.setError("Tidak Boleh Kosong");
             }
-        });
+        }
+
     }
     private String getExtension(Uri uri){
         ContentResolver contentResolver = Objects.requireNonNull(getActivity()).getContentResolver();

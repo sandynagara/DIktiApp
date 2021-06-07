@@ -148,59 +148,70 @@ public class FragmentTambahBeasiswa extends Fragment {
     }
 
     private void Upload(){
-        showNotification("Beasiswa sedang ditambahkan","Tunggu hingga muncul notifikasi berikutnya");
-        tambah.setText("Tunggu");
-        isiNamaBeasiswa = namaBeasiswa.getText().toString();
-        isiDeskripsi = deskripsi.getText().toString();
-        isiLink = link.getText().toString();
-        final String pengirim = Preference.getDataUsername(getContext());
-        isiDeadlineTanggalLong = Long.parseLong(isiDeadlineTanggal);
-        isiDeadlineTahunLong = Long.parseLong(deadlineTahun.getText().toString());
-        deadline = Long.parseLong(deadlineTahun.getText().toString()+isiDeadlineBulanint+isiDeadlineTanggalint);
+        if (!namaBeasiswa.getText().toString().isEmpty() && !deadlineTahun.getText().toString().isEmpty()){
+            showNotification("Beasiswa sedang ditambahkan","Tunggu hingga muncul notifikasi berikutnya");
+            tambah.setText("Tunggu");
+            isiNamaBeasiswa = namaBeasiswa.getText().toString();
+            isiDeskripsi = deskripsi.getText().toString();
+            isiLink = link.getText().toString();
+            final String pengirim = Preference.getDataUsername(getContext());
+            isiDeadlineTanggalLong = Long.parseLong(isiDeadlineTanggal);
+            isiDeadlineTahunLong = Long.parseLong(deadlineTahun.getText().toString());
+            deadline = Long.parseLong(deadlineTahun.getText().toString()+isiDeadlineBulanint+isiDeadlineTanggalint);
 
-        final StorageReference ref=storageReference.child("Beasiswa/"+isiDeadlineTahunLong+"/"+isiDeadlineBulan+"/"+"/"+isiNamaBeasiswa+"."+getExtension(gambar));
-        ref.putFile(gambar).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        DocumentReference isiData=firebaseFirestore.collection("Beasiswa").document(isiNamaBeasiswa);
-                        VariabelBeasiswa variabelBeasiswa = new VariabelBeasiswa();
-                        variabelBeasiswa.setDeadline(deadline);
-                        variabelBeasiswa.setDeadlineBulan(isiDeadlineBulan);
-                        variabelBeasiswa.setDeadlineTahun(isiDeadlineTahunLong);
-                        variabelBeasiswa.setDeadlineTanggal(isiDeadlineTanggalLong);
-                        variabelBeasiswa.setDeskripsi(isiDeskripsi);
-                        variabelBeasiswa.setFoto(String.valueOf(uri));
-                        variabelBeasiswa.setLink(isiLink);
-                        variabelBeasiswa.setNama(isiNamaBeasiswa);
-                        variabelBeasiswa.setQueryNama(isiNamaBeasiswa.toLowerCase());
-                        if (Preference.getDataUsername(getContext()).isEmpty()){
-                            variabelBeasiswa.setPengirim("Tidak Diketahui");
-                        }else {
-                            variabelBeasiswa.setPengirim(pengirim);
+            final StorageReference ref=storageReference.child("Beasiswa/"+isiDeadlineTahunLong+"/"+isiDeadlineBulan+"/"+"/"+isiNamaBeasiswa+"."+getExtension(gambar));
+            ref.putFile(gambar).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            DocumentReference isiData=firebaseFirestore.collection("Beasiswa").document(isiNamaBeasiswa);
+                            VariabelBeasiswa variabelBeasiswa = new VariabelBeasiswa();
+                            variabelBeasiswa.setDeadline(deadline);
+                            variabelBeasiswa.setDeadlineBulan(isiDeadlineBulan);
+                            variabelBeasiswa.setDeadlineTahun(isiDeadlineTahunLong);
+                            variabelBeasiswa.setDeadlineTanggal(isiDeadlineTanggalLong);
+                            variabelBeasiswa.setDeskripsi(isiDeskripsi);
+                            variabelBeasiswa.setFoto(String.valueOf(uri));
+                            variabelBeasiswa.setLink(isiLink);
+                            variabelBeasiswa.setNama(isiNamaBeasiswa);
+                            variabelBeasiswa.setQueryNama(isiNamaBeasiswa.toLowerCase());
+                            if (Preference.getDataUsername(getContext()).isEmpty()){
+                                variabelBeasiswa.setPengirim("Tidak Diketahui");
+                            }else {
+                                variabelBeasiswa.setPengirim(pengirim);
+                            }
+                            variabelBeasiswa.setFavorit(false);
+                            isiData.set(variabelBeasiswa);
+                            tambah.setText("Add");
+                            showNotification(isiNamaBeasiswa+" berhasil ditambahkan","Terima kasih telah menambahkan daftar beasiswa");
                         }
-                        variabelBeasiswa.setFavorit(false);
-                        isiData.set(variabelBeasiswa);
-                        tambah.setText("Add");
-                        showNotification(isiNamaBeasiswa+" berhasil ditambahkan","Terima kasih telah menambahkan daftar beasiswa");
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        tambah.setText("Add");
-                        showNotification("Beasiswa gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
-                    }
-                });
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            tambah.setText("Add");
+                            showNotification("Beasiswa gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
+                        }
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    tambah.setText("Add");
+                    showNotification("Beasiswa gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
+                }
+            });
+        }else {
+            if (namaBeasiswa.getText().toString().isEmpty()){
+                namaBeasiswa.setError("Nama Beasiswa Tidak boleh Kosong");
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                tambah.setText("Add");
-                showNotification("Beasiswa gagal ditambahkan","Pastikan sinyal di rumah anda dalam keadaan baik");
+
+            if (deadlineTahun.getText().toString().isEmpty()){
+                deadlineTahun.setError("Deadline Tahun Tidak boleh Kosong");
             }
-        });
+        }
+
     }
 
     private void SpinnerString (String[] strings,Spinner spinner){

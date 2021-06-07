@@ -42,7 +42,7 @@ public class AdapterAnggota extends FirestoreRecyclerAdapter<VariabelAnggota,Ada
         holder.namaAnggota.setText(variabelAnggota.getNamaLengkap());
         holder.namaDepartemen.setText(variabelAnggota.getDepartemen());
         holder.angkatan.setText(variabelAnggota.getAngkatan());
-        if (variabelAnggota.getNamaLengkap().length()<22){
+        if (variabelAnggota.getNamaLengkap().length()<18){
             holder.point.setText("");
         }else {
             holder.point.setText("...");
@@ -57,7 +57,7 @@ public class AdapterAnggota extends FirestoreRecyclerAdapter<VariabelAnggota,Ada
                 SplashScreen activity = (SplashScreen) view.getContext();
                 Fragment_Detail_Anggota fragment_detail_anggota = new Fragment_Detail_Anggota();
                 fragment_detail_anggota.setArguments(bundle);
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.contain_all,fragment_detail_anggota).commit();
+                activity.getSupportFragmentManager().beginTransaction().add(R.id.contain_all,fragment_detail_anggota, "FRAGMENT_ANGGOTA").addToBackStack(null).commit();
             }
         });
     }

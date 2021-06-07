@@ -41,7 +41,7 @@ public class AdapterBankSoal extends FirestoreRecyclerAdapter<VariabelBankSoal, 
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 Fragement_detail_matkul fragement_detail_matkul = new Fragement_detail_matkul();
                 fragement_detail_matkul.setArguments(kirim);
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.contain_all,fragement_detail_matkul).commit();
+                activity.getSupportFragmentManager().beginTransaction().add(R.id.contain_all,fragement_detail_matkul,"FRAGMENT_BANK_SOAL").commit();
             }
         });
     }
